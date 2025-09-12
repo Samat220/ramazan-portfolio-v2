@@ -8,7 +8,7 @@ export function Contact() {
   const { openContactForm } = useModalStore();
 
   return (
-    <footer id="contact" className="text-center py-24 fade-in-section">
+    <footer id="contact" className="text-center py-32 fade-in-section">
       <ScrollReveal animationType="fadeUp">
         <h2 className="numbered-heading mb-6 justify-center">What&apos;s Next?</h2>
       </ScrollReveal>

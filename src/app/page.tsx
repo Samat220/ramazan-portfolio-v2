@@ -17,7 +17,7 @@ import { useScrollAnimation } from '@/hooks';
 
 export default function Home() {
   const { isLoading } = usePageLoader();
-  
+
   // Initialize scroll animations for fade-in-section elements
   useScrollAnimation();
 
@@ -41,7 +41,7 @@ export default function Home() {
             <Socials />
             <Email />
 
-            <main className="mx-auto min-h-screen max-w-4xl px-6 sm:px-12 md:px-32 lg:px-40 transition-all duration-300">
+            <main className="mx-auto min-h-screen max-w-6xl px-6 sm:px-12 md:px-20 lg:px-24 xl:px-32 2xl:px-40 transition-all duration-300">
               <Hero />
               <About />
               <Experience />

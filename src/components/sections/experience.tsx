@@ -10,7 +10,7 @@ export function Experience() {
   const { openExperienceModal } = useModalStore();
 
   return (
-    <section id="experience" className="py-24">
+    <section id="experience" className="py-32">
       <ScrollReveal animationType="fadeUp">
         <h2 className="numbered-heading">Where I&apos;ve Worked</h2>
       </ScrollReveal>

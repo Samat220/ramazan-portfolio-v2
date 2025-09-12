@@ -5,7 +5,7 @@ import { backendSkills, mlSkills } from '@/data/config';
 
 export function About() {
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="py-32">
       <ScrollReveal animationType="fadeUp">
         <h2 className="numbered-heading">About Me</h2>
       </ScrollReveal>
