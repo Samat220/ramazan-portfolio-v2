@@ -20,7 +20,7 @@ export function Socials() {
 
   return (
     <motion.div
-      className="fixed bottom-0 left-6 sm:left-12 md:left-24 hidden md:flex flex-col items-center space-y-6 z-10"
+      className="fixed bottom-0 left-4 sm:left-8 md:left-12 lg:left-16 hidden md:flex flex-col items-center space-y-6 z-10"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.5, duration: 0.8 }}

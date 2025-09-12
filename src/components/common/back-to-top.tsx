@@ -28,7 +28,7 @@ export function BackToTop() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-accent text-background rounded-full shadow-lg hover:bg-accent/90 transition-all duration-300 group"
+          className="fixed bottom-8 right-4 sm:right-6 md:right-8 z-50 p-3 bg-accent text-background rounded-full shadow-lg hover:bg-accent/90 transition-all duration-300 group"
           initial={{ opacity: 0, scale: 0, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0, y: 50 }}

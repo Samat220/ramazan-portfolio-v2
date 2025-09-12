@@ -6,7 +6,7 @@ import { personalInfo } from '@/data/config';
 export function Email() {
   return (
     <motion.div
-      className="fixed bottom-0 right-6 sm:right-12 md:right-24 hidden md:flex flex-col items-center space-y-6 z-10"
+      className="fixed bottom-0 right-4 sm:right-8 md:right-12 lg:right-16 hidden md:flex flex-col items-center space-y-6 z-10"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.5, duration: 0.8 }}

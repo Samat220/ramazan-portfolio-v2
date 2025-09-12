@@ -41,7 +41,7 @@ export default function Home() {
             <Socials />
             <Email />
 
-            <main className="mx-auto min-h-screen max-w-4xl px-6 sm:px-12 md:px-24 transition-all duration-300">
+            <main className="mx-auto min-h-screen max-w-4xl px-6 sm:px-12 md:px-32 lg:px-40 transition-all duration-300">
               <Hero />
               <About />
               <Experience />
