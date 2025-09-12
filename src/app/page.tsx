@@ -13,9 +13,13 @@ import { BackToTop } from '@/components/common/back-to-top';
 import { ExperienceModal } from '@/components/common/experience-modal';
 import { ContactForm } from '@/components/common/contact-form';
 import { Loading, usePageLoader } from '@/components/common/loading';
+import { useScrollAnimation } from '@/hooks';
 
 export default function Home() {
   const { isLoading } = usePageLoader();
+  
+  // Initialize scroll animations for fade-in-section elements
+  useScrollAnimation();
 
   return (
     <>

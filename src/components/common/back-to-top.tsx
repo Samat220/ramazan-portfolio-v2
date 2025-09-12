@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
+import { useSmoothScroll } from '@/hooks';
 
 export function BackToTop() {
+  const { scrollToTop } = useSmoothScroll();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -20,12 +22,6 @@ export function BackToTop() {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
 
   return (
     <AnimatePresence>
