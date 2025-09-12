@@ -61,11 +61,13 @@ export default function Home() {
             </main>
 
             {/* Modals */}
-            <ExperienceModal />
             <ContactForm />
 
             {/* Back to Top Button */}
             <BackToTop />
+
+            {/* Experience Modal - rendered via portal */}
+            <ExperienceModal />
           </motion.div>
         )}
       </div>

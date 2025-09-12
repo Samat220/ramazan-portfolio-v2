@@ -75,38 +75,6 @@
   --font-size-fz-heading: var(--font-size-heading);
 }
 
-/* Dark theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --card-background: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --accent: #0ea5e9;
-    --accent-light: rgba(14, 165, 233, 0.15);
-    --border-color: #334155;
-
-    /* Dark theme gradients */
-    --gradient-primary: linear-gradient(135deg, #4c1d95 0%, #312e81 100%);
-    --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-    --gradient-card: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%);
-    --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.5) 0%, rgba(59, 130, 246, 0.5) 50%, rgba(139, 92, 246, 0.5) 100%);
-
-    /* Dark glass morphism */
-    --glass-bg: rgba(30, 41, 59, 0.3);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --backdrop-blur: 20px;
-
-    /* Dark advanced shadows */
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 10px 10px -5px rgb(0 0 0 / 0.1);
-    --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.5);
-    --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.6);
-    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
-  }
-}
-
 /* Light class for manual theme switching */
 .light {
   --background: #f8fafc;
@@ -270,22 +238,25 @@ a:focus-visible,
   }
 }
 
-/* Dark mode preference */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --card-background: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --border-color: #334155;
-    --glass-bg: rgba(30, 41, 59, 0.3);
-    --glass-border: rgba(255, 255, 255, 0.1);
-  }
-}
-
 /* Numbered heading styles */
 body {
   counter-reset: section;
+}
+
+/* Modal overlay styles to ensure proper centering */
+.modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 1rem !important;
 }
 
 .numbered-heading {
