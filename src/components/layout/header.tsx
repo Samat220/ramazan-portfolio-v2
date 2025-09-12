@@ -6,11 +6,12 @@ import { Moon, Sun, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { navLinks } from '@/data/config';
 import { useThemeStore } from '@/lib/store';
-import { scrollToElement } from '@/lib/utils';
+import { useSmoothScroll } from '@/hooks';
 import { cn } from '@/lib/utils';
 
 export function Header() {
   const { theme, toggleTheme } = useThemeStore();
+  const { scrollToElement } = useSmoothScroll();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -24,7 +25,7 @@ export function Header() {
   }, []);
 
   const handleLinkClick = (href: string) => {
-    scrollToElement(href, 80);
+    scrollToElement(href.replace('#', ''), 80);
     setIsMenuOpen(false);
   };
 
@@ -45,7 +46,7 @@ export function Header() {
           {/* Logo */}
           <motion.button
             className="text-2xl font-bold text-accent hover:text-accent/80 transition-colors"
-            onClick={() => scrollToElement('#hero')}
+            onClick={() => scrollToElement('hero')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -53,42 +54,33 @@ export function Header() {
           </motion.button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map((link, index) => (
               <motion.button
                 key={link.href}
                 onClick={() => handleLinkClick(link.href)}
-                className="group flex items-center space-x-2 text-sm font-mono text-secondary hover:text-accent transition-colors"
+                className="font-mono text-sm text-secondary hover:text-accent transition-all duration-300"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.5 }}
                 whileHover={{ y: -2 }}
               >
-                <span className="text-accent">{link.number}</span>
-                <span className="relative">
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-                </span>
+                <span className="text-accent">{link.number}</span> {link.label}
               </motion.button>
             ))}
 
             {/* Resume Button */}
-            <motion.div
+            <motion.a
+              href="/resume.pdf"
+              download="RamazanSamat_Resume.pdf"
+              className="font-mono text-sm border border-accent rounded text-accent py-2 px-4 hover:bg-accent-light transition-all duration-300"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9 }}
+              whileHover={{ y: -2 }}
             >
-              <motion.a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 text-sm font-mono text-accent border border-accent rounded bg-transparent hover:bg-accent/10 transition-all duration-300"
-                whileHover={{ y: -2, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Resume
-              </motion.a>
-            </motion.div>
+              Resume
+            </motion.a>
 
             <motion.div
               initial={{ opacity: 0, scale: 0 }}

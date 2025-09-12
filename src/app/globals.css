@@ -75,6 +75,20 @@
   }
 }
 
+/* Light class for manual theme switching */
+.light {
+  --background: #f8fafc;
+  --card-background: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --accent: #0ea5e9;
+  --accent-light: rgba(14, 165, 233, 0.1);
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 /* Dark class for manual theme switching */
 .dark {
   --background: #0f172a;

@@ -9,14 +9,35 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Initialize theme from system preference if not set
     if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('portfolio-theme');
+      // Check if zustand has already loaded a theme from localStorage
+      const zustandState = localStorage.getItem('portfolio-theme');
+      
+      if (zustandState) {
+        try {
+          const parsedState = JSON.parse(zustandState);
+          if (parsedState?.state?.theme) {
+            // Theme already loaded by zustand, just apply it
+            const loadedTheme = parsedState.state.theme;
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(loadedTheme);
+            return;
+          }
+        } catch (error) {
+          console.warn('Failed to parse theme from localStorage:', error);
+        }
+      }
+
+      // No saved theme, detect system preference
       const systemPrefersDark = window.matchMedia(
         '(prefers-color-scheme: dark)'
       ).matches;
-
-      if (!savedTheme) {
-        setTheme(systemPrefersDark ? 'dark' : 'light');
-      }
+      
+      const defaultTheme = systemPrefersDark ? 'dark' : 'light';
+      setTheme(defaultTheme);
+      
+      // Apply theme class immediately
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(defaultTheme);
     }
   }, [setTheme]);
 
@@ -24,11 +45,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Apply theme class to document element
     if (typeof window !== 'undefined') {
       const root = document.documentElement;
-      if (theme === 'dark') {
-        root.classList.add('dark');
-      } else {
-        root.classList.remove('dark');
-      }
+      
+      // Remove both theme classes first
+      root.classList.remove('light', 'dark');
+      
+      // Add the current theme class
+      root.classList.add(theme);
     }
   }, [theme]);
 
