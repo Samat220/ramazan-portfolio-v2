@@ -31,9 +31,18 @@ export function Contact() {
         <div className="flex justify-center items-center space-x-4 flex-wrap gap-y-4">
           <motion.button
             onClick={openContactForm}
-            className="contact-button inline-block bg-transparent border border-accent rounded text-accent font-mono py-3 px-6 hover:bg-accent-light transition-all duration-300"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            className="btn-glow btn-magnetic btn-ripple contact-button inline-block font-mono"
+            whileHover={{ 
+              y: -3, 
+              scale: 1.05,
+              boxShadow: "0 20px 40px rgba(14, 165, 233, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 17
+            }}
           >
             Say Hello
           </motion.button>
@@ -41,9 +50,18 @@ export function Contact() {
           <motion.a
             href="/resume.pdf"
             download="RamazanSamat_Resume.pdf"
-            className="contact-button inline-block bg-transparent border border-accent rounded text-accent font-mono py-3 px-6 hover:bg-accent-light transition-all duration-300"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            className="btn-glow btn-magnetic btn-ripple contact-button inline-block font-mono"
+            whileHover={{ 
+              y: -3, 
+              scale: 1.05,
+              boxShadow: "0 20px 40px rgba(14, 165, 233, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 17
+            }}
           >
             Resume
           </motion.a>

@@ -61,7 +61,7 @@ export function Header() {
             key={link.href}
             href={link.href}
             onClick={(e) => handleLinkClick(e, link.href)}
-            className="nav-link font-mono text-sm text-primary hover:text-accent transition-all duration-300 relative"
+            className="nav-link font-mono text-sm text-primary hover:text-accent transition-all duration-200 relative"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -69,7 +69,14 @@ export function Header() {
               duration: 0.5,
               ease: [0.25, 0.1, 0.25, 1]
             }}
-            whileHover={{ y: -2 }}
+            whileHover={{ 
+              y: -2
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{
+              duration: 0.15,
+              ease: "easeOut"
+            }}
           >
             <span className="text-accent">{link.number}</span> {link.label}
           </motion.a>
@@ -77,7 +84,7 @@ export function Header() {
         <motion.a
           href="/resume.pdf"
           download="RamazanSamat_Resume.pdf"
-          className="font-mono text-sm border border-accent rounded text-accent py-2 px-4 hover:bg-accent-light transition-all duration-300"
+          className="font-mono text-sm border border-accent rounded text-accent py-2 px-4 hover:bg-accent-light transition-all duration-200"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -89,6 +96,10 @@ export function Header() {
           }}
           whileHover={{ y: -2, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          transition={{
+            duration: 0.15,
+            ease: "easeOut"
+          }}
         >
           Resume
         </motion.a>

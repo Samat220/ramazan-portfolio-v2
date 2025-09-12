@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Header } from '@/components/layout/header';
 import { Socials } from '@/components/layout/socials';
 import { Email } from '@/components/layout/email';
@@ -13,6 +14,7 @@ import { BackToTop } from '@/components/common/back-to-top';
 import { ExperienceModal } from '@/components/common/experience-modal';
 import { ContactForm } from '@/components/common/contact-form';
 import { Loading, usePageLoader } from '@/components/common/loading';
+import { CustomCursor } from '@/components/common/custom-cursor';
 import { useScrollAnimation } from '@/hooks';
 
 export default function Home() {
@@ -27,7 +29,16 @@ export default function Home() {
 
       <div className="relative bg-background text-primary min-h-screen">
         {!isLoading && (
-          <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ 
+              duration: 1, 
+              ease: [0.4, 0, 0.2, 1],
+              delayChildren: 0.3,
+              staggerChildren: 0.1 
+            }}
+          >
             {/* Background Geometric Shapes */}
             <div className="fixed left-0 top-0 -z-10 h-full w-full pointer-events-none">
               <div className="absolute top-0 left-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse" />
@@ -55,7 +66,7 @@ export default function Home() {
 
             {/* Back to Top Button */}
             <BackToTop />
-          </>
+          </motion.div>
         )}
       </div>
     </>

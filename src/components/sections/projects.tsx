@@ -26,46 +26,52 @@ export function Projects() {
       </ScrollReveal>
 
       {/* Featured Projects */}
-      <ul>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {featuredProjects?.map((project, i) => (
           <ScrollReveal key={i} animationType="fadeUp" delay={i * 200}>
-            <li className="relative grid gap-10 items-center project">
-              <div className="project-content relative bg-slate-800 rounded-lg p-6 lg:p-8 z-20">
+            <li className="project-item">
+              <div className={`project-content ${
+                i % 2 === 0 ? 'project-content-even' : 'project-content-odd'
+              }`}>
                 <div>
-                  <p className="project-overline mb-2">Featured Project</p>
-                  <h3 className="project-title text-2xl font-bold text-slate-100 mb-4">
+                  <p className="text-accent font-mono text-xs font-normal mt-2 mb-1">
+                    Featured Project
+                  </p>
+
+                  <h3 className="text-primary text-2xl lg:text-3xl font-bold mt-0 mb-5">
                     <a
                       href={project.liveUrl || project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-green-400 transition-colors duration-300"
+                      className="static text-inherit no-underline hover:text-accent transition-colors duration-300"
                     >
                       {project.title}
                     </a>
                   </h3>
-                  <div className="project-description mb-6">
-                    <p className="text-slate-300 leading-relaxed">
-                      {project.description}
-                    </p>
+
+                  <div className={`project-description ${
+                    i % 2 === 0 ? 'project-description-even' : 'project-description-odd'
+                  }`}>
+                    <p>{project.description}</p>
                   </div>
-                  <ul className="project-tech-list flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map(tech => (
-                      <li
-                        key={tech}
-                        className="text-sm text-slate-300 bg-slate-700 px-3 py-1 rounded-full"
-                      >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="project-links flex gap-4">
+
+                  {project.technologies && (
+                    <ul className="project-tech-list">
+                      {project.technologies.map((tech, j) => (
+                        <li key={j} className="project-tech-item">
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div className="project-links">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub Link"
-                        className="text-slate-300 hover:text-green-400 transition-colors duration-300"
                       >
                         <GithubIcon />
                       </a>
@@ -76,7 +82,6 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="External Link"
-                        className="text-slate-300 hover:text-green-400 transition-colors duration-300"
                       >
                         <ExternalLinkIcon />
                       </a>
@@ -84,29 +89,29 @@ export function Projects() {
                   </div>
                 </div>
               </div>
-              <div className="project-image relative z-10">
+
+              <div className={`project-image-container ${
+                i % 2 === 0 ? 'project-image-even' : 'project-image-odd'
+              }`}>
                 <a
                   href={project.liveUrl || project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full h-full"
+                  className="project-image-link"
                 >
-                  <div className="img-container relative rounded-lg overflow-hidden shadow-2xl">
-                    {project.screenshotUrl ? (
-                      <img
-                        src={project.screenshotUrl}
-                        alt={project.title}
-                        width={600}
-                        height={400}
-                        className="img w-full h-full object-cover transition-all duration-300 hover:filter-none"
-                      />
-                    ) : (
-                      <ProjectImagePlaceholder
-                        title={project.title}
-                        index={i}
-                      />
-                    )}
-                  </div>
+                  <div className="project-image-overlay" />
+                  {project.screenshotUrl ? (
+                    <img
+                      src={project.screenshotUrl}
+                      alt={project.title}
+                      className="project-image"
+                    />
+                  ) : (
+                    <ProjectImagePlaceholder
+                      title={project.title}
+                      index={i}
+                    />
+                  )}
                 </a>
               </div>
             </li>
@@ -126,10 +131,12 @@ export function Projects() {
           {projectsToShow.map((project, i) => (
             <ScrollReveal key={i} animationType="fadeUp" delay={i * 100}>
               <motion.div
-                className="project-card bg-card-bg p-6 rounded-lg border border-border hover:border-accent/50 transition-all duration-300 h-full flex flex-col"
-                whileHover={{
-                  y: -5,
-                  boxShadow: '0 10px 30px rgba(14, 165, 233, 0.1)',
+                className="card-enhanced p-6 rounded-lg h-full flex flex-col"
+                whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ 
+                  duration: 0.2,
+                  ease: [0.4, 0, 0.2, 1]
                 }}
               >
                 <div className="flex items-center justify-between mb-4">
