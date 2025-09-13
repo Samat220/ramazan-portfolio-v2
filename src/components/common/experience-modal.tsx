@@ -1,65 +1,50 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { useModalStore } from '@/lib/store';
+import { useModal } from '@/components/ui/modal-provider';
 
-export function ExperienceModal() {
-  const { selectedExperience, isExperienceModalOpen, closeExperienceModal } =
-    useModalStore();
-  const closeRef = useRef<HTMLButtonElement | null>(null);
+interface ExperienceModalProps {
+  job: {
+    role: string;
+    company: string;
+    companyUrl?: string;
+    period: string;
+    description: string[];
+  };
+}
 
-  useEffect(() => {
-    if (!isExperienceModalOpen) return;
+function ExperienceModalContent({ job }: ExperienceModalProps) {
+  const { closeModal } = useModal();
 
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeExperienceModal();
-    };
-
-    window.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    closeRef.current?.focus();
-
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [isExperienceModalOpen, closeExperienceModal]);
-
-  if (!isExperienceModalOpen || !selectedExperience) return null;
-
-  const labelId = `modal-title-${selectedExperience.company}`;
-  const descId = `modal-desc-${selectedExperience.company}`;
+  const labelId = `modal-title-${job.company}`;
+  const descId = `modal-desc-${job.company}`;
 
   return (
     <div
-      className="overlay"
+      className="w-full max-w-2xl rounded-2xl overflow-hidden"
       role="dialog"
-      aria-modal="true"
       aria-labelledby={labelId}
       aria-describedby={descId}
-      onClick={closeExperienceModal}
     >
-      <div className="dialog" onClick={(e) => e.stopPropagation()}>
+      <div className="dialog">
         <header className="dialog-header">
           <div>
-            <h2 id={labelId}>{selectedExperience.role}</h2>
+            <h2 id={labelId}>{job.role}</h2>
             <p className="muted">
               <a
-                href={selectedExperience.companyUrl}
+                href={job.companyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="company-link"
+                onClick={e => e.stopPropagation()}
               >
-                {selectedExperience.company} ↗
+                {job.company} ↗
               </a>
             </p>
-            <p className="period">{selectedExperience.period}</p>
+            <p className="period">{job.period}</p>
           </div>
           <button
-            ref={closeRef}
             className="close"
-            onClick={closeExperienceModal}
+            onClick={closeModal}
             aria-label="Close"
           >
             ×
@@ -68,26 +53,27 @@ export function ExperienceModal() {
         <div id={descId} className="dialog-body">
           <h3>Key Highlights</h3>
           <ul className="bullets">
-            {selectedExperience.description.map((point: string, i: number) => (
+            {job.description.map((point: string, i: number) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
+
+          <div className="skills-section">
+            <h4>Technologies & Skills</h4>
+            <div className="skills-grid">
+              {job.skills.map((skill: string, i: number) => (
+                <span key={i} className="skill-tag">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
       <style jsx>{`
-        .overlay {
-          position: fixed;
-          inset: 0;
-          z-index: 10000;
-          display: grid;
-          place-items: center;
-          background: rgba(15,23,42,0.6);
-          backdrop-filter: blur(6px);
-          padding: 24px;
-        }
         .dialog {
-          width: min(720px, 100%);
+          width: 100%;
           border-radius: 16px;
           background: var(--card-bg, #1e293b);
           border: 1px solid var(--border, rgba(148, 163, 184, 0.2));
@@ -141,6 +127,7 @@ export function ExperienceModal() {
           font-size: 20px;
           cursor: pointer;
           transition: all 0.2s ease;
+          flex-shrink: 0;
         }
         .close:hover {
           background: var(--background, #0f172a);
@@ -175,7 +162,47 @@ export function ExperienceModal() {
           color: var(--accent, #0ea5e9);
           font-weight: bold;
         }
+        .skills-section {
+          margin-top: 24px;
+          padding-top: 20px;
+          border-top: 1px solid var(--border, rgba(148, 163, 184, 0.2));
+        }
+        .skills-section h4 {
+          margin: 0 0 12px;
+          color: var(--text-primary, #f1f5f9);
+          font-size: 1rem;
+          font-weight: 500;
+        }
+        .skills-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .skill-tag {
+          padding: 6px 12px;
+          background: var(--accent, #0ea5e9);
+          background: rgba(14, 165, 233, 0.1);
+          color: var(--accent, #0ea5e9);
+          border: 1px solid rgba(14, 165, 233, 0.2);
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        }
+        .skill-tag:hover {
+          background: rgba(14, 165, 233, 0.2);
+        }
       `}</style>
     </div>
   );
+}
+
+export function useExperienceModal() {
+  const { openModal } = useModal();
+
+  const openExperienceModal = (job: ExperienceModalProps['job']) => {
+    openModal(<ExperienceModalContent job={job} />);
+  };
+
+  return { openExperienceModal };
 }

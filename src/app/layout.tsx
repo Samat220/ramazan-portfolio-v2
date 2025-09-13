@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Fira_Code } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from '@/providers/theme-provider';
+import { ModalProvider } from '@/components/ui/modal-provider';
 import { siteMetadata } from '@/data/config';
 import './globals.css';
 
@@ -99,10 +100,12 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
-          <div className="relative isolate">
-            {children}
-            <Analytics />
-          </div>
+          <ModalProvider>
+            <div className="relative isolate">
+              {children}
+              <Analytics />
+            </div>
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>

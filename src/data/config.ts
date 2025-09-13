@@ -31,6 +31,7 @@ export const experience: Experience[] = [
       'Collaborated with cross-functional teams to deliver features that increased customer engagement by 35%.',
       'Mentored junior developers and conducted code reviews to maintain high code quality standards.',
     ],
+    skills: ['Python', 'Django', 'Redis', 'PostgreSQL', 'AWS', 'Docker', 'Microservices', 'API Design'],
   },
   {
     company: 'Lucky Financial',
@@ -45,6 +46,7 @@ export const experience: Experience[] = [
       'Optimized database queries resulting in 40% faster transaction processing.',
       'Built monitoring and alerting systems for critical financial operations.',
     ],
+    skills: ['Python', 'Flask', 'PostgreSQL', 'OAuth2', 'Pytest', 'Financial APIs', 'Security', 'Monitoring'],
   },
 ];
 

@@ -3,11 +3,11 @@
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '@/components/common/scroll-reveal';
-import { useModalStore } from '@/lib/store';
+import { useExperienceModal } from '@/components/common/experience-modal';
 import { experience } from '@/data/config';
 
 export function Experience() {
-  const { openExperienceModal } = useModalStore();
+  const { openExperienceModal } = useExperienceModal();
 
   return (
     <>
@@ -45,19 +45,22 @@ export function Experience() {
                     {/* Experience Card */}
                     <motion.div
                       className="timeline-card relative ml-20 max-w-2xl w-full"
-                      onClick={() => openExperienceModal(job)}
+                      onClick={(e) => {
+                        (e.currentTarget as HTMLElement).blur?.();
+                        openExperienceModal(job);
+                      }}
                       role="button"
                       tabIndex={0}
                       onKeyDown={e => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
+                          (e.currentTarget as HTMLElement).blur?.();
                           openExperienceModal(job);
                         }
                       }}
                       whileHover={{ y: -4, scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                       transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                      layout
                     >
                       {/* Card Arrow */}
                       <div className="absolute top-6 left-0 -ml-2 w-0 h-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-card-bg/90" />
@@ -100,8 +103,27 @@ export function Experience() {
                           ))}
                         </ul>
 
+                        {/* Skills */}
+                        <div className="mt-6">
+                          <div className="flex flex-wrap gap-2">
+                            {job.skills.slice(0, 4).map((skill, skillIndex) => (
+                              <span
+                                key={`${index}-skill-${skillIndex}`}
+                                className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent border border-accent/20 rounded-full transition-all duration-200 hover:bg-accent/20"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                            {job.skills.length > 4 && (
+                              <span className="px-3 py-1 text-xs font-medium text-secondary/60">
+                                +{job.skills.length - 4} more
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
                         {job.description.length > 2 && (
-                          <div className="mt-6 text-accent/80 text-sm font-medium">
+                          <div className="mt-4 text-accent/80 text-sm font-medium">
                             Click to see more...
                           </div>
                         )}

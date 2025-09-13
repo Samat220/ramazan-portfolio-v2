@@ -20,6 +20,7 @@ export interface Experience {
   role: string;
   period: string;
   description: string[];
+  skills: string[];
 }
 
 export interface Project {
