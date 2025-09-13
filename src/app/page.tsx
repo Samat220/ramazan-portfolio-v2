@@ -11,8 +11,8 @@ import { Projects } from '@/components/sections/projects';
 import { Contact } from '@/components/sections/contact';
 import { BackgroundHighlight } from '@/components/common/background-highlight';
 import { BackToTop } from '@/components/common/back-to-top';
-import { ExperienceModal } from '@/components/common/experience-modal';
 import { ContactForm } from '@/components/common/contact-form';
+import { ExperienceModal } from '@/components/common/experience-modal';
 import { Loading, usePageLoader } from '@/components/common/loading';
 import { CustomCursor } from '@/components/common/custom-cursor';
 import { useScrollAnimation } from '@/hooks';
@@ -62,12 +62,11 @@ export default function Home() {
 
             {/* Modals */}
             <ContactForm />
+            <ExperienceModal />
 
             {/* Back to Top Button */}
             <BackToTop />
 
-            {/* Experience Modal - rendered via portal */}
-            <ExperienceModal />
           </motion.div>
         )}
       </div>

@@ -29,42 +29,20 @@ export function Contact() {
 
       <ScrollReveal animationType="fadeUp" delay={300}>
         <div className="flex justify-center items-center space-x-4 flex-wrap gap-y-4">
-          <motion.button
+          <button
             onClick={openContactForm}
-            className="btn-glow btn-magnetic btn-ripple contact-button inline-block font-mono"
-            whileHover={{ 
-              y: -3, 
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(14, 165, 233, 0.4)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 17
-            }}
+            className="btn-glow inline-flex items-center text-lg font-mono"
           >
             Say Hello
-          </motion.button>
+          </button>
 
-          <motion.a
+          <a
             href="/resume.pdf"
             download="RamazanSamat_Resume.pdf"
-            className="btn-glow btn-magnetic btn-ripple contact-button inline-block font-mono"
-            whileHover={{ 
-              y: -3, 
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(14, 165, 233, 0.4)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 17
-            }}
+            className="btn-glow inline-flex items-center text-lg font-mono"
           >
             Resume
-          </motion.a>
+          </a>
         </div>
       </ScrollReveal>
     </footer>

@@ -1,127 +1,181 @@
 'use client';
 
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useEffect, useRef } from 'react';
 import { useModalStore } from '@/lib/store';
-import type { Experience } from '@/types';
 
 export function ExperienceModal() {
   const { selectedExperience, isExperienceModalOpen, closeExperienceModal } =
     useModalStore();
+  const closeRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeExperienceModal();
-      }
+    if (!isExperienceModalOpen) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeExperienceModal();
     };
 
-    if (isExperienceModalOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
-    }
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeRef.current?.focus();
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
     };
   }, [isExperienceModalOpen, closeExperienceModal]);
 
+  if (!isExperienceModalOpen || !selectedExperience) return null;
+
+  const labelId = `modal-title-${selectedExperience.company}`;
+  const descId = `modal-desc-${selectedExperience.company}`;
+
   return (
-    <AnimatePresence>
-      {isExperienceModalOpen && selectedExperience && (
-        <motion.div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={closeExperienceModal}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div
-            className="bg-card-bg rounded-lg p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl relative border border-border"
-            onClick={e => e.stopPropagation()}
-            role="dialog"
-            aria-labelledby="modal-title"
-            aria-modal="true"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+    <div
+      className="overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={labelId}
+      aria-describedby={descId}
+      onClick={closeExperienceModal}
+    >
+      <div className="dialog" onClick={(e) => e.stopPropagation()}>
+        <header className="dialog-header">
+          <div>
+            <h2 id={labelId}>{selectedExperience.role}</h2>
+            <p className="muted">
+              <a
+                href={selectedExperience.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="company-link"
+              >
+                {selectedExperience.company} ↗
+              </a>
+            </p>
+            <p className="period">{selectedExperience.period}</p>
+          </div>
+          <button
+            ref={closeRef}
+            className="close"
+            onClick={closeExperienceModal}
+            aria-label="Close"
           >
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={closeExperienceModal}
-              className="absolute top-4 right-4 text-secondary hover:text-primary transition-colors duration-300"
-              aria-label="Close modal"
-            >
-              <X className="h-6 w-6" />
-            </Button>
+            ×
+          </button>
+        </header>
+        <div id={descId} className="dialog-body">
+          <h3>Key Highlights</h3>
+          <ul className="bullets">
+            {selectedExperience.description.map((point: string, i: number) => (
+              <li key={i}>{point}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
-            <div className="mb-6 pr-12">
-              <h2
-                id="modal-title"
-                className="text-2xl font-medium text-primary mb-2"
-              >
-                {selectedExperience.role}
-                <span className="text-accent ml-2">
-                  @{' '}
-                  <a
-                    href={selectedExperience.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="company-link hover:underline"
-                  >
-                    {selectedExperience.company}
-                  </a>
-                </span>
-              </h2>
-              <p className="text-sm font-mono text-secondary">
-                {selectedExperience.period}
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium text-primary mb-4">
-                Key Highlights
-              </h3>
-              <motion.ul
-                className="space-y-3 text-secondary"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1,
-                    },
-                  },
-                }}
-                initial="hidden"
-                animate="visible"
-              >
-                {selectedExperience.description.map(
-                  (point: string, i: number) => (
-                    <motion.li
-                      key={i}
-                      className="flex"
-                      variants={{
-                        hidden: { opacity: 0, x: -20 },
-                        visible: { opacity: 1, x: 0 },
-                      }}
-                    >
-                      <span className="text-accent mr-4 flex-shrink-0">▹</span>
-                      <span>{point}</span>
-                    </motion.li>
-                  )
-                )}
-              </motion.ul>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <style jsx>{`
+        .overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 10000;
+          display: grid;
+          place-items: center;
+          background: rgba(15,23,42,0.6);
+          backdrop-filter: blur(6px);
+          padding: 24px;
+        }
+        .dialog {
+          width: min(720px, 100%);
+          border-radius: 16px;
+          background: var(--card-bg, #1e293b);
+          border: 1px solid var(--border, rgba(148, 163, 184, 0.2));
+          box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+          overflow: hidden;
+          animation: pop 180ms ease-out;
+        }
+        @keyframes pop {
+          from { transform: translateY(8px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        .dialog-header {
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 24px 24px 16px;
+          border-bottom: 1px solid var(--border, rgba(148, 163, 184, 0.2));
+        }
+        .dialog-header h2 {
+          margin: 0 0 8px;
+          color: var(--text-primary, #f1f5f9);
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+        .muted {
+          margin: 4px 0;
+          color: var(--text-secondary, #94a3b8);
+          font-size: 0.9rem;
+        }
+        .company-link {
+          color: var(--accent, #0ea5e9);
+          text-decoration: none;
+        }
+        .company-link:hover {
+          text-decoration: underline;
+        }
+        .period {
+          margin: 6px 0 0;
+          color: var(--text-secondary, #94a3b8);
+          font-family: 'Fira Code', monospace;
+          font-size: 0.85rem;
+        }
+        .close {
+          border: 1px solid var(--border, rgba(148, 163, 184, 0.2));
+          background: var(--card-bg, #1e293b);
+          color: var(--text-secondary, #94a3b8);
+          border-radius: 10px;
+          width: 36px;
+          height: 36px;
+          font-size: 20px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .close:hover {
+          background: var(--background, #0f172a);
+          color: var(--text-primary, #f1f5f9);
+        }
+        .dialog-body {
+          padding: 16px 24px 24px;
+          color: var(--text-primary, #f1f5f9);
+        }
+        .dialog-body h3 {
+          margin: 0 0 16px;
+          color: var(--text-primary, #f1f5f9);
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+        .bullets {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .bullets li {
+          margin-bottom: 12px;
+          padding-left: 20px;
+          position: relative;
+          color: var(--text-secondary, #94a3b8);
+          line-height: 1.6;
+        }
+        .bullets li::before {
+          content: '▹';
+          position: absolute;
+          left: 0;
+          color: var(--accent, #0ea5e9);
+          font-weight: bold;
+        }
+      `}</style>
+    </div>
   );
 }
