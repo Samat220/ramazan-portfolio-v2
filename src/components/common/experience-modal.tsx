@@ -74,6 +74,9 @@ function ExperienceModalContent({ job }: ExperienceModalProps) {
       <style jsx>{`
         .dialog {
           width: 100%;
+          max-height: 90vh;
+          display: flex;
+          flex-direction: column;
           border-radius: 16px;
           background: var(--card-bg, #1e293b);
           border: 1px solid var(--border, rgba(148, 163, 184, 0.2));
@@ -92,6 +95,7 @@ function ExperienceModalContent({ job }: ExperienceModalProps) {
           gap: 12px;
           padding: 24px 24px 16px;
           border-bottom: 1px solid var(--border, rgba(148, 163, 184, 0.2));
+          flex: 0 0 auto;
         }
         .dialog-header h2 {
           margin: 0 0 8px;
@@ -136,6 +140,9 @@ function ExperienceModalContent({ job }: ExperienceModalProps) {
         .dialog-body {
           padding: 16px 24px 24px;
           color: var(--text-primary, #f1f5f9);
+          overflow: auto;
+          flex: 1 1 auto;
+          min-height: 0;
         }
         .dialog-body h3 {
           margin: 0 0 16px;

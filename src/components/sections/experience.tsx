@@ -1,17 +1,34 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, X } from 'lucide-react';
 import { ScrollReveal } from '@/components/common/scroll-reveal';
-import { useExperienceModal } from '@/components/common/experience-modal';
 import { experience } from '@/data/config';
+import type { Experience } from '@/types';
 
 export function Experience() {
-  const { openExperienceModal } = useExperienceModal();
+  const [selectedJob, setSelectedJob] = useState<Experience | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const openJobModal = (job: Experience) => {
+    setSelectedJob(job);
+    // Scroll to center the experience section
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }, 100);
+  };
+
+  const closeJobModal = () => {
+    setSelectedJob(null);
+  };
 
   return (
     <>
-      <section id="experience" className="py-32">
+      <section id="experience" className="py-32 relative" ref={sectionRef}>
         <ScrollReveal animationType="fadeUp">
           <h2 className="numbered-heading">Where I&apos;ve Worked</h2>
         </ScrollReveal>
@@ -47,7 +64,7 @@ export function Experience() {
                       className="timeline-card relative ml-20 max-w-2xl w-full"
                       onClick={(e) => {
                         (e.currentTarget as HTMLElement).blur?.();
-                        openExperienceModal(job);
+                        openJobModal(job);
                       }}
                       role="button"
                       tabIndex={0}
@@ -55,7 +72,7 @@ export function Experience() {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
                           (e.currentTarget as HTMLElement).blur?.();
-                          openExperienceModal(job);
+                          openJobModal(job);
                         }
                       }}
                       whileHover={{ y: -4, scale: 1.01 }}
@@ -144,6 +161,84 @@ export function Experience() {
             viewport={{ once: true }}
           />
         </div>
+
+        {/* Inline Experience Modal */}
+        <AnimatePresence>
+          {selectedJob && (
+            <motion.div
+              className="absolute inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={closeJobModal}
+            >
+              <motion.div
+                className="relative w-full max-w-4xl max-h-[90vh] bg-card-bg border border-border/50 rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Header */}
+                <div className="flex items-start justify-between gap-4 p-6 border-b border-border/50">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-semibold text-primary mb-2">
+                      {selectedJob.role}
+                    </h3>
+                    <div className="flex items-center space-x-2 mb-2">
+                      <a
+                        href={selectedJob.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent font-medium hover:underline transition-colors duration-200 text-lg"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        {selectedJob.company} ↗
+                      </a>
+                    </div>
+                    <p className="text-sm text-secondary font-mono">{selectedJob.period}</p>
+                  </div>
+                  <button
+                    onClick={closeJobModal}
+                    className="flex items-center justify-center w-10 h-10 rounded-lg border border-border/50 bg-card-bg text-secondary hover:text-primary hover:bg-background transition-colors duration-200"
+                    aria-label="Close"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                {/* Modal Body */}
+                <div className="p-6">
+                  <h4 className="text-lg font-medium text-primary mb-4">Key Highlights</h4>
+                  <ul className="space-y-3 mb-6">
+                    {selectedJob.description.map((point, i) => (
+                      <li key={i} className="flex gap-3 items-start">
+                        <span className="text-accent mt-1 flex-shrink-0">▹</span>
+                        <span className="text-secondary leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="pt-4 border-t border-border/50">
+                    <h4 className="text-lg font-medium text-primary mb-3">Technologies & Skills</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedJob.skills.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1.5 text-sm font-medium bg-accent/10 text-accent border border-accent/20 rounded-full transition-all duration-200 hover:bg-accent/20"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
     </>
   );

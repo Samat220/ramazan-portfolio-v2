@@ -51,14 +51,6 @@ export function Modal({ isOpen, onClose, children, className = '' }: ModalProps)
       className={`fixed inset-0 z-[10000] flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 ${className}`}
       onClick={onClose}
       data-modal
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 10000
-      }}
     >
       <div onClick={(e) => e.stopPropagation()}>
         {children}
