@@ -165,11 +165,7 @@ npm start
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+This repository is mean to serve as both personal portfolio and project in it self. I spent a considerable amount of time and effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own. Please give me proper credit by linking back to ramazansamat.dev. Thanks!
 
 ### Commit Convention
 
