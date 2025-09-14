@@ -84,39 +84,5 @@ jobs:
       - name: Run security audit
         run: npm audit --audit-level=moderate
 
-  # Deploy to Vercel (for main branch)
-  deploy:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    needs: [code-quality, build-and-test, security]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
-
-  # Preview Deploy (for PRs)
-  preview-deploy:
-    name: Deploy Preview
-    runs-on: ubuntu-latest
-    needs: [code-quality, build-and-test]
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy Preview to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+  # Note: Vercel deployment is handled automatically via Git integration
+  # No additional CI deployment needed when connected to Vercel
