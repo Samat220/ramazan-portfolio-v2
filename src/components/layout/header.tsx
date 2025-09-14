@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X } from 'lucide-react';
-import { navLinks } from '@/data/config';
+import { navLinks, personalInfo } from '@/data/config';
 import { useThemeStore } from '@/lib/store';
 import { useSmoothScroll } from '@/hooks';
 
@@ -81,7 +81,7 @@ export function Header() {
         aria-label="Go to top"
         whileHover={{ y: -3, scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.1 }}
       >
         RS
       </motion.button>
@@ -104,7 +104,7 @@ export function Header() {
           </motion.a>
         ))}
         <motion.a
-          href="/resume.pdf"
+          href={personalInfo.resume}
           download="RamazanSamat_Resume.pdf"
           className="font-mono text-sm border border-accent rounded text-accent py-2 px-4 hover:bg-accent-light transition-all duration-200"
           initial={{ opacity: 0, scale: 0 }}
@@ -206,7 +206,7 @@ export function Header() {
                 </motion.a>
               ))}
               <motion.a
-                href="/resume.pdf"
+                href={personalInfo.resume}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xl font-mono border border-accent rounded-lg text-accent px-8 py-3 mt-4 hover:bg-accent-light transition-colors"

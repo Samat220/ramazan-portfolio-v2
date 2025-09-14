@@ -16,20 +16,13 @@ export function About() {
           delay={200}
           className="md:col-span-3 space-y-4"
         >
-          <p className="transition-colors duration-300 text-secondary">
-            My journey into technology began with a fascination for complex
-            systems, which I first explored while studying Economics at Warwick.
-            This curiosity led me to programming, and I&apos;ve been hooked ever
-            since. After completing a Master&apos;s at Boston University,
-            I&apos;ve had the privilege of building robust backend systems at
-            innovative companies like Movableink and Lucky Financial.
+          {/* ✅ UPDATED PARAGRAPH 1 */}
+          <p className="text-secondary">
+            My journey into software began with an Economics degree from the University of Warwick, which gave me a strong analytical foundation for modeling complex systems. I then transitioned my focus to technology with a Master's in Software Development from Boston University, building the technical skills to architect and implement the robust systems I design today.
           </p>
-          <p className="transition-colors duration-300 text-secondary">
-            My expertise is in the Python ecosystem, where I enjoy designing
-            clean architecture, optimizing performance, and building systems
-            that scale. I&apos;m now channeling that passion towards Machine
-            Learning and am excited to find a role where I can merge my software
-            engineering skills with data-driven challenges.
+          {/* ✅ UPDATED PARAGRAPH 2 */}
+          <p className="text-secondary">
+            As a backend developer at Movable Ink, I specialize in engineering scalable and resilient services within the Python ecosystem. My work focuses on enhancing system reliability through features like custom rate limiters and high-throughput gRPC services. I'm now eager to leverage this experience in robust system design to tackle new challenges in Machine Learning.
           </p>
         </ScrollReveal>
 
@@ -39,10 +32,10 @@ export function About() {
           className="md:col-span-2 relative"
         >
           <div className="group w-full max-w-sm mx-auto">
-            <div className="relative rounded-lg overflow-hidden z-10 bg-card-bg shadow-lg transition-colors duration-300">
+            <div className="relative rounded-lg overflow-hidden z-10 bg-card-bg shadow-lg">
               <img
-                src="https://placehold.co/400x400/1E293B/F8FAFC?text=Your+Photo"
-                alt="A placeholder headshot"
+                src="https://placehold.co/400x400/1E293B/F8FAFC?text=Ramazan+Samat"
+                alt="A placeholder headshot for Ramazan Samat"
                 className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-accent/20 transition-opacity duration-300 group-hover:opacity-0"></div>
@@ -52,23 +45,23 @@ export function About() {
         </ScrollReveal>
       </div>
 
-      {/* SKILL TREE SECTION */}
+      {/* The skills tree section remains the same */}
       <ScrollReveal animationType="scaleUp" delay={400}>
         <div className="skills-container">
           <div className="skills-tree">
-            <div className="skills-header transition-colors duration-300">
+            <div className="skills-header">
               MY SKILLS
             </div>
             <div className="skills-branches">
               <div className="skill-branch">
-                <h4 className="transition-colors duration-300">
+                <h4>
                   Python Backend
                 </h4>
                 <div className="skill-tags">
                   {backendSkills.map((skill, index) => (
                     <div
                       key={skill}
-                      className="skill-tag transition-colors duration-300"
+                      className="skill-tag"
                       style={{
                         animationDelay: `${500 + index * 100}ms`,
                       }}
@@ -79,14 +72,14 @@ export function About() {
                 </div>
               </div>
               <div className="skill-branch">
-                <h4 className="transition-colors duration-300">
+                <h4>
                   Machine Learning
                 </h4>
                 <div className="skill-tags">
                   {mlSkills.map((skill, index) => (
                     <div
                       key={skill}
-                      className="skill-tag transition-colors duration-300"
+                      className="skill-tag"
                       style={{
                         animationDelay: `${700 + index * 100}ms`,
                       }}
@@ -103,3 +96,4 @@ export function About() {
     </section>
   );
 }
+

@@ -3,11 +3,12 @@ import { PersonalInfo, NavLink, Experience, Project } from '@/types';
 export const personalInfo: PersonalInfo = {
   name: 'Ramazan Samat',
   greeting: 'Hi, my name is',
-  intro: 'I build things for the web.',
-  email: 'your.email@example.com', // Replace with your email
-  linkedin: 'https://linkedin.com/in/yourprofile', // Replace with your LinkedIn
-  github: 'https://github.com/yourprofile', // Replace with your GitHub
-  bio: 'Backend-focused Software Engineer with a passion for building scalable, efficient applications. Eager to leverage a strong foundation in Python and system design to transition into the field of Machine Learning and contribute to intelligent, data-driven solutions.',
+  intro: 'I engineer scalable backend systems.',
+  email: 'samatramazan.dev@gmail.com',
+  linkedin: 'https://linkedin.com/in/samatr',
+  github: 'https://github.com/Samat220',
+  resume: '/resume.pdf',
+  bio: "A Software Developer specializing in building robust integrations and backend services at Movable Ink.  My work focuses on enhancing system reliability by implementing custom rate limiters, strengthening data integrity through multi-phase schema updates, and developing high-throughput gRPC services. With a Master's in Software Development from Boston University, I'm passionate about applying my skills in system design to new challenges. ",
 };
 
 export const navLinks: NavLink[] = [
@@ -24,12 +25,12 @@ export const experience: Experience[] = [
     role: 'Software Developer',
     period: 'Jan 2024 - Sep 2025',
     description: [
-      'Developed and maintained backend services for a marketing personalization platform, serving millions of requests per day.',
-      'Key achievements include improving API response times by 20% through query optimization and caching strategies.',
-      'Contributed to a major microservices architecture migration, enhancing system scalability and maintainability.',
+      'Reduced API request bursts and prevented over-limit errors by 30% by integrating a custom rate limiter at the SDK level for Oracle.',
+      'Strengthened data integrity across 20+ email service provider integrations by retiring fragile legacy name references and executing a multi-phase schema update.',
+      'Enhanced the efficiency and reliability of internal microservice communication by developing and maintaining high-throughput gRPC-based services.',
       'Implemented real-time data processing pipelines handling 10M+ requests per hour.',
-      'Collaborated with cross-functional teams to deliver features that increased customer engagement by 35%.',
-      'Mentored junior developers and conducted code reviews to maintain high code quality standards.',
+      'Increased team development velocity by leading the adoption and integration of AI coding tools into the engineering workflow.',
+      'Wrote documentation for best practices for the django migrations, improving team onboarding and knowledge sharing.',
     ],
     skills: ['Python', 'Django', 'Redis', 'PostgreSQL', 'AWS', 'Docker', 'Microservices', 'API Design'],
   },
@@ -44,34 +45,42 @@ export const experience: Experience[] = [
       'Wrote comprehensive unit and integration tests, increasing code coverage by 15%.',
       'Developed secure authentication systems compliant with financial industry standards.',
       'Optimized database queries resulting in 40% faster transaction processing.',
-      'Built monitoring and alerting systems for critical financial operations.',
+      'Significantly improved the application’s security posture by revamping the user authentication flow to use JWTs and implementing Two-Factor Authentication (2FA).',
     ],
-    skills: ['Python', 'Flask', 'PostgreSQL', 'OAuth2', 'Pytest', 'Financial APIs', 'Security', 'Monitoring'],
+    skills: [
+      'React',
+      'TypeScript',
+      'Python',
+      'FastAPI',
+      'PostgreSQL',
+      'Celery',
+      'Redis',
+      'Docker',
+      'Tailwind CSS',
+    ],
   },
 ];
 
 export const projects: Project[] = [
   {
     featured: true,
-    title: 'Project Alpha: ML-Powered Recommendation Engine',
+    title: 'AI Powered Job Application Tracker',
     description:
-      'A proof-of-concept API that provides personalized content recommendations. It explores collaborative filtering and content-based filtering algorithms to deliver relevant results. Built with a scalable microservices architecture in mind.',
+      'A full-stack dashboard designed to streamline the job search process. This tool centralizes application tracking and provides data-driven insights through visualizations. Its core feature is an automated email parsing pipeline using Celery and Redis that ingests and categorizes new applications and interview requests in real-time.',
     technologies: ['Python', 'Flask', 'scikit-learn', 'Pandas', 'Docker'],
-    githubUrl: 'https://github.com/yourprofile/project-alpha', // Replace
-    liveUrl: 'https://project-alpha.yourdomain.com', // Replace
-    screenshotUrl:
-      'https://placehold.co/600x360/1E293B/38BDF8?text=Project+Alpha',
+    githubUrl: 'https://github.com/Samat220/job-search-dashboard',
+    liveUrl: 'https://job-search-dashboard-2e24c.web.app/',
+    screenshotUrl: '/featured_project_1/job_board_dark_mode.png',
   },
   {
     featured: true,
-    title: 'Project Beta: Real-Time Data Processing Pipeline',
+    title: 'Media Picker & Spin Wheel',
     description:
-      "A scalable data pipeline that ingests, processes, and stores streaming data from multiple sources. Deployed on AWS using serverless technologies to ensure high availability and cost-efficiency. It's designed to handle thousands of events per second.",
+      "A web app built to solve the endless debate of 'what to watch or play next.' Users can catalog their media into filterable lists, and the app's centerpiece is an interactive spinning wheel that randomly selects a choice, making decisions fun and easy.",
     technologies: ['Python', 'Kafka', 'AWS Lambda', 'DynamoDB', 'Terraform'],
-    githubUrl: 'https://github.com/yourprofile/project-beta', // Replace
+    githubUrl: 'https://github.com/Samat220/Choose-for-me',
     liveUrl: 'https://project-beta.yourdomain.com', // Replace
-    screenshotUrl:
-      'https://placehold.co/600x360/1E293B/38BDF8?text=Project+Beta',
+    screenshotUrl: '/featured_project_2/media_picker_dark_mode.png',
   },
   {
     featured: false,

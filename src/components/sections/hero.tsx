@@ -142,7 +142,6 @@ export function Hero() {
           className="mt-8"
         >
           <div className="flex items-center space-x-2 text-fluid-lg font-mono">
-            <span className="text-secondary">I am a</span>
             <div className="relative h-8 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.span
