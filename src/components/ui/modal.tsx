@@ -69,14 +69,14 @@ export function Modal({ isOpen, onClose, children, className = '' }: ModalProps)
           <motion.div
             className="absolute inset-0 bg-background/20 backdrop-blur-lg"
             style={{ willChange: 'opacity' }} // Performance hint
-            variants={overlayVariants}
+            variants={overlayVariants as any}
             initial="hidden"
             animate="visible"
             exit="hidden"
           />
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            variants={modalVariants}
+            variants={modalVariants as any}
             initial="hidden"
             animate="visible"
             exit="hidden"

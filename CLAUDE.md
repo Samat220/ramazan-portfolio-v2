@@ -61,19 +61,30 @@ src/
 1. **Component Organization**: Components are categorized by purpose (common, layout, sections, ui)
 
 2. **Data Management**:
-   - Site content is centralized in `src/data/config.ts`
+   - Site content is centralized in `src/data/config.ts` - update personal info, experience, projects, and skills here
    - Global state uses Zustand with localStorage persistence
-   - Theme and modal states are managed globally
+   - Dual modal system: Zustand store for contact/experience modals, ModalProvider for general modals
+   - Theme state persisted to localStorage with system preference detection
 
 3. **Animation System**:
    - Framer Motion for page transitions and scroll animations
-   - Custom hooks for scroll-triggered animations (`useScrollAnimation`, `useScrollReveal`)
+   - Custom animation hooks:
+     - `useScrollAnimation`: Scroll-based progress animations
+     - `useScrollReveal`: Intersection Observer-based reveal animations with 5 animation types
+     - `useSmoothScroll`: Smooth scrolling navigation
+   - ScrollReveal component wrapper with configurable animation types (fadeUp, fadeIn, slideLeft, slideRight, scaleUp)
    - Loading states with animated transitions
 
 4. **Styling Architecture**:
-   - Tailwind CSS with custom CSS variables for theming
+   - Tailwind CSS v4 with custom CSS variables for theming
    - Class Variance Authority (CVA) for component variants
-   - CSS-in-JS approach using Tailwind utilities
+   - Interactive component patterns:
+     - TiltCard: 3D tilt effects on hover
+     - SpotlightCard: Dynamic spotlight following mouse
+     - EnhancedCard: Glassmorphism with backdrop blur
+     - MagneticButton: Magnetic hover effects
+   - Background components: Aurora, Constellation, Hero backgrounds
+   - Custom cursor implementation for enhanced UX
 
 5. **Type Safety**:
    - Comprehensive TypeScript interfaces in `src/types/index.ts`
@@ -88,13 +99,16 @@ src/
 
 ## Content Management
 
-All portfolio content is configured in `src/data/config.ts`:
-- Personal information and contact details
-- Navigation links with numbering
-- Experience data with company details
-- Project showcases with technology stacks
-- Skills categorized by backend/ML focus
-- SEO metadata
+All portfolio content is centralized in `src/data/config.ts` for easy customization:
+
+- **personalInfo**: Name, greeting, intro, contact links, bio
+- **navLinks**: Navigation with numbered sections (01., 02., etc.)
+- **experience**: Array of work experience with company URLs, roles, descriptions, skills
+- **projects**: Featured and non-featured projects with GitHub/live URLs, technologies
+- **backendSkills** & **mlSkills**: Categorized skill arrays
+- **siteMetadata**: SEO configuration
+
+To customize the portfolio, update the placeholder data in this single configuration file.
 
 ## Performance Considerations
 
@@ -107,7 +121,15 @@ All portfolio content is configured in `src/data/config.ts`:
 ## Development Notes
 
 - Uses client-side rendering for animation-heavy components
-- Theme switching with system preference detection
+- Theme switching with system preference detection and localStorage persistence
 - Responsive design with mobile-first approach
 - Accessibility considerations built into components
 - SEO optimized with proper metadata and structured data
+
+## State Management Patterns
+
+- **Theme Store** (`useThemeStore`): Zustand store with persistence for theme switching
+- **Modal Store** (`useModalStore`): Manages contact form and experience modal states
+- **Modal Provider**: Context-based modal system for general purpose modals
+- All stores use TypeScript interfaces for type safety
+- Theme state defaults to 'dark' and persists user preference

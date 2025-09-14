@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { THEME_STORAGE_KEY } from './constants';
+import type { Experience } from '@/types';
 
 interface ThemeState {
   theme: 'light' | 'dark';
@@ -24,11 +25,11 @@ export const useThemeStore = create<ThemeState>()(
 
 interface ModalState {
   isContactFormOpen: boolean;
-  selectedExperience: any | null;
+  selectedExperience: Experience | null;
   isExperienceModalOpen: boolean;
   openContactForm: () => void;
   closeContactForm: () => void;
-  openExperienceModal: (experience: any) => void;
+  openExperienceModal: (experience: Experience) => void;
   closeExperienceModal: () => void;
 }
 

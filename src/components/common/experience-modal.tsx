@@ -2,7 +2,6 @@
 
 import { useModal } from '@/components/ui/modal-provider';
 import type { Experience } from '@/types';
-import { ExternalLink } from 'lucide-react';
 
 // This function defines the JSX that will appear inside the modal.
 function ExperienceModalContent({ job }: { job: Experience }) {

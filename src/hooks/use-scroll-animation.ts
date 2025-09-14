@@ -17,6 +17,8 @@ export const useScrollAnimation = () => {
 
     targets.forEach((target) => observer.observe(target));
 
-    return () => targets.forEach((target) => observer.unobserve(target));
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 };

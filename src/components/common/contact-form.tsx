@@ -70,7 +70,7 @@ function ContactFormContent({ onSuccess }: ContactFormContentProps) {
         setSubmitStatus('idle');
         onSuccess?.();
       }, 2000);
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

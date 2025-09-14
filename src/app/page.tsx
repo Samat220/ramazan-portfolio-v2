@@ -12,10 +12,7 @@ import { Contact } from '@/components/sections/contact';
 import { BackgroundHighlight } from '@/components/common/background-highlight';
 import { BackToTop } from '@/components/common/back-to-top';
 import { Loading, usePageLoader } from '@/components/common/loading';
-import { CustomCursor } from '@/components/common/custom-cursor';
 import { useScrollAnimation } from '@/hooks';
-import { HeroBackground } from '@/components/common/hero-background';
-import { AuroraBackground } from '@/components/common/aurora-background';
 import { ConstellationBackground } from '@/components/common/constellation-background';
 
 export default function Home() {
@@ -31,8 +28,6 @@ export default function Home() {
       <div className="relative bg-background text-primary min-h-screen">
         {!isLoading && (
           <>
-            {/* <HeroBackground /> */}
-            {/* <AuroraBackground /> */}
             <ConstellationBackground />
             <motion.div
               className="relative z-10"

@@ -94,7 +94,7 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      variants={cardVariants}
+      variants={cardVariants as any}
       initial="rest"
       animate={isHovered ? "hover" : "rest"}
       style={{
@@ -106,7 +106,7 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       {/* Glow Effect */}
       <motion.div
         className="absolute -inset-1 rounded-lg bg-gradient-accent opacity-0 blur-xl"
-        variants={glowVariants}
+        variants={glowVariants as any}
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       />

@@ -43,6 +43,7 @@ export function ConstellationBackground() {
       }
 
       update() {
+        if (!canvas) return;
         if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
         if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
         this.x += this.vx;
