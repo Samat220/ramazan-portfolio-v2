@@ -34,8 +34,8 @@ export const useScrollReveal = (options: ScrollRevealOptions = {}) => {
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             // Apply delay if specified
             if (defaultOptions.delay > 0) {

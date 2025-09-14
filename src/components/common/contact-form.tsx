@@ -58,14 +58,17 @@ function ContactFormContent({ onSuccess }: ContactFormContentProps) {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('access_key', '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f');
+      formDataToSend.append(
+        'access_key',
+        '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f'
+      );
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('message', formData.message);
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formDataToSend
+        body: formDataToSend,
       });
 
       const data = await response.json();
@@ -106,9 +109,7 @@ function ContactFormContent({ onSuccess }: ContactFormContentProps) {
       transition={{ duration: 0.3 }}
     >
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-medium text-primary">
-          Get In Touch
-        </h2>
+        <h2 className="text-2xl font-medium text-primary">Get In Touch</h2>
         <Button
           variant="ghost"
           size="icon"

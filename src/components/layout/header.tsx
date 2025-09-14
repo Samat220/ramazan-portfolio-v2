@@ -92,11 +92,15 @@ export function Header() {
           <motion.a
             key={link.href}
             href={link.href}
-            onClick={(e) => handleLinkClick(e, link.href)}
+            onClick={e => handleLinkClick(e, link.href)}
             className="nav-link font-mono text-sm text-primary hover:text-accent transition-all duration-200 relative"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 + 0.3, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{
+              delay: index * 0.1 + 0.3,
+              duration: 0.5,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -109,7 +113,11 @@ export function Header() {
           className="font-mono text-sm border border-accent rounded text-accent py-2 px-4 hover:bg-accent-light transition-all duration-200 inline-flex items-center gap-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: navLinks.length * 0.1 + 0.3, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{
+            delay: navLinks.length * 0.1 + 0.3,
+            duration: 0.5,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
           whileHover={{ y: -2, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -134,7 +142,11 @@ export function Header() {
               exit={{ scale: 0, rotate: -90 }}
               transition={{ duration: 0.2 }}
             >
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === 'dark' ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </motion.div>
           </AnimatePresence>
         </motion.button>
@@ -157,7 +169,11 @@ export function Header() {
               exit={{ scale: 0, rotate: -90 }}
               transition={{ duration: 0.2 }}
             >
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === 'dark' ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </motion.div>
           </AnimatePresence>
         </motion.button>
@@ -176,7 +192,11 @@ export function Header() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </motion.div>
           </AnimatePresence>
         </motion.button>
@@ -197,13 +217,18 @@ export function Header() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
+                  onClick={e => handleLinkClick(e, link.href)}
                   className="block text-xl text-primary hover:text-accent transition-colors font-mono"
                   initial={{ opacity: 0, y: -15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + index * 0.08, duration: 0.3, ease: 'easeOut' }}
+                  transition={{
+                    delay: 0.1 + index * 0.08,
+                    duration: 0.3,
+                    ease: 'easeOut',
+                  }}
                 >
-                  <span className="text-accent">{link.number}</span> {link.label}
+                  <span className="text-accent">{link.number}</span>{' '}
+                  {link.label}
                 </motion.a>
               ))}
               <motion.a
@@ -212,7 +237,11 @@ export function Header() {
                 className="text-xl font-mono border border-accent rounded-lg text-accent px-8 py-3 mt-4 hover:bg-accent-light transition-colors inline-flex items-center gap-2"
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + navLinks.length * 0.08, duration: 0.3, ease: 'easeOut' }}
+                transition={{
+                  delay: 0.1 + navLinks.length * 0.08,
+                  duration: 0.3,
+                  ease: 'easeOut',
+                }}
               >
                 Résumé
                 <ArrowDownToLine className="h-4 w-4" />
@@ -224,4 +253,3 @@ export function Header() {
     </motion.header>
   );
 }
-

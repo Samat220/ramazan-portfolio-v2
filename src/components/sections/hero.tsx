@@ -5,40 +5,52 @@ import { useState, useEffect, useMemo } from 'react';
 import { personalInfo } from '@/data/config';
 
 export function Hero() {
-  const containerVariants = useMemo(() => ({
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.5,
+  const containerVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.2,
+          delayChildren: 0.5,
+        },
       },
-    },
-  }), []);
+    }),
+    []
+  );
 
-  const itemVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0 },
-  }), []);
+  const itemVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 60 },
+      visible: { opacity: 1, y: 0 },
+    }),
+    []
+  );
 
-  const shimmerVariants = useMemo(() => ({
-    initial: { x: '-100%' },
-    animate: { x: '100%' },
-  }), []);
+  const shimmerVariants = useMemo(
+    () => ({
+      initial: { x: '-100%' },
+      animate: { x: '100%' },
+    }),
+    []
+  );
 
   // Rotating taglines for dynamic intro
-  const taglines = useMemo(() => [
-    'Full-Stack Developer',
-    'Problem Solver',
-    'Tech Enthusiast',
-    'Creative Builder'
-  ], []);
+  const taglines = useMemo(
+    () => [
+      'Full-Stack Developer',
+      'Problem Solver',
+      'Tech Enthusiast',
+      'Creative Builder',
+    ],
+    []
+  );
 
   const [currentTagline, setCurrentTagline] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTagline((prev) => (prev + 1) % taglines.length);
+      setCurrentTagline(prev => (prev + 1) % taglines.length);
     }, 3000);
     return () => clearInterval(interval);
   }, [taglines.length]);
@@ -50,18 +62,17 @@ export function Hero() {
     >
       {/* Subtle Background Pattern */}
 
-
       {/* Floating Elements */}
       <motion.div
         className="absolute top-1/4 right-1/4 w-2 h-2 bg-accent/20 rounded-full"
         animate={{
           y: [-10, 10, -10],
-          opacity: [0.2, 0.5, 0.2]
+          opacity: [0.2, 0.5, 0.2],
         }}
         transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: 'easeInOut',
         }}
       />
 
@@ -69,13 +80,13 @@ export function Hero() {
         className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-accent/30 rounded-full"
         animate={{
           y: [10, -15, 10],
-          opacity: [0.3, 0.6, 0.3]
+          opacity: [0.3, 0.6, 0.3],
         }}
         transition={{
           duration: 5,
           repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
+          ease: 'easeInOut',
+          delay: 1,
         }}
       />
 
@@ -83,13 +94,13 @@ export function Hero() {
         className="absolute top-1/2 right-1/6 w-1.5 h-1.5 bg-accent/15 rounded-full"
         animate={{
           y: [-8, 12, -8],
-          opacity: [0.1, 0.4, 0.1]
+          opacity: [0.1, 0.4, 0.1],
         }}
         transition={{
           duration: 6,
           repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
+          ease: 'easeInOut',
+          delay: 2,
         }}
       />
       <motion.div
@@ -152,7 +163,7 @@ export function Hero() {
                   exit={{ y: -40, opacity: 0 }}
                   transition={{
                     duration: 0.5,
-                    ease: [0.4, 0, 0.2, 1]
+                    ease: [0.4, 0, 0.2, 1],
                   }}
                 >
                   {taglines[currentTagline]}

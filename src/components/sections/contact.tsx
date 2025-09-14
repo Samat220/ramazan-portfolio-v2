@@ -54,14 +54,17 @@ export function Contact() {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('access_key', '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f');
+      formDataToSend.append(
+        'access_key',
+        '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f'
+      );
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('message', formData.message);
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formDataToSend
+        body: formDataToSend,
       });
 
       const data = await response.json();
@@ -96,7 +99,9 @@ export function Contact() {
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
           <ScrollReveal animationType="fadeUp">
-            <h2 className="numbered-heading mb-6 justify-center">What&apos;s Next?</h2>
+            <h2 className="numbered-heading mb-6 justify-center">
+              What&apos;s Next?
+            </h2>
           </ScrollReveal>
 
           <ScrollReveal animationType="fadeUp" delay={100}>

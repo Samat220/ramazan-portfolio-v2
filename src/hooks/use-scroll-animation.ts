@@ -4,8 +4,8 @@ export const useScrollAnimation = () => {
   useEffect(() => {
     const targets = document.querySelectorAll('.fade-in-section');
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
@@ -15,7 +15,7 @@ export const useScrollAnimation = () => {
       { threshold: 0.1 }
     );
 
-    targets.forEach((target) => observer.observe(target));
+    targets.forEach(target => observer.observe(target));
 
     return () => {
       observer.disconnect();

@@ -9,7 +9,11 @@ interface EnhancedCardProps {
   href?: string;
 }
 
-export function EnhancedCard({ children, className = '', href }: EnhancedCardProps) {
+export function EnhancedCard({
+  children,
+  className = '',
+  href,
+}: EnhancedCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -19,8 +23,16 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7.5deg', '-7.5deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg']);
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    ['7.5deg', '-7.5deg']
+  );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    ['-7.5deg', '7.5deg']
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -56,8 +68,8 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       filter: 'brightness(1)',
       transition: {
         duration: 0.3,
-        ease: 'easeOut'
-      }
+        ease: 'easeOut',
+      },
     },
     hover: {
       scale: 1.03,
@@ -65,9 +77,9 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       filter: 'brightness(1.1)',
       transition: {
         duration: 0.3,
-        ease: 'easeOut'
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   const glowVariants = {
@@ -80,9 +92,9 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       scale: 1.1,
       transition: {
         duration: 0.4,
-        ease: 'easeOut'
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   const CardComponent = href ? 'a' : 'div';
@@ -96,11 +108,11 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       onMouseLeave={handleMouseLeave}
       variants={cardVariants as any}
       initial="rest"
-      animate={isHovered ? "hover" : "rest"}
+      animate={isHovered ? 'hover' : 'rest'}
       style={{
         rotateX,
         rotateY,
-        transformStyle: "preserve-3d",
+        transformStyle: 'preserve-3d',
       }}
     >
       {/* Glow Effect */}
@@ -108,16 +120,16 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
         className="absolute -inset-1 rounded-lg bg-gradient-accent opacity-0 blur-xl"
         variants={glowVariants as any}
         initial="rest"
-        animate={isHovered ? "hover" : "rest"}
+        animate={isHovered ? 'hover' : 'rest'}
       />
 
       {/* Main Card Content */}
       <motion.div
         className="relative z-10 h-full"
-        style={{ transform: "translateZ(50px)" }}
+        style={{ transform: 'translateZ(50px)' }}
       >
         {href ? (
-          <a 
+          <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
@@ -137,20 +149,20 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-accent rounded-full opacity-60"
-              initial={{ 
+              initial={{
                 x: Math.random() * 100 + '%',
                 y: Math.random() * 100 + '%',
-                scale: 0
+                scale: 0,
               }}
               animate={{
                 y: [null, `-${Math.random() * 50 + 20}px`],
                 scale: [0, 1, 0],
-                opacity: [0, 0.8, 0]
+                opacity: [0, 0.8, 0],
               }}
               transition={{
                 duration: 1.5,
                 delay: i * 0.2,
-                ease: 'easeOut'
+                ease: 'easeOut',
               }}
             />
           ))}
@@ -161,13 +173,17 @@ export function EnhancedCard({ children, className = '', href }: EnhancedCardPro
       <motion.div
         className="absolute inset-0 rounded-lg"
         initial={false}
-        animate={isHovered ? {
-          background: [
-            'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%)',
-            'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%)',
-          ],
-          backgroundPosition: ['-200% 0', '200% 0'],
-        } : {}}
+        animate={
+          isHovered
+            ? {
+                background: [
+                  'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%)',
+                  'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%)',
+                ],
+                backgroundPosition: ['-200% 0', '200% 0'],
+              }
+            : {}
+        }
         transition={{
           duration: 1.5,
           ease: 'linear',

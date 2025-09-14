@@ -28,6 +28,7 @@ npm run prepare         # Setup Husky git hooks
 This is a **Next.js 15** portfolio website with the App Router, built using modern React patterns and TypeScript.
 
 ### Core Tech Stack
+
 - **Framework**: Next.js 15 with App Router and Turbopack
 - **Styling**: Tailwind CSS v4
 - **Animations**: Framer Motion
@@ -36,6 +37,7 @@ This is a **Next.js 15** portfolio website with the App Router, built using mode
 - **Icons**: Lucide React
 
 ### Project Structure
+
 ```
 src/
 ├── app/                    # Next.js App Router pages

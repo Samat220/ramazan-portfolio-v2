@@ -11,12 +11,12 @@ interface MagneticButtonProps {
   strength?: number;
 }
 
-export function MagneticButton({ 
-  children, 
-  className = '', 
-  href, 
+export function MagneticButton({
+  children,
+  className = '',
+  href,
   onClick,
-  strength = 0.3 
+  strength = 0.3,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -67,9 +67,9 @@ export function MagneticButton({
       {...commonProps}
       {...(href && { href })}
       {...(onClick && { onClick })}
-      whileHover={{ 
+      whileHover={{
         scale: 1.05,
-        rotate: isHovered ? [0, -1, 1, -1, 0] : 0
+        rotate: isHovered ? [0, -1, 1, -1, 0] : 0,
       }}
       whileTap={{ scale: 0.95 }}
       transition={{
@@ -78,19 +78,19 @@ export function MagneticButton({
         damping: 25,
         rotate: {
           duration: 0.6,
-          ease: 'easeInOut'
-        }
+          ease: 'easeInOut',
+        },
       }}
     >
       <motion.div
         className="relative z-10"
         animate={{
           x: isHovered ? [-1, 1, -1, 1, 0] : 0,
-          y: isHovered ? [1, -1, 1, -1, 0] : 0
+          y: isHovered ? [1, -1, 1, -1, 0] : 0,
         }}
         transition={{
           duration: 0.4,
-          ease: 'easeInOut'
+          ease: 'easeInOut',
         }}
       >
         {children}
@@ -100,7 +100,9 @@ export function MagneticButton({
       <motion.div
         className="absolute inset-0 rounded-full bg-accent/20"
         initial={{ scale: 0, opacity: 0 }}
-        animate={isHovered ? { scale: 1.2, opacity: 1 } : { scale: 0, opacity: 0 }}
+        animate={
+          isHovered ? { scale: 1.2, opacity: 1 } : { scale: 0, opacity: 0 }
+        }
         transition={{ duration: 0.3 }}
       />
     </Component>

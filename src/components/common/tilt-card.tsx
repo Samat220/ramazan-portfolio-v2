@@ -1,12 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -23,8 +18,16 @@ export function TiltCard({ children, className = '' }: TiltCardProps) {
   const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
 
   // Rotations (more subtle)
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7.5deg', '-7.5deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg']);
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    ['7.5deg', '-7.5deg']
+  );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    ['-7.5deg', '7.5deg']
+  );
 
   // Glare effect transforms
   const glareX = useTransform(mouseXSpring, [-0.5, 0.5], ['120%', '-20%']);
@@ -61,15 +64,17 @@ export function TiltCard({ children, className = '' }: TiltCardProps) {
       {/* Glare Effect */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(
+        style={
+          {
+            background: `radial-gradient(
             circle at var(--glare-x) var(--glare-y),
             rgba(255, 255, 255, 0.25),
             transparent
           )`,
-          '--glare-x': glareX,
-          '--glare-y': glareY,
-        } as React.CSSProperties}
+            '--glare-x': glareX,
+            '--glare-y': glareY,
+          } as React.CSSProperties
+        }
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.2 }}

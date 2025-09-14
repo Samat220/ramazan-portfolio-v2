@@ -6,7 +6,6 @@ import { ScrollReveal } from '@/components/common/scroll-reveal';
 import { experience } from '@/data/config';
 import { useExperienceModal } from '../common/experience-modal';
 
-
 export function Experience() {
   const { openExperienceModal } = useExperienceModal();
 
@@ -97,7 +96,9 @@ export function Experience() {
                             <span className="text-accent mr-4 mt-1 flex-shrink-0 text-base">
                               ▸
                             </span>
-                            <span className="text-base leading-relaxed">{point}</span>
+                            <span className="text-base leading-relaxed">
+                              {point}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -105,13 +106,13 @@ export function Experience() {
                       <div className="mt-6">
                         <div className="flex flex-wrap gap-2">
                           {job.skills.slice(0, 4).map((skill, skillIndex) => (
-                              <span
-                                key={`${index}-skill-${skillIndex}`}
-                                className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent border border-accent/20 rounded-full"
-                              >
-                                {skill}
-                              </span>
-                            ))}
+                            <span
+                              key={`${index}-skill-${skillIndex}`}
+                              className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent border border-accent/20 rounded-full"
+                            >
+                              {skill}
+                            </span>
+                          ))}
                           {job.skills.length > 4 && (
                             <span className="px-3 py-1 text-xs font-medium text-secondary/60">
                               +{job.skills.length - 4} more

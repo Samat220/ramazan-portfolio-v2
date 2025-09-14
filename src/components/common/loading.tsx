@@ -56,15 +56,15 @@ export function Loading({ isLoading }: LoadingProps) {
             className="text-6xl font-bold gradient-text relative z-10"
             animate={{
               textShadow: [
-                "0 0 20px var(--accent)",
-                "0 0 40px var(--accent)",
-                "0 0 20px var(--accent)"
-              ]
+                '0 0 20px var(--accent)',
+                '0 0 40px var(--accent)',
+                '0 0 20px var(--accent)',
+              ],
             }}
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: 'easeInOut'
+              ease: 'easeInOut',
             }}
           >
             RS
@@ -86,7 +86,7 @@ export function Loading({ isLoading }: LoadingProps) {
               duration: 1.5,
               repeat: Infinity,
               ease: 'easeInOut',
-              delay: 0.5
+              delay: 0.5,
             }}
           />
         </motion.div>
@@ -105,7 +105,7 @@ export function Loading({ isLoading }: LoadingProps) {
               animate={{
                 y: [0, -15, 0],
                 scale: [1, 1.2, 1],
-                opacity: [0.7, 1, 0.7]
+                opacity: [0.7, 1, 0.7],
               }}
               transition={{
                 duration: 1.2,
@@ -125,7 +125,7 @@ export function Loading({ isLoading }: LoadingProps) {
           transition={{
             duration: 2,
             repeat: Infinity,
-            delay: 1
+            delay: 1,
           }}
         >
           Loading Portfolio...

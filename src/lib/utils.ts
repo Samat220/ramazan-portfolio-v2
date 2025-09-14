@@ -57,12 +57,3 @@ export const throttle = <T extends (...args: any[]) => void>(
     }
   };
 };
-
-export const getLightModeScreenshot = (darkScreenshot: string): string | undefined => {
-  // Convert dark mode screenshot path to light mode path
-  // e.g., "/featured_project_1/project_dark_mode.png" -> "/featured_project_1/project_light_mode.png"
-  if (darkScreenshot.includes('_dark_mode.')) {
-    return darkScreenshot.replace('_dark_mode.', '_light_mode.');
-  }
-  return undefined;
-};
