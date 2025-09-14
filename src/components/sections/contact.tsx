@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Loader2 } from 'lucide-react';
+import { Send, Loader2, Calendar, ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '@/components/common/scroll-reveal';
 import { Button } from '@/components/ui/button';
 import { validateEmail } from '@/lib/utils';
@@ -53,18 +53,31 @@ export function Contact() {
     setSubmitStatus('idle');
 
     try {
-      // Simulate API call for now
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const formDataToSend = new FormData();
+      formDataToSend.append('access_key', '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f');
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('message', formData.message);
 
-      // Here you would typically send to an API endpoint
-      console.log('Form submitted:', formData);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend
+      });
 
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 3000);
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 3000);
+      } else {
+        console.error('Web3Forms Error:', data);
+        setSubmitStatus('error');
+      }
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -98,6 +111,29 @@ export function Contact() {
               always open. Whether you have a question or just want to say hi,
               I&apos;ll try my best to get back to you!
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal animationType="fadeUp" delay={300}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <a
+                href="https://calendly.com/samatramazan-dev/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-glow inline-flex items-center justify-center text-lg font-mono px-8 py-3 h-12 min-w-[180px]"
+              >
+                <Calendar className="h-5 w-5 mr-2" />
+                Set Up Meeting
+                <ExternalLink className="h-4 w-4 ml-2" />
+              </a>
+
+              <a
+                href={personalInfo.resume}
+                download="RamazanSamat_Resume.pdf"
+                className="btn-glow inline-flex items-center justify-center text-lg font-mono px-8 py-3 h-12 min-w-[180px]"
+              >
+                Download Résumé
+              </a>
+            </div>
           </ScrollReveal>
         </div>
 
@@ -169,7 +205,7 @@ export function Contact() {
                 )}
               </div>
 
-              <div className="flex justify-center items-center space-x-4 pt-4">
+              <div className="flex justify-start pt-4">
                 <Button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
@@ -189,14 +225,6 @@ export function Contact() {
                     </>
                   )}
                 </Button>
-
-                <a
-                  href={personalInfo.resume}
-                  download="RamazanSamat_Resume.pdf"
-                  className="btn-glow inline-flex items-center justify-center text-lg font-mono px-8 py-3 h-12 min-w-[140px]"
-                >
-                  Resume
-                </a>
               </div>
 
               {submitStatus === 'error' && (
@@ -221,6 +249,22 @@ export function Contact() {
             </form>
           </div>
         </ScrollReveal>
+
+        {/* Footer */}
+        <div className="border-t border-border mt-16 pt-8">
+          <ScrollReveal animationType="fadeUp" delay={400}>
+            <div className="text-center text-secondary">
+              <p className="mb-2">
+                Designed & Built by{' '}
+                <span className="text-primary font-medium">Ramazan Samat</span>
+              </p>
+              <p className="text-sm mb-2">
+                Next.js 15 • TypeScript • Tailwind CSS • Framer Motion • Zustand
+              </p>
+              <p className="text-xs text-secondary/60">© 2025</p>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </footer>
   );
