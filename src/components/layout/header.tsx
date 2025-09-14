@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Menu, X, ArrowDownToLine } from 'lucide-react';
+import { Moon, Sun, Menu, X, ExternalLink } from 'lucide-react';
 import { navLinks, personalInfo } from '@/data/config';
 import { useThemeStore } from '@/lib/store';
 import { useSmoothScroll } from '@/hooks';
@@ -109,7 +109,8 @@ export function Header() {
         ))}
         <motion.a
           href={personalInfo.resume}
-          download="RamazanSamat_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="font-mono text-sm border border-accent rounded text-accent py-2 px-4 hover:bg-accent-light transition-all duration-200 inline-flex items-center gap-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,7 +123,7 @@ export function Header() {
           whileTap={{ scale: 0.98 }}
         >
           Résumé
-          <ArrowDownToLine className="h-3 w-3" />
+          <ExternalLink className="h-3 w-3" />
         </motion.a>
         <motion.button
           onClick={toggleTheme}
@@ -233,7 +234,8 @@ export function Header() {
               ))}
               <motion.a
                 href={personalInfo.resume}
-                download="RamazanSamat_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xl font-mono border border-accent rounded-lg text-accent px-8 py-3 mt-4 hover:bg-accent-light transition-colors inline-flex items-center gap-2"
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -244,7 +246,7 @@ export function Header() {
                 }}
               >
                 Résumé
-                <ArrowDownToLine className="h-4 w-4" />
+                <ExternalLink className="h-4 w-4" />
               </motion.a>
             </nav>
           </motion.div>

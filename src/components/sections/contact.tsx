@@ -133,10 +133,12 @@ export function Contact() {
 
               <a
                 href={personalInfo.resume}
-                download="RamazanSamat_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-glow inline-flex items-center justify-center text-lg font-mono px-8 py-3 h-12 min-w-[180px]"
               >
-                Download Résumé
+                View Résumé
+                <ExternalLink className="h-4 w-4 ml-2" />
               </a>
             </div>
           </ScrollReveal>

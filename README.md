@@ -162,7 +162,6 @@ npm run build
 npm start
 ```
 
-
 ## 🤝 Contributing
 
 This repository is mean to serve as both personal portfolio and project in it self. I spent a considerable amount of time and effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own. Please give me proper credit by linking back to ramazansamat.dev. Thanks!
