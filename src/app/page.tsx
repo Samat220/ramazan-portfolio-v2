@@ -37,7 +37,7 @@ export default function Home() {
                 duration: 1,
                 ease: [0.4, 0, 0.2, 1],
                 delayChildren: 0.3,
-                staggerChildren: 0.1
+                staggerChildren: 0.1,
               }}
             >
               {/* Background Geometric Shapes */}
@@ -63,7 +63,6 @@ export default function Home() {
 
               {/* Back to Top Button */}
               <BackToTop />
-
             </motion.div>
           </>
         )}

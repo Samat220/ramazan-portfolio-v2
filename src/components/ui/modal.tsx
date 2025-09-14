@@ -40,7 +40,12 @@ const modalVariants = {
   },
 };
 
-export function Modal({ isOpen, onClose, children, className = '' }: ModalProps) {
+export function Modal({
+  isOpen,
+  onClose,
+  children,
+  className = '',
+}: ModalProps) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -75,7 +80,7 @@ export function Modal({ isOpen, onClose, children, className = '' }: ModalProps)
             exit="hidden"
           />
           <motion.div
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
             variants={modalVariants as any}
             initial="hidden"
             animate="visible"

@@ -12,7 +12,9 @@ function ExperienceModalContent({ job }: { job: Experience }) {
       {/* Modal Header */}
       <header className="flex items-start justify-between gap-4 p-6 border-b border-[var(--glass-border)]">
         <div>
-          <h3 className="text-2xl font-semibold text-primary mb-2">{job.role}</h3>
+          <h3 className="text-2xl font-semibold text-primary mb-2">
+            {job.role}
+          </h3>
           <a
             href={job.companyUrl}
             target="_blank"
@@ -28,7 +30,9 @@ function ExperienceModalContent({ job }: { job: Experience }) {
 
       {/* Modal Body with scrolling for long content */}
       <div className="p-6 max-h-[60vh] overflow-y-auto">
-        <h4 className="text-lg font-medium text-primary mb-4">Key Highlights</h4>
+        <h4 className="text-lg font-medium text-primary mb-4">
+          Key Highlights
+        </h4>
         <ul className="space-y-3 mb-6">
           {job.description.map((point, i) => (
             <li key={i} className="flex gap-3 items-start">
@@ -40,7 +44,9 @@ function ExperienceModalContent({ job }: { job: Experience }) {
 
         {/* Skills Section */}
         <div className="pt-4 border-t border-[var(--glass-border)]">
-          <h4 className="text-lg font-medium text-primary mb-3">Technologies & Skills</h4>
+          <h4 className="text-lg font-medium text-primary mb-3">
+            Technologies & Skills
+          </h4>
           <div className="flex flex-wrap gap-2">
             {job.skills.map((skill, i) => (
               <span

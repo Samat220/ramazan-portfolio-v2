@@ -8,7 +8,10 @@ interface SpotlightCardProps {
   className?: string;
 }
 
-export function SpotlightCard({ children, className = '' }: SpotlightCardProps) {
+export function SpotlightCard({
+  children,
+  className = '',
+}: SpotlightCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);

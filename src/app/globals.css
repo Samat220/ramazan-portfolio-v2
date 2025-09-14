@@ -13,9 +13,23 @@
 
   /* Enhanced gradients */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
-  --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
+  --gradient-accent: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #3b82f6 50%,
+    #8b5cf6 100%
+  );
+  --gradient-card: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  --gradient-border: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.3) 0%,
+    rgba(59, 130, 246, 0.3) 50%,
+    rgba(139, 92, 246, 0.3) 100%
+  );
 
   /* Enhanced light glass morphism for a true frosted effect */
   --glass-bg: rgba(255, 255, 255, 0.55);
@@ -24,8 +38,10 @@
 
   /* Advanced shadows */
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
   --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.3);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.4);
   --shadow-glass: 0 8px 32px 0 rgba(51, 65, 85, 0.15);
@@ -87,9 +103,23 @@
 
   /* Light gradients */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
-  --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
+  --gradient-accent: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #3b82f6 50%,
+    #8b5cf6 100%
+  );
+  --gradient-card: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  --gradient-border: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.3) 0%,
+    rgba(59, 130, 246, 0.3) 50%,
+    rgba(139, 92, 246, 0.3) 100%
+  );
 
   /* Enhanced light glass morphism for a true frosted effect */
   --glass-bg: rgba(255, 255, 255, 0.55);
@@ -98,8 +128,10 @@
 
   /* Light shadows */
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
   --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.3);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.4);
   --shadow-glass: 0 8px 32px 0 rgba(51, 65, 85, 0.15);
@@ -117,9 +149,23 @@
 
   /* Dark gradients */
   --gradient-primary: linear-gradient(135deg, #4c1d95 0%, #312e81 100%);
-  --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-  --gradient-card: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%);
-  --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.5) 0%, rgba(59, 130, 246, 0.5) 50%, rgba(139, 92, 246, 0.5) 100%);
+  --gradient-accent: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #3b82f6 50%,
+    #8b5cf6 100%
+  );
+  --gradient-card: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.9) 0%,
+    rgba(30, 41, 59, 0.7) 100%
+  );
+  --gradient-border: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.5) 0%,
+    rgba(59, 130, 246, 0.5) 50%,
+    rgba(139, 92, 246, 0.5) 100%
+  );
 
   /* Dark glass morphism */
   --glass-bg: rgba(30, 41, 59, 0.3);
@@ -128,8 +174,10 @@
 
   /* Dark shadows */
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 10px 10px -5px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.4), 0 10px 10px -5px rgb(0 0 0 / 0.1);
   --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.5);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.6);
   --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
@@ -139,7 +187,6 @@
 * {
   box-sizing: border-box;
 }
-
 
 /* GPU Acceleration for animations */
 .card-enhanced,
@@ -217,7 +264,7 @@ html {
 
 button:focus-visible,
 a:focus-visible,
-[role="button"]:focus-visible {
+[role='button']:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
@@ -285,16 +332,33 @@ body {
   width: 300px;
   height: 1px;
   margin-left: 20px;
-  background: linear-gradient(90deg, var(--accent) 0%, var(--text-secondary) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    var(--text-secondary) 50%,
+    transparent 100%
+  );
   animation: gradient-line 3s ease infinite;
 }
 
 @keyframes gradient-line {
-  0%, 100% {
-    background: linear-gradient(90deg, var(--accent) 0%, var(--text-secondary) 50%, transparent 100%);
+  0%,
+  100% {
+    background: linear-gradient(
+      90deg,
+      var(--accent) 0%,
+      var(--text-secondary) 50%,
+      transparent 100%
+    );
   }
   50% {
-    background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 30%, var(--text-secondary) 80%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      var(--accent) 0%,
+      var(--accent) 30%,
+      var(--text-secondary) 80%,
+      transparent 100%
+    );
   }
 }
 
@@ -473,7 +537,9 @@ body {
 
 .timeline-card:hover .card-enhanced {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow), 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    var(--shadow-glow),
+    0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-card .card-enhanced {
@@ -492,7 +558,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     rgba(14, 165, 233, 0.03) 0%,
     rgba(59, 130, 246, 0.03) 50%,
     rgba(139, 92, 246, 0.03) 100%
@@ -930,7 +997,8 @@ body {
 
 /* Gradient Animation */
 @keyframes gradient-shift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -1016,7 +1084,9 @@ body {
   height: 0;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
@@ -1025,8 +1095,6 @@ body {
   width: 300px;
   height: 300px;
 }
-
-
 
 .hero-grid-background {
   position: fixed;
@@ -1186,7 +1254,9 @@ body {
 }
 
 .heading-glow:hover {
-  text-shadow: 0 0 40px var(--accent), 0 0 60px var(--accent);
+  text-shadow:
+    0 0 40px var(--accent),
+    0 0 60px var(--accent);
 }
 
 /* Advanced Layout Grid */

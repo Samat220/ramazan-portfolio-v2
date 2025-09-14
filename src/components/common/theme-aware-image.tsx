@@ -10,7 +10,12 @@ interface ThemeAwareImageProps {
   className?: string;
 }
 
-export function ThemeAwareImage({ darkSrc, lightSrc, alt, className }: ThemeAwareImageProps) {
+export function ThemeAwareImage({
+  darkSrc,
+  lightSrc,
+  alt,
+  className,
+}: ThemeAwareImageProps) {
   const { theme } = useThemeStore();
   const [mounted, setMounted] = useState(false);
 
@@ -20,34 +25,16 @@ export function ThemeAwareImage({ darkSrc, lightSrc, alt, className }: ThemeAwar
 
   // Don't render anything until after hydration
   if (!mounted) {
-    return (
-      <img
-        src={darkSrc}
-        alt={alt}
-        className={className}
-      />
-    );
+    return <img src={darkSrc} alt={alt} className={className} />;
   }
 
   // If no light mode image is provided, always use dark mode image
   if (!lightSrc) {
-    return (
-      <img
-        src={darkSrc}
-        alt={alt}
-        className={className}
-      />
-    );
+    return <img src={darkSrc} alt={alt} className={className} />;
   }
 
   // Determine which image to show based on theme
   const imageSrc = theme === 'light' ? lightSrc : darkSrc;
 
-  return (
-    <img
-      src={imageSrc}
-      alt={alt}
-      className={className}
-    />
-  );
+  return <img src={imageSrc} alt={alt} className={className} />;
 }

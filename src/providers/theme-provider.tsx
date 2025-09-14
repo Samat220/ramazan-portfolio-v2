@@ -11,7 +11,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== 'undefined') {
       // Check if zustand has already loaded a theme from localStorage
       const zustandState = localStorage.getItem('portfolio-theme');
-      
+
       if (zustandState) {
         try {
           const parsedState = JSON.parse(zustandState);
@@ -31,10 +31,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const systemPrefersDark = window.matchMedia(
         '(prefers-color-scheme: dark)'
       ).matches;
-      
+
       const defaultTheme = systemPrefersDark ? 'dark' : 'light';
       setTheme(defaultTheme);
-      
+
       // Apply theme class immediately
       document.documentElement.classList.remove('light', 'dark');
       document.documentElement.classList.add(defaultTheme);
@@ -45,10 +45,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Apply theme class to document element
     if (typeof window !== 'undefined') {
       const root = document.documentElement;
-      
+
       // Remove both theme classes first
       root.classList.remove('light', 'dark');
-      
+
       // Add the current theme class
       root.classList.add(theme);
     }

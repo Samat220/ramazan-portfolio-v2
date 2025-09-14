@@ -55,7 +55,9 @@ export function ConstellationBackground() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 9000);
+      const numberOfParticles = Math.floor(
+        (canvas.width * canvas.height) / 9000
+      );
 
       // 👇 3. Read the correct color based on the current theme
       const particleColor = getComputedStyle(document.documentElement)
@@ -79,10 +81,11 @@ export function ConstellationBackground() {
         for (let b = a; b < particles.length; b++) {
           const distance = Math.sqrt(
             (particles[a].x - particles[b].x) ** 2 +
-            (particles[a].y - particles[b].y) ** 2
+              (particles[a].y - particles[b].y) ** 2
           );
 
-          if (distance < 120) { // Increased connection distance
+          if (distance < 120) {
+            // Increased connection distance
             const opacity = 1 - distance / 120;
             ctx.strokeStyle = `rgba(${lineColor}, ${opacity})`;
             ctx.lineWidth = 1;
@@ -106,9 +109,9 @@ export function ConstellationBackground() {
     };
 
     const handleResize = () => {
-        cancelAnimationFrame(animationFrameId);
-        init();
-        animate();
+      cancelAnimationFrame(animationFrameId);
+      init();
+      animate();
     };
 
     init();
@@ -120,7 +123,6 @@ export function ConstellationBackground() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
     };
-
   }, [theme]); // 👈 4. Re-run effect when theme changes!
 
   return (
