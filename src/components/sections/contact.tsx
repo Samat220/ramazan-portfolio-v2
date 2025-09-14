@@ -6,6 +6,7 @@ import { Send, Loader2 } from 'lucide-react';
 import { ScrollReveal } from '@/components/common/scroll-reveal';
 import { Button } from '@/components/ui/button';
 import { validateEmail } from '@/lib/utils';
+import { personalInfo } from '@/data/config';
 import type { ContactFormData } from '@/types';
 
 export function Contact() {
@@ -190,7 +191,7 @@ export function Contact() {
                 </Button>
 
                 <a
-                  href="/resume.pdf"
+                  href={personalInfo.resume}
                   download="RamazanSamat_Resume.pdf"
                   className="btn-glow inline-flex items-center justify-center text-lg font-mono px-8 py-3 h-12 min-w-[140px]"
                 >

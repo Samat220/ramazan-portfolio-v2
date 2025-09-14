@@ -49,7 +49,6 @@ export function Experience() {
                     className="timeline-card relative ml-20 max-w-2xl w-full"
                     role="button"
                     tabIndex={0}
-                    // ✅ This now *only* opens the modal. It no longer calls a function that scrolls the page.
                     onClick={() => openExperienceModal(job)}
                     onKeyDown={e => {
                       if (e.key === 'Enter' || e.key === ' ') {

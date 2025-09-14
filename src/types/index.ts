@@ -5,6 +5,7 @@ export interface PersonalInfo {
   email: string;
   linkedin: string;
   github: string;
+  resume: string;
   bio: string;
 }
 

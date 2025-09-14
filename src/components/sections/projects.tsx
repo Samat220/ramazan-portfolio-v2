@@ -5,9 +5,11 @@ import { motion } from 'framer-motion';
 import { Folder } from 'lucide-react';
 import { ScrollReveal } from '@/components/common/scroll-reveal';
 import { ProjectImagePlaceholder } from '@/components/common/project-image-placeholder';
+import { ThemeAwareImage } from '@/components/common/theme-aware-image';
 import { GithubIcon, ExternalLinkIcon } from '@/components/icons';
 import { projects } from '@/data/config';
 import { Button } from '@/components/ui/button';
+import { getLightModeScreenshot } from '@/lib/utils';
 
 export function Projects() {
   const [showMoreProjects, setShowMoreProjects] = useState(false);
@@ -93,16 +95,11 @@ export function Projects() {
               <div className={`project-image-container ${
                 i % 2 === 0 ? 'project-image-even' : 'project-image-odd'
               }`}>
-                <a
-                  href={project.liveUrl || project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-image-link"
-                >
-                  <div className="project-image-overlay" />
+                <div className="project-image-wrapper">
                   {project.screenshotUrl ? (
-                    <img
-                      src={project.screenshotUrl}
+                    <ThemeAwareImage
+                      darkSrc={project.screenshotUrl}
+                      lightSrc={getLightModeScreenshot(project.screenshotUrl)}
                       alt={project.title}
                       className="project-image"
                     />
@@ -112,7 +109,7 @@ export function Projects() {
                       index={i}
                     />
                   )}
-                </a>
+                </div>
               </div>
             </li>
           </ScrollReveal>
@@ -134,7 +131,7 @@ export function Projects() {
                 className="card-enhanced p-6 rounded-lg h-full flex flex-col"
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ 
+                transition={{
                   duration: 0.2,
                   ease: [0.4, 0, 0.2, 1]
                 }}
