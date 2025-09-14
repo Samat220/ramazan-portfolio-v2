@@ -3,6 +3,18 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
+    // ✅ Verify Authorization header
+    const authHeader = request.headers.get('Authorization');
+    const token = authHeader?.replace('Bearer ', '');
+
+    if (
+      !token ||
+      !process.env.ADMIN_SECRET_KEY ||
+      token !== process.env.ADMIN_SECRET_KEY
+    ) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const filename = searchParams.get('filename') || 'ramazan_samat.pdf';
 
@@ -53,8 +65,20 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // ✅ Verify Authorization header for GET requests too
+    const authHeader = request.headers.get('Authorization');
+    const token = authHeader?.replace('Bearer ', '');
+
+    if (
+      !token ||
+      !process.env.ADMIN_SECRET_KEY ||
+      token !== process.env.ADMIN_SECRET_KEY
+    ) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     // List current resume files
     const files = await list({ prefix: 'resume/' });
 

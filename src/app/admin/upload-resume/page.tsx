@@ -5,10 +5,10 @@ import { ResumeUploadClient } from './upload-client';
 export default async function ResumeUploadPage({
   searchParams,
 }: {
-  // The 'searchParams' can sometimes be a promise, so awaiting it is a good practice.
-  searchParams: { secret?: string };
+  searchParams: Promise<{ secret?: string }>;
 }) {
-  const providedSecret = searchParams.secret;
+  const params = await searchParams;
+  const providedSecret = params.secret;
 
   const isAuthorized =
     !!process.env.ADMIN_SECRET_KEY &&
@@ -19,6 +19,6 @@ export default async function ResumeUploadPage({
     notFound();
   }
 
-  // Only render the client component if authorized
-  return <ResumeUploadClient />;
+  // ✅ 2. Pass the secret key as a prop to the client component
+  return <ResumeUploadClient secretKey={process.env.ADMIN_SECRET_KEY!} />;
 }
