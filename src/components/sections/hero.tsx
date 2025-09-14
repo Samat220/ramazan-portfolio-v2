@@ -34,7 +34,7 @@ export function Hero() {
     'Tech Enthusiast',
     'Creative Builder'
   ];
-  
+
   const [currentTagline, setCurrentTagline] = useState(0);
 
   useEffect(() => {
@@ -47,19 +47,10 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen flex-col justify-center items-start pt-16 overflow-hidden"
+      className="relative flex min-h-screen flex-col justify-center items-start pt-16"
     >
       {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-grid)" />
-        </svg>
-      </div>
+
 
       {/* Floating Elements */}
       <motion.div
@@ -74,7 +65,7 @@ export function Hero() {
           ease: "easeInOut"
         }}
       />
-      
+
       <motion.div
         className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-accent/30 rounded-full"
         animate={{

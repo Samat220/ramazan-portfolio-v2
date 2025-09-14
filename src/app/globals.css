@@ -4,23 +4,23 @@
   /* Light theme colors */
   --background: #f8fafc;
   --card-background: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --accent: #0ea5e9;
-  --accent-light: rgba(14, 165, 233, 0.1);
-  --accent-rgb: 14, 165, 233;
+  --text-primary: #0f172a; /* Darker for better contrast */
+  --text-secondary: #475569; /* Darker for better contrast */
+  --accent: #0284c7; /* Slightly darker blue for better contrast */
+  --accent-light: rgba(2, 132, 199, 0.12); /* Adjusted for new accent */
+  --accent-rgb: 2, 132, 199;
   --border-color: #e2e8f0;
 
   /* Enhanced gradients */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
   --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
 
-  /* Glass morphism effects */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --backdrop-blur: 20px;
+  /* Enhanced glass morphism effects for better light mode readability */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(226, 232, 240, 0.8);
+  --backdrop-blur: 24px;
 
   /* Advanced shadows */
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -28,7 +28,7 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
   --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.3);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.4);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --shadow-glass: 0 8px 32px 0 rgba(51, 65, 85, 0.15);
 
   /* Typography */
   --font-size-xs: 0.75rem;
@@ -79,22 +79,22 @@
 .light {
   --background: #f8fafc;
   --card-background: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --accent: #0ea5e9;
-  --accent-light: rgba(14, 165, 233, 0.1);
+  --text-primary: #0f172a; /* Darker for better contrast */
+  --text-secondary: #475569; /* Darker for better contrast */
+  --accent: #0284c7; /* Slightly darker blue for better contrast */
+  --accent-light: rgba(2, 132, 199, 0.12); /* Adjusted for new accent */
   --border-color: #e2e8f0;
 
   /* Light gradients */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
-  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
   --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
 
-  /* Light glass morphism */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --backdrop-blur: 20px;
+  /* Enhanced light glass morphism for better readability */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(226, 232, 240, 0.8);
+  --backdrop-blur: 24px;
 
   /* Light shadows */
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -102,7 +102,7 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
   --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.3);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.4);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --shadow-glass: 0 8px 32px 0 rgba(51, 65, 85, 0.15);
 }
 
 /* Dark class for manual theme switching */
@@ -805,6 +805,78 @@ body {
   -webkit-backdrop-filter: blur(var(--backdrop-blur));
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced frosted glass effect for light mode legibility */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.dark .glass-card {
+  /* Enhanced dark mode glass effect */
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.dark .glass-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+/* Enhanced text shadow for better readability on glass */
+.glass-card .text-primary,
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4 {
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-card .text-primary,
+.dark .glass-card h1,
+.dark .glass-card h2,
+.dark .glass-card h3,
+.dark .glass-card h4 {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced glass card hover effect */
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(226, 232, 240, 0.9);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-card:hover {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .glass-nav {
@@ -944,6 +1016,40 @@ body {
 .btn-ripple:active::before {
   width: 300px;
   height: 300px;
+}
+
+
+
+.hero-grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0; /* 👈 Change from -10 to 0 */
+
+  background-image:
+    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+
+  animation: move-grid-fixed 45s linear infinite;
+
+  mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
+
+  opacity: 0.15; /* 👈 Increased opacity slightly */
+}
+
+/* You can keep the same keyframes animation */
+@keyframes move-grid-fixed {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 400px 400px;
+  }
 }
 
 /* Interactive Card Animations */

@@ -21,7 +21,7 @@ export function Loading({ isLoading }: LoadingProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 glass-card flex items-center justify-center"
+      className="fixed inset-0 z-[9999] bg-background flex items-center justify-center"
       initial={{ opacity: 1 }}
       animate={{ opacity: isLoading ? 1 : 0 }}
       exit={{ opacity: 0, scale: 0.8 }}
@@ -54,7 +54,7 @@ export function Loading({ isLoading }: LoadingProps) {
         >
           <motion.div
             className="text-6xl font-bold gradient-text relative z-10"
-            animate={{ 
+            animate={{
               textShadow: [
                 "0 0 20px var(--accent)",
                 "0 0 40px var(--accent)",
