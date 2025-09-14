@@ -6,6 +6,7 @@ export interface PersonalInfo {
   linkedin: string;
   github: string;
   resume: string;
+  photo: string;
   bio: string;
 }
 
@@ -24,6 +25,11 @@ export interface Experience {
   skills: string[];
 }
 
+export interface ProjectScreenshots {
+  dark: string;
+  light?: string; // Optional light mode
+}
+
 export interface Project {
   featured: boolean;
   title: string;
@@ -31,7 +37,7 @@ export interface Project {
   technologies: string[];
   githubUrl: string;
   liveUrl?: string | null;
-  screenshotUrl?: string;
+  screenshots?: ProjectScreenshots;
 }
 
 export interface ThemeContextType {

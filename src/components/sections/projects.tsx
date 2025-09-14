@@ -9,7 +9,6 @@ import { ThemeAwareImage } from '@/components/common/theme-aware-image';
 import { GithubIcon, ExternalLinkIcon } from '@/components/icons';
 import { projects } from '@/data/config';
 import { Button } from '@/components/ui/button';
-import { getLightModeScreenshot } from '@/lib/utils';
 
 export function Projects() {
   const [showMoreProjects, setShowMoreProjects] = useState(false);
@@ -32,9 +31,11 @@ export function Projects() {
         {featuredProjects?.map((project, i) => (
           <ScrollReveal key={i} animationType="fadeUp" delay={i * 200}>
             <li className="project-item">
-              <div className={`project-content ${
-                i % 2 === 0 ? 'project-content-even' : 'project-content-odd'
-              }`}>
+              <div
+                className={`project-content ${
+                  i % 2 === 0 ? 'project-content-even' : 'project-content-odd'
+                }`}
+              >
                 <div>
                   <p className="text-accent font-mono text-xs font-normal mt-2 mb-1">
                     Featured Project
@@ -51,9 +52,13 @@ export function Projects() {
                     </a>
                   </h3>
 
-                  <div className={`project-description ${
-                    i % 2 === 0 ? 'project-description-even' : 'project-description-odd'
-                  }`}>
+                  <div
+                    className={`project-description ${
+                      i % 2 === 0
+                        ? 'project-description-even'
+                        : 'project-description-odd'
+                    }`}
+                  >
                     <p>{project.description}</p>
                   </div>
 
@@ -92,22 +97,21 @@ export function Projects() {
                 </div>
               </div>
 
-              <div className={`project-image-container ${
-                i % 2 === 0 ? 'project-image-even' : 'project-image-odd'
-              }`}>
+              <div
+                className={`project-image-container ${
+                  i % 2 === 0 ? 'project-image-even' : 'project-image-odd'
+                }`}
+              >
                 <div className="project-image-wrapper">
-                  {project.screenshotUrl ? (
+                  {project.screenshots ? (
                     <ThemeAwareImage
-                      darkSrc={project.screenshotUrl}
-                      lightSrc={getLightModeScreenshot(project.screenshotUrl)}
+                      darkSrc={project.screenshots.dark}
+                      lightSrc={project.screenshots.light}
                       alt={project.title}
                       className="project-image"
                     />
                   ) : (
-                    <ProjectImagePlaceholder
-                      title={project.title}
-                      index={i}
-                    />
+                    <ProjectImagePlaceholder title={project.title} index={i} />
                   )}
                 </div>
               </div>
@@ -133,7 +137,7 @@ export function Projects() {
                 whileTap={{ scale: 0.98 }}
                 transition={{
                   duration: 0.2,
-                  ease: [0.4, 0, 0.2, 1]
+                  ease: [0.4, 0, 0.2, 1],
                 }}
               >
                 <div className="flex items-center justify-between mb-4">

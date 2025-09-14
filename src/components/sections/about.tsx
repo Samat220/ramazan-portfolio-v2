@@ -1,7 +1,7 @@
 'use client';
 
 import { ScrollReveal } from '@/components/common/scroll-reveal';
-import { backendSkills, mlSkills } from '@/data/config';
+import { backendSkills, mlSkills, personalInfo } from '@/data/config';
 
 export function About() {
   return (
@@ -18,11 +18,21 @@ export function About() {
         >
           {/* ✅ UPDATED PARAGRAPH 1 */}
           <p className="text-secondary">
-            My journey into software began with an Economics degree from the University of Warwick, which gave me a strong analytical foundation for modeling complex systems. I then transitioned my focus to technology with a Master's in Software Development from Boston University, building the technical skills to architect and implement the robust systems I design today.
+            My journey into software began with an Economics degree from the
+            University of Warwick, which gave me a strong analytical foundation
+            for modeling complex systems. I then transitioned my focus to
+            technology with a Master's in Software Development from Boston
+            University, building the technical skills to architect and implement
+            the robust systems I design today.
           </p>
           {/* ✅ UPDATED PARAGRAPH 2 */}
           <p className="text-secondary">
-            As a backend developer at Movable Ink, I specialize in engineering scalable and resilient services within the Python ecosystem. My work focuses on enhancing system reliability through features like custom rate limiters and high-throughput gRPC services. I'm now eager to leverage this experience in robust system design to tackle new challenges in Machine Learning.
+            As a backend developer at Movable Ink, I specialize in engineering
+            scalable and resilient services within the Python ecosystem. My work
+            focuses on enhancing system reliability through features like custom
+            rate limiters and high-throughput gRPC services. I'm now eager to
+            leverage this experience in robust system design to tackle new
+            challenges in Machine Learning.
           </p>
         </ScrollReveal>
 
@@ -34,11 +44,10 @@ export function About() {
           <div className="group w-full max-w-sm mx-auto">
             <div className="relative rounded-lg overflow-hidden z-10 bg-card-bg shadow-lg">
               <img
-                src="https://placehold.co/400x400/1E293B/F8FAFC?text=Ramazan+Samat"
-                alt="A placeholder headshot for Ramazan Samat"
+                src={personalInfo.photo}
+                alt={`${personalInfo.name} profile photo`}
                 className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-accent/20 transition-opacity duration-300 group-hover:opacity-0"></div>
             </div>
             <div className="absolute inset-0 border-2 border-accent rounded-lg transform translate-x-4 translate-y-4 transition-transform duration-300 group-hover:translate-x-2 group-hover:translate-y-2"></div>
           </div>
@@ -49,14 +58,10 @@ export function About() {
       <ScrollReveal animationType="scaleUp" delay={400}>
         <div className="skills-container">
           <div className="skills-tree">
-            <div className="skills-header">
-              MY SKILLS
-            </div>
+            <div className="skills-header">MY SKILLS</div>
             <div className="skills-branches">
               <div className="skill-branch">
-                <h4>
-                  Python Backend
-                </h4>
+                <h4>Python Backend</h4>
                 <div className="skill-tags">
                   {backendSkills.map((skill, index) => (
                     <div
@@ -72,9 +77,7 @@ export function About() {
                 </div>
               </div>
               <div className="skill-branch">
-                <h4>
-                  Machine Learning
-                </h4>
+                <h4>Machine Learning</h4>
                 <div className="skill-tags">
                   {mlSkills.map((skill, index) => (
                     <div
@@ -96,4 +99,3 @@ export function About() {
     </section>
   );
 }
-

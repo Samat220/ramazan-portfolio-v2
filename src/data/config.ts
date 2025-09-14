@@ -7,7 +7,8 @@ export const personalInfo: PersonalInfo = {
   email: 'samatramazan.dev@gmail.com',
   linkedin: 'https://linkedin.com/in/samatr',
   github: 'https://github.com/Samat220',
-  resume: '/resume.pdf',
+  resume: '/my_info/resume.pdf',
+  photo: '/my_info/headshot.jpeg',
   bio: "A Software Developer specializing in building robust integrations and backend services at Movable Ink.  My work focuses on enhancing system reliability by implementing custom rate limiters, strengthening data integrity through multi-phase schema updates, and developing high-throughput gRPC services. With a Master's in Software Development from Boston University, I'm passionate about applying my skills in system design to new challenges. ",
 };
 
@@ -32,7 +33,16 @@ export const experience: Experience[] = [
       'Increased team development velocity by leading the adoption and integration of AI coding tools into the engineering workflow.',
       'Wrote documentation for best practices for the django migrations, improving team onboarding and knowledge sharing.',
     ],
-    skills: ['Python', 'Django', 'Redis', 'PostgreSQL', 'AWS', 'Docker', 'Microservices', 'API Design'],
+    skills: [
+      'Python',
+      'Django',
+      'Redis',
+      'PostgreSQL',
+      'AWS',
+      'Docker',
+      'Microservices',
+      'API Design',
+    ],
   },
   {
     company: 'Lucky Financial',
@@ -70,7 +80,10 @@ export const projects: Project[] = [
     technologies: ['Python', 'Flask', 'scikit-learn', 'Pandas', 'Docker'],
     githubUrl: 'https://github.com/Samat220/job-search-dashboard',
     liveUrl: 'https://job-search-dashboard-2e24c.web.app/',
-    screenshotUrl: '/featured_project_1/job_board_dark_mode.png',
+    screenshots: {
+      dark: '/featured_project_1/job_board_dark_mode.png',
+      light: '/featured_project_1/job_board_light_mode.png',
+    },
   },
   {
     featured: true,
@@ -79,52 +92,55 @@ export const projects: Project[] = [
       "A web app built to solve the endless debate of 'what to watch or play next.' Users can catalog their media into filterable lists, and the app's centerpiece is an interactive spinning wheel that randomly selects a choice, making decisions fun and easy.",
     technologies: ['Python', 'Kafka', 'AWS Lambda', 'DynamoDB', 'Terraform'],
     githubUrl: 'https://github.com/Samat220/Choose-for-me',
-    liveUrl: 'https://project-beta.yourdomain.com', // Replace
-    screenshotUrl: '/featured_project_2/media_picker_dark_mode.png',
+    liveUrl: null, // Replace
+    screenshots: {
+      dark: '/featured_project_2/media_picker_dark_mode.png',
+      light: '/featured_project_2/media_picker_light_mode.png',
+    },
   },
   {
     featured: false,
-    title: 'Project Gamma: Distributed Task Queue',
+    title: 'Marketing Event Ingestion API',
     description:
-      'A backend system for managing and executing asynchronous tasks using Celery and RabbitMQ.',
-    technologies: ['Python', 'Django', 'Celery', 'RabbitMQ'],
-    githubUrl: 'https://github.com/yourprofile/project-gamma', // Replace
+      'A high-performance API designed to receive, validate, and store marketing event data. Built with FastAPI, this service converts timestamps to UTC, and ensures data integrity using Pydantic.',
+    technologies: ['Python', 'FastAPI', 'Pydantic', 'Pytest'],
+    githubUrl: 'https://github.com/Samat220/event_integration_hub',
     liveUrl: null,
   },
   {
     featured: false,
-    title: 'Project Delta: API Performance Monitoring',
+    title: 'Restaurant Booking API',
     description:
-      'A utility library for Flask applications to monitor API endpoint performance and log metrics to Prometheus.',
-    technologies: ['Python', 'Flask', 'Prometheus'],
-    githubUrl: 'https://github.com/yourprofile/project-delta', // Replace
+      'A Django application provides a complete backend for a restaurant. It features menu and table booking APIs, and user registration with token-based authentication.',
+    technologies: ['Python', 'Django', 'Django', 'RestAPI', 'SQLite'],
+    githubUrl: 'https://github.com/Samat220/LittleLemonAPI',
     liveUrl: null,
   },
   {
     featured: false,
-    title: 'Project Epsilon: CLI Tool for AWS S3',
+    title: 'Clima - iOS Weather App',
     description:
-      'A command-line interface tool to simplify interactions with AWS S3 for uploading and managing files.',
-    technologies: ['Python', 'Boto3', 'Click'],
-    githubUrl: 'https://github.com/yourprofile/project-epsilon', // Replace
+      "A dark-mode enabled iOS weather app developed in Swift. It provides real-time weather data based on the user's current GPS location or a manual city search, utilizing URLSession for networking and Core Location for GPS data.",
+    technologies: ['Swift', 'UIKit', 'Core Location', 'URLSession'],
+    githubUrl: 'https://github.com/Samat220/Clima-iOS13',
     liveUrl: null,
   },
   {
     featured: false,
-    title: 'Project Zeta: GraphQL API with Django',
+    title: 'Web Blog Website',
     description:
-      'An implementation of a GraphQL API layer for a traditional Django REST Framework application.',
-    technologies: ['Python', 'Django', 'Graphene'],
-    githubUrl: 'https://github.com/yourprofile/project-zeta', // Replace
+      'A web application that allows users to create, edit, and manage blog posts with secure user authentication and a clean, responsive interface.',
+    technologies: ['Node.js', 'EJS', 'OAuth2', 'React'],
+    githubUrl: 'https://github.com/Samat220/Blog-Website',
     liveUrl: null,
   },
   {
     featured: false,
-    title: 'Project Eta: Secure User Authentication Service',
+    title: 'GraphQL API with NestJS',
     description:
-      'A microservice handling user registration, login, and JWT-based authentication for other services.',
-    technologies: ['Python', 'FastAPI', 'OAuth2'],
-    githubUrl: 'https://github.com/yourprofile/project-eta', // Replace
+      'A robust GraphQL server for a product and user management system. The project emphasizes clean architecture, dependency injection, and comprehensive unit testing with Jest.',
+    technologies: ['NestJS', 'TypeScript', 'GraphQL', 'Jest', 'Node.js'],
+    githubUrl: 'https://github.com/Samat220/Plotly-assignment',
     liveUrl: null,
   },
 ];
