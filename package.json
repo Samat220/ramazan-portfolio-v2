@@ -11,10 +11,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "upload-resume": "node scripts/upload-resume.js"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
+    "@vercel/blob": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",

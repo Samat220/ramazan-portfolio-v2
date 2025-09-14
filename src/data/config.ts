@@ -7,7 +7,9 @@ export const personalInfo: PersonalInfo = {
   email: 'samatramazan.dev@gmail.com',
   linkedin: 'https://linkedin.com/in/samatr',
   github: 'https://github.com/Samat220',
-  resume: '/my_info/resume.pdf',
+  // Resume hosted on Vercel Blob Storage for reliable access and easy updates
+  resume:
+    'https://oysrscezxk9outav.public.blob.vercel-storage.com/resume/ramazan_samat.pdf',
   photo: '/my_info/headshot.jpeg',
   bio: "A Software Developer specializing in building robust integrations and backend services at Movable Ink.  My work focuses on enhancing system reliability by implementing custom rate limiters, strengthening data integrity through multi-phase schema updates, and developing high-throughput gRPC services. With a Master's in Software Development from Boston University, I'm passionate about applying my skills in system design to new challenges. ",
 };
