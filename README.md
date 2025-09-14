@@ -1,6 +1,6 @@
-# 🚀 Modern Portfolio Website
+# 🚀 Ramazan Samat Portfolio Website
 
-A sleek, responsive portfolio website built with **Next.js 15** and **TypeScript**, featuring modern animations and a clean design. This portfolio showcases professional experience, projects, and skills with an emphasis on performance and user experience.
+This is my portfolio website built with **Next.js** and **TypeScript**, featuring modern animations and a clean design. This portfolio showcases professional experience, projects, and skills.
 
 ![Portfolio Preview](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -160,13 +160,6 @@ npm run build
 npm start
 ```
 
-## 📊 Performance
-
-- **Lighthouse Score**: 95+ across all categories
-- **Core Web Vitals**: Optimized for LCP, FID, and CLS
-- **Image Optimization**: Next.js Image component with lazy loading
-- **Bundle Analysis**: Code splitting and tree shaking
-- **Caching**: Static generation with ISR support
 
 ## 🤝 Contributing
 
