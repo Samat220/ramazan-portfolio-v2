@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,52 +11,83 @@ interface ModalProps {
   className?: string;
 }
 
+// Variants for the backdrop overlay
+const overlayVariants = {
+  visible: { opacity: 1, transition: { duration: 0.3, ease: 'easeOut' } },
+  hidden: { opacity: 0, transition: { duration: 0.3, ease: 'easeIn' } },
+};
+
+// Variants for the modal content panel
+const modalVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      ease: [0.4, 0, 0.2, 1], // Deceleration easing
+      delay: 0.1, // Appears slightly after the overlay
+    },
+  },
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    transition: {
+      duration: 0.2,
+      ease: [0.4, 0, 1, 1], // Acceleration easing
+    },
+  },
+};
+
 export function Modal({ isOpen, onClose, children, className = '' }: ModalProps) {
-  const closeRef = useRef<HTMLButtonElement | null>(null);
-  const scrollYRef = useRef(0);
-
   useEffect(() => {
-    if (!isOpen) return;
-
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
-
-    window.addEventListener('keydown', onKey);
-
-    // Lock scroll without jumping - preserve exact position
-    scrollYRef.current = window.scrollY;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    // Focus management - focus first focusable element after a short delay
-    setTimeout(() => {
-      const focusableElements = document.querySelectorAll(
-        '[data-modal] button, [data-modal] [href], [data-modal] input, [data-modal] select, [data-modal] textarea, [data-modal] [tabindex]:not([tabindex="-1"])'
-      );
-      const firstFocusable = focusableElements[0] as HTMLElement;
-      firstFocusable?.focus({ preventScroll: true });
-    }, 100);
-
+    if (isOpen) {
+      window.addEventListener('keydown', onKey);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
     return () => {
       window.removeEventListener('keydown', onKey);
-      // Restore body overflow
-      document.body.style.overflow = prev;
+      document.body.style.overflow = 'auto';
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (typeof document === 'undefined') return null;
 
   return createPortal(
-    <div
-      className={`fixed inset-0 z-[10000] flex items-center justify-center bg-slate-900/70 dark:bg-slate-900/60 backdrop-blur-md p-4 ${className}`}
-      onClick={onClose}
-      data-modal
-    >
-      <div onClick={(e) => e.stopPropagation()}>
-        {children}
-      </div>
-    </div>,
+    <AnimatePresence mode="wait">
+      {isOpen && (
+        <motion.div
+          className={`fixed inset-0 z-[10000] flex items-center justify-center p-4 ${className}`}
+          onClick={onClose}
+        >
+          <motion.div
+            className="absolute inset-0 bg-background/20 backdrop-blur-lg"
+            style={{ willChange: 'opacity' }} // Performance hint
+            variants={overlayVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          />
+          <motion.div
+            onClick={(e) => e.stopPropagation()}
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="relative"
+            style={{ willChange: 'transform, opacity' }} // Performance hint
+          >
+            {children}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
     document.body
   );
 }

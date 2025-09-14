@@ -2,13 +2,16 @@
 
 import { useModal } from '@/components/ui/modal-provider';
 import type { Experience } from '@/types';
+import { ExternalLink } from 'lucide-react';
 
-// This defines the JSX that will appear inside the modal.
+// This function defines the JSX that will appear inside the modal.
 function ExperienceModalContent({ job }: { job: Experience }) {
   return (
-    <div className="w-full max-w-2xl rounded-2xl bg-card-bg border border-border/50 shadow-2xl overflow-hidden glass-card">
+    // By applying your existing .glass-card class here, we ensure the modal
+    // perfectly matches the style of your featured project cards.
+    <div className="glass-card w-full max-w-2xl rounded-2xl overflow-hidden">
       {/* Modal Header */}
-      <header className="flex items-start justify-between gap-4 p-6 border-b border-border/50">
+      <header className="flex items-start justify-between gap-4 p-6 border-b border-[var(--glass-border)]">
         <div>
           <h3 className="text-2xl font-semibold text-primary mb-2">{job.role}</h3>
           <a
@@ -16,7 +19,7 @@ function ExperienceModalContent({ job }: { job: Experience }) {
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent font-medium hover:underline text-lg"
-            onClick={e => e.stopPropagation()} // Prevents modal from closing when link is clicked
+            onClick={e => e.stopPropagation()} // Prevents modal from closing on click
           >
             {job.company} ↗
           </a>
@@ -24,7 +27,7 @@ function ExperienceModalContent({ job }: { job: Experience }) {
         </div>
       </header>
 
-      {/* Modal Body with Scrolling */}
+      {/* Modal Body with scrolling for long content */}
       <div className="p-6 max-h-[60vh] overflow-y-auto">
         <h4 className="text-lg font-medium text-primary mb-4">Key Highlights</h4>
         <ul className="space-y-3 mb-6">
@@ -37,7 +40,7 @@ function ExperienceModalContent({ job }: { job: Experience }) {
         </ul>
 
         {/* Skills Section */}
-        <div className="pt-4 border-t border-border/50">
+        <div className="pt-4 border-t border-[var(--glass-border)]">
           <h4 className="text-lg font-medium text-primary mb-3">Technologies & Skills</h4>
           <div className="flex flex-wrap gap-2">
             {job.skills.map((skill, i) => (
@@ -55,12 +58,11 @@ function ExperienceModalContent({ job }: { job: Experience }) {
   );
 }
 
-// This is the custom hook you'll use in your Experience component.
+// This is the custom hook you use in your Experience component to open the modal.
 export function useExperienceModal() {
   const { openModal } = useModal();
 
   const openExperienceModal = (job: Experience) => {
-    // This function takes a job object and opens the modal with the correct content.
     openModal(<ExperienceModalContent job={job} />);
   };
 

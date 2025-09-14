@@ -17,9 +17,9 @@
   --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
   --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
 
-  /* Enhanced glass morphism effects for better light mode readability */
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(226, 232, 240, 0.8);
+  /* Enhanced light glass morphism for a true frosted effect */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(226, 232, 240, 0.7);
   --backdrop-blur: 24px;
 
   /* Advanced shadows */
@@ -91,9 +91,9 @@
   --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
   --gradient-border: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
 
-  /* Enhanced light glass morphism for better readability */
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(226, 232, 240, 0.8);
+  /* Enhanced light glass morphism for a true frosted effect */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(226, 232, 240, 0.7);
   --backdrop-blur: 24px;
 
   /* Light shadows */
@@ -850,12 +850,14 @@ body {
 }
 
 /* Enhanced text shadow for better readability on glass */
-.glass-card .text-primary,
-.glass-card h1,
-.glass-card h2,
-.glass-card h3,
-.glass-card h4 {
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+/* This rule is now specific to light mode */
+.light .glass-card .text-primary,
+.light .glass-card h1,
+.light .glass-card h2,
+.light .glass-card h3,
+.light .glass-card h4 {
+  /* Subtle dark shadow to lift dark text off a busy light background */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .dark .glass-card .text-primary,
@@ -863,6 +865,7 @@ body {
 .dark .glass-card h2,
 .dark .glass-card h3,
 .dark .glass-card h4 {
+  /* Dark shadow provides contrast for light text */
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
