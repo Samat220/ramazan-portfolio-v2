@@ -57,20 +57,33 @@ function ContactFormContent({ onSuccess }: ContactFormContentProps) {
     setSubmitStatus('idle');
 
     try {
-      // Simulate API call for now
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const formDataToSend = new FormData();
+      formDataToSend.append('access_key', '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f');
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('message', formData.message);
 
-      // Here you would typically send to an API endpoint
-      console.log('Form submitted:', formData);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend
+      });
 
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => {
-        closeModal();
-        setSubmitStatus('idle');
-        onSuccess?.();
-      }, 2000);
-    } catch {
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => {
+          closeModal();
+          setSubmitStatus('idle');
+          onSuccess?.();
+        }, 2000);
+      } else {
+        console.error('Web3Forms Error:', data);
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
