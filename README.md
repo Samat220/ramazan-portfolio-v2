@@ -1,6 +1,8 @@
 # 🚀 Ramazan Samat Portfolio Website
 
-This is my portfolio website built with **Next.js** and **TypeScript**, featuring modern animations and a clean design. This portfolio showcases professional experience, projects, and skills.
+Hi, I'm Ramazan Samat, and this is the source code for my personal portfolio. This project is a showcase of my skills in modern web development, built from scratch with a focus on clean design, fluid animations, and a great user experience. It's powered by **Next.js**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
+
+Feel free to explore the code to see how it's made, or check out the live version to learn more about my work: **[your-domain.com](https://your-domain.com)**
 
 ![Portfolio Preview](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -201,10 +203,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Framer Motion](https://www.framer.com/motion/) - For smooth animations
 - [Vercel](https://vercel.com/) - For hosting and deployment
 - [Lucide](https://lucide.dev/) - For beautiful icons
+- Brittany Chiang - For initial inspiration
 
 ---
 
 <div align="center">
   <p>Built with ❤️ using Next.js and TypeScript</p>
-  <p>⭐ Star this repository if you found it helpful!</p>
 </div>
