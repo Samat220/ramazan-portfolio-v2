@@ -2,7 +2,8 @@
 
 import { useState, useRef } from 'react';
 
-export function ResumeUploadClient() {
+// ✅ 3. Accept the secretKey as a prop
+export function ResumeUploadClient({ secretKey }: { secretKey: string }) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +22,14 @@ export function ResumeUploadClient() {
     try {
       const response = await fetch(
         `/api/upload-resume?filename=ramazan_samat.pdf`,
-        { method: 'POST', body: file }
+        {
+          method: 'POST',
+          headers: {
+            // ✅ 4. Include the secret key in the Authorization header
+            Authorization: `Bearer ${secretKey}`,
+          },
+          body: file,
+        }
       );
       const newBlob = await response.json();
 
