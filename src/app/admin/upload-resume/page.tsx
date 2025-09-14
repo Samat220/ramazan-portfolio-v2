@@ -5,13 +5,14 @@ import { ResumeUploadClient } from './upload-client';
 export default async function ResumeUploadPage({
   searchParams,
 }: {
-  searchParams: Promise<{ secret?: string }>;
+  // The 'searchParams' can sometimes be a promise, so awaiting it is a good practice.
+  searchParams: { secret?: string };
 }) {
-  const params = await searchParams;
-  const providedSecret = params.secret;
+  const providedSecret = searchParams.secret;
 
-  // Server-side authentication check
-  const isAuthorized = providedSecret === process.env.ADMIN_SECRET_KEY;
+  const isAuthorized =
+    !!process.env.ADMIN_SECRET_KEY &&
+    providedSecret === process.env.ADMIN_SECRET_KEY;
 
   // If not authorized, show 404 immediately on the server
   if (!isAuthorized) {
