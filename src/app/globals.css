@@ -140,12 +140,6 @@
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
 
 /* GPU Acceleration for animations */
 .card-enhanced,
@@ -179,7 +173,7 @@ html {
   html {
     scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -1171,11 +1165,11 @@ body {
   .project-item:hover {
     transform: translateY(-4px) !important;
   }
-  
+
   .project-image-link:hover .project-image {
     transform: scale(1.02) !important;
   }
-  
+
   .timeline-card:hover {
     transform: translateY(-2px) !important;
   }
@@ -1188,12 +1182,12 @@ body {
   .project-image-link::before {
     display: none !important;
   }
-  
+
   .project-item:hover,
   .timeline-card:hover {
     transform: none !important;
   }
-  
+
   /* Reduce backdrop blur on low-end devices */
   .card-enhanced,
   .project-description {
