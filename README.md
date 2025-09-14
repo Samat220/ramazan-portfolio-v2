@@ -2,7 +2,7 @@
 
 Hi, I'm Ramazan Samat, and this is the source code for my personal portfolio. This project is a showcase of my skills in modern web development, built from scratch with a focus on clean design, fluid animations, and a great user experience. It's powered by **Next.js**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 
-Feel free to explore the code to see how it's made, or check out the live version to learn more about my work: **[your-domain.com](https://portfolio-v2-ochre-eta.vercel.app/)**
+Feel free to explore the code to see how it's made, or check out the live version to learn more about my work: **[https://portfolio-v2-ochre-eta.vercel.app/](https://portfolio-v2-ochre-eta.vercel.app/)**
 
 ![Portfolio Preview](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
