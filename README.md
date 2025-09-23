@@ -164,7 +164,9 @@ npm start
 
 ## 🤝 Contributing
 
-This repository is mean to serve as both personal portfolio and project in it self. I spent a considerable amount of time and effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own. Please give me proper credit by linking back to ramazansamat.dev. Thanks!
+This portfolio is a project I've poured a significant amount of time and effort into, and I'm proud to share the code with the community. It's intended to serve as both a personal showcase and a source of inspiration for other developers.
+
+I encourage you to explore the code and learn from it. If this project helps you or inspires your own work, I kindly ask that you give proper credit by linking back to [ramazansamat.dev](https://www.ramazansamat.dev/). Please do not claim this work as your own.
 
 ### Commit Convention
 
