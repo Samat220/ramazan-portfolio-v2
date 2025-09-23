@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import { ScrollReveal } from '@/components/common/scroll-reveal';
+import { ScrollReveal } from '@/components/shared/scroll-reveal';
 import { experience } from '@/data/config';
 import { useExperienceModal } from '../common/experience-modal';
 

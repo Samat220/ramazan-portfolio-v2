@@ -27,16 +27,25 @@ export function BackToTop() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-4 sm:right-6 md:right-8 z-50 p-3 bg-accent text-background rounded-full shadow-lg hover:bg-accent/90 transition-all duration-300"
+          className="fixed bottom-8 right-2 sm:right-4 md:right-6 z-50 p-4 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 group"
+          style={{
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(var(--backdrop-blur))',
+            WebkitBackdropFilter: 'blur(var(--backdrop-blur))',
+            border: '1px solid var(--glass-border)',
+          }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          whileHover={{ scale: 1.1, y: -2 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05, y: -3 }}
+          whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
           aria-label="Back to top"
         >
-          <ChevronUp size={20} />
+          <ChevronUp
+            size={20}
+            className="text-accent group-hover:text-primary transition-colors duration-300"
+          />
         </motion.button>
       )}
     </AnimatePresence>

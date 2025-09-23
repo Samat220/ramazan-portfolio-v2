@@ -1,6 +1,6 @@
 'use client';
 
-import { ScrollReveal } from '@/components/common/scroll-reveal';
+import { ScrollReveal } from '@/components/shared/scroll-reveal';
 import { backendSkills, mlSkills, personalInfo } from '@/data/config';
 
 export function About() {
