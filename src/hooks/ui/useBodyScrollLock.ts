@@ -8,7 +8,6 @@ export function useBodyScrollLock(isLocked: boolean) {
       document.body.style.overflow = 'auto';
     }
 
-    // Cleanup on unmount
     return () => {
       document.body.style.overflow = 'auto';
     };

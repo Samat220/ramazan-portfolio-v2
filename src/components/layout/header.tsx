@@ -25,17 +25,15 @@ export function Header() {
   return (
     <motion.header
       ref={headerRef}
-      // The header is now just a layout container. Its background is always transparent.
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-6 sm:px-8 md:px-12 py-4"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      {/* This is the new animated background for the header bar */}
       <AnimatePresence>
         {isScrolled && !isMenuOpen && (
           <motion.div
-            className="absolute inset-0 bg-background/20 backdrop-blur-2xl border-b border-white/10 shadow-lg" /* ✅ Shadow changed to shadow-lg */
+            className="absolute inset-0 bg-background/20 backdrop-blur-2xl border-b border-white/10 shadow-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -44,7 +42,6 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      {/* The rest of the header content now sits on top of the animated background */}
       <motion.button
         onClick={scrollToTop}
         className="header-logo relative z-[60] bg-transparent border-none cursor-pointer p-0 text-2xl font-bold text-accent"
@@ -56,13 +53,11 @@ export function Header() {
         RS
       </motion.button>
 
-      <NavigationMenu headerHeight={headerHeight} />
-
-      <div className="hidden md:block">
-        <ThemeToggle />
+      <div className="flex items-center space-x-4">
+        <NavigationMenu headerHeight={headerHeight} />
+        <ThemeToggle className="hidden md:block" />
       </div>
 
-      {/* Mobile Navigation */}
       <div className="flex md:hidden items-center space-x-4 relative z-10">
         <ThemeToggle />
         <motion.button

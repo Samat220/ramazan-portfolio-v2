@@ -7,7 +7,6 @@ export const personalInfo: PersonalInfo = {
   email: 'samatramazan.dev@gmail.com',
   linkedin: 'https://linkedin.com/in/samatr',
   github: 'https://github.com/Samat220',
-  // Resume hosted on Vercel Blob Storage for reliable access and easy updates
   resume:
     'https://oysrscezxk9outav.public.blob.vercel-storage.com/resume/ramazan_samat.pdf',
   photo: '/my_info/headshot.jpeg',
@@ -191,5 +190,5 @@ export const siteMetadata = {
     'Machine Learning',
     'Full Stack',
   ],
-  image: '/og-image.jpg', // Add your OG image
+  image: '/og-image.jpg',
 };

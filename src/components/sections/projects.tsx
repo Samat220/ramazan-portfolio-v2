@@ -21,14 +21,11 @@ export function Projects() {
         <h2 className="numbered-heading">Some Things I&apos;ve Built</h2>
       </ScrollReveal>
 
-      {/* Featured Projects */}
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {featuredProjects?.map((project, i) => (
           <FeaturedProject key={i} project={project} index={i} />
         ))}
       </ul>
-
-      {/* Other Notable Projects */}
       <div className="text-center mt-24">
         <ScrollReveal animationType="fadeUp">
           <h3 className="text-2xl font-medium text-primary mb-12">

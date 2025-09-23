@@ -1,13 +1,12 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { useThemeStore } from '@/lib/store'; // 👈 1. Import your theme store
+import { useThemeStore } from '@/lib/store';
 
 export function ConstellationBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { theme } = useThemeStore(); // 👈 2. Get the current theme
+  const { theme } = useThemeStore();
 
-  // We re-run this entire effect whenever the theme changes
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;

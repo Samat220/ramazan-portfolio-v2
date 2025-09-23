@@ -33,7 +33,6 @@ export function ThemeAwareImage({
     return <img src={darkSrc} alt={alt} className={className} />;
   }
 
-  // Determine which image to show based on theme
   const imageSrc = theme === 'light' ? lightSrc : darkSrc;
 
   return <img src={imageSrc} alt={alt} className={className} />;

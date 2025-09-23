@@ -4,13 +4,10 @@ import { X } from 'lucide-react';
 import { useModal } from '@/components/ui/modal-provider';
 import type { Experience } from '@/types';
 
-// This function defines the JSX that will appear inside the modal.
 function ExperienceModalContent({ job }: { job: Experience }) {
   const { closeModal } = useModal();
 
   return (
-    // By applying your existing .glass-card class here, we ensure the modal
-    // perfectly matches the style of your featured project cards.
     <div className="glass-card w-full max-w-2xl rounded-2xl overflow-hidden">
       {/* Modal Header */}
       <header className="flex items-start justify-between gap-4 p-6 border-b border-[var(--glass-border)]">
@@ -23,7 +20,7 @@ function ExperienceModalContent({ job }: { job: Experience }) {
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent font-medium hover:underline text-lg"
-            onClick={e => e.stopPropagation()} // Prevents modal from closing on click
+            onClick={e => e.stopPropagation()}
           >
             {job.company} ↗
           </a>
@@ -38,7 +35,7 @@ function ExperienceModalContent({ job }: { job: Experience }) {
         </button>
       </header>
 
-      {/* Modal Body with scrolling for long content */}
+      {/* Modal Body */}
       <div className="p-6 max-h-[60vh] overflow-y-auto">
         <h4 className="text-lg font-medium text-primary mb-4">
           Key Highlights
@@ -73,7 +70,6 @@ function ExperienceModalContent({ job }: { job: Experience }) {
   );
 }
 
-// This is the custom hook you use in your Experience component to open the modal.
 export function useExperienceModal() {
   const { openModal } = useModal();
 

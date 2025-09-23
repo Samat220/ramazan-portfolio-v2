@@ -39,7 +39,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             className="project-title-link relative inline-block hover:text-accent transition-colors duration-300"
           >
             {project.title}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 ease-out group-hover:w-full" />
           </a>
         </h3>
 

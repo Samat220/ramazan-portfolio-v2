@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react';
 
-// ✅ 3. Accept the secretKey as a prop
 export function ResumeUploadClient({ secretKey }: { secretKey: string }) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState('');
@@ -25,7 +24,6 @@ export function ResumeUploadClient({ secretKey }: { secretKey: string }) {
         {
           method: 'POST',
           headers: {
-            // ✅ 4. Include the secret key in the Authorization header
             Authorization: `Bearer ${secretKey}`,
           },
           body: file,

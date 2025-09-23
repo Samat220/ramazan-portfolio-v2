@@ -9,8 +9,6 @@ import { useExperienceModal } from '../common/experience-modal';
 export function Experience() {
   const { openExperienceModal } = useExperienceModal();
 
-  // ✅ All old state (useState) and refs (useRef) that handled scrolling are now gone.
-
   return (
     <section id="experience" className="py-32 relative">
       <ScrollReveal animationType="fadeUp">
@@ -18,10 +16,7 @@ export function Experience() {
       </ScrollReveal>
 
       <div className="relative mt-16">
-        {/* Timeline Line */}
         <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/20 via-accent/60 to-accent/20" />
-
-        {/* Timeline Items */}
         <div className="space-y-16">
           {experience.map((job, index) => {
             const previewItems = job.description.slice(0, 2);
@@ -33,7 +28,6 @@ export function Experience() {
                 delay={index * 150}
               >
                 <div className="relative flex items-start justify-start">
-                  {/* Timeline Node */}
                   <motion.div
                     className="absolute left-8 w-4 h-4 rounded-full bg-accent shadow-glow z-10 transform -translate-x-1/2"
                     initial={{ scale: 0, opacity: 0 }}
@@ -43,7 +37,6 @@ export function Experience() {
                     viewport={{ once: true }}
                   />
 
-                  {/* Experience Card */}
                   <motion.div
                     className="timeline-card relative ml-20 max-w-2xl w-full"
                     role="button"
@@ -59,10 +52,7 @@ export function Experience() {
                     whileTap={{ scale: 0.99 }}
                     transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                   >
-                    {/* Card Arrow */}
                     <div className="absolute top-6 left-0 -ml-2 w-0 h-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-card-bg/90" />
-
-                    {/* Card Visual Content */}
                     <div className="card-enhanced p-8 rounded-lg backdrop-blur-md border border-border/50">
                       <div className="flex items-start justify-between mb-6">
                         <div className="flex-1">
@@ -134,7 +124,6 @@ export function Experience() {
           })}
         </div>
 
-        {/* Timeline End Cap */}
         <motion.div
           className="absolute left-8 bottom-0 w-6 h-6 rounded-full bg-gradient-to-br from-accent/60 to-accent/20 transform -translate-x-1/2 shadow-glow"
           initial={{ scale: 0, opacity: 0 }}
