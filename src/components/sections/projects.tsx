@@ -15,7 +15,7 @@ export function Projects() {
 
   const featuredProjects = projects.filter(p => p.featured);
   const otherProjects = projects.filter(p => !p.featured);
-  const GRID_LIMIT = 6;
+  const GRID_LIMIT = 3;
   const projectsToShow = showMoreProjects
     ? otherProjects
     : otherProjects.slice(0, GRID_LIMIT);

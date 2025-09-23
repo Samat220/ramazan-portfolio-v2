@@ -1,10 +1,13 @@
 'use client';
 
+import { X } from 'lucide-react';
 import { useModal } from '@/components/ui/modal-provider';
 import type { Experience } from '@/types';
 
 // This function defines the JSX that will appear inside the modal.
 function ExperienceModalContent({ job }: { job: Experience }) {
+  const { closeModal } = useModal();
+
   return (
     // By applying your existing .glass-card class here, we ensure the modal
     // perfectly matches the style of your featured project cards.
@@ -26,6 +29,13 @@ function ExperienceModalContent({ job }: { job: Experience }) {
           </a>
           <p className="text-sm text-secondary font-mono mt-2">{job.period}</p>
         </div>
+        <button
+          onClick={closeModal}
+          className="p-2 text-secondary hover:text-primary transition-colors duration-200 rounded-lg hover:bg-secondary/10"
+          aria-label="Close modal"
+        >
+          <X className="h-6 w-6" />
+        </button>
       </header>
 
       {/* Modal Body with scrolling for long content */}
