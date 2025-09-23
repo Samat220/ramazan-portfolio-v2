@@ -34,10 +34,8 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
-                duration: 1,
+                duration: 0.6,
                 ease: [0.4, 0, 0.2, 1],
-                delayChildren: 0.3,
-                staggerChildren: 0.1,
               }}
             >
               {/* Background Geometric Shapes */}
