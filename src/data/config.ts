@@ -3,15 +3,14 @@ import { PersonalInfo, NavLink, Experience, Project } from '@/types';
 export const personalInfo: PersonalInfo = {
   name: 'Ramazan Samat',
   greeting: 'Hi, my name is',
-  intro: 'I engineer scalable backend systems.',
+  intro: 'I bring data-driven solutions to life.',
   email: 'samatramazan.dev@gmail.com',
   linkedin: 'https://linkedin.com/in/samatr',
   github: 'https://github.com/Samat220',
-  // Resume hosted on Vercel Blob Storage for reliable access and easy updates
   resume:
     'https://oysrscezxk9outav.public.blob.vercel-storage.com/resume/ramazan_samat.pdf',
   photo: '/my_info/headshot.jpeg',
-  bio: "A Software Developer specializing in building robust integrations and backend services at Movable Ink.  My work focuses on enhancing system reliability by implementing custom rate limiters, strengthening data integrity through multi-phase schema updates, and developing high-throughput gRPC services. With a Master's in Software Development from Boston University, I'm passionate about applying my skills in system design to new challenges. ",
+  bio: 'A Software Developer specializing in Python, with a proven record of building high-performance backend services and ensuring data integrity for millions of users. My background in economics and expertise in backend engineering drive my passion for solving complex challenges in fintech and machine learning.',
 };
 
 export const navLinks: NavLink[] = [
@@ -23,21 +22,23 @@ export const navLinks: NavLink[] = [
 
 export const experience: Experience[] = [
   {
-    company: 'Movableink',
+    company: 'Movable Ink',
     companyUrl: 'https://movableink.com/',
-    role: 'Software Developer',
-    period: 'Jan 2024 - Sep 2025',
+    role: 'Software Developer II',
+    period: 'Jan 2024 - Present',
     description: [
-      'Reduced API request bursts and prevented over-limit errors by 30% by integrating a custom rate limiter at the SDK level for Oracle.',
-      'Strengthened data integrity across 20+ email service provider integrations by retiring fragile legacy name references and executing a multi-phase schema update.',
+      'Re-architected a distributed Celery workflow to resolve a critical race condition, eliminating production exceptions and on-call alerts by implementing a state-aware monitoring task that ensured data consistency between the database and third-party APIs during concurrent operations.',
+      'Redesigned Celery monitoring to align microservice states with the Django model, streamlining web app and microservice synchronization reducing "invalid status" alerts and on-call pages by over 90%.',
+      'Delivered an end-to-end migration from name-based to ID-based identifiers for a core feature, reducing configuration errors by 90%. This effort involved deprecating legacy fields, implementing GraphQL mutations and resolvers, executing data migrations, and refactoring the React/MUI front end.',
+      'Architected and implemented a unified protobuf schema to consolidate disparate ESP-specific definitions, enabling scalable, multi-ESP campaign message generation.',
       'Enhanced the efficiency and reliability of internal microservice communication by developing and maintaining high-throughput gRPC-based services.',
-      'Implemented real-time data processing pipelines handling 10M+ requests per hour.',
       'Increased team development velocity by leading the adoption and integration of AI coding tools into the engineering workflow.',
-      'Wrote documentation for best practices for the django migrations, improving team onboarding and knowledge sharing.',
     ],
     skills: [
       'Python',
       'Django',
+      'FastAPI',
+      'Podman',
       'Redis',
       'PostgreSQL',
       'AWS',
@@ -48,7 +49,7 @@ export const experience: Experience[] = [
   },
   {
     company: 'Lucky Financial',
-    companyUrl: 'https://lucky.finance/',
+    companyUrl: 'https://thelucky.app/',
     role: 'Software Developer',
     period: 'Dec 2022 - Oct 2023',
     description: [
@@ -63,7 +64,7 @@ export const experience: Experience[] = [
       'React',
       'TypeScript',
       'Python',
-      'FastAPI',
+      'Node.js',
       'PostgreSQL',
       'Celery',
       'Redis',
@@ -78,8 +79,8 @@ export const projects: Project[] = [
     featured: true,
     title: 'AI Powered Job Application Tracker',
     description:
-      'A full-stack dashboard designed to streamline the job search process. This tool centralizes application tracking and provides data-driven insights through visualizations. Its core feature is an automated email parsing pipeline using Celery and Redis that ingests and categorizes new applications and interview requests in real-time.',
-    technologies: ['Python', 'Flask', 'scikit-learn', 'Pandas', 'Docker'],
+      'A full-stack dashboard I built to streamline the job search by automating the most time-consuming part: tailoring resumes and cover letters. This tool centralizes application tracking and leverages the Google Gemini API to intelligently customize application documents for each specific job description.',
+    technologies: ['TypeScript', 'Firebase', 'SQL', 'Gemini', 'LLM', 'AI/ML'],
     githubUrl: 'https://github.com/Samat220/job-search-dashboard',
     liveUrl: 'https://job-search-dashboard-2e24c.web.app/',
     screenshots: {
@@ -91,8 +92,8 @@ export const projects: Project[] = [
     featured: true,
     title: 'Media Picker & Spin Wheel',
     description:
-      "A web app built to solve the endless debate of 'what to watch or play next.' Users can catalog their media into filterable lists, and the app's centerpiece is an interactive spinning wheel that randomly selects a choice, making decisions fun and easy.",
-    technologies: ['Python', 'Kafka', 'AWS Lambda', 'DynamoDB', 'Terraform'],
+      "A web app built to solve the endless debate of 'what to watch or play next?' Users can catalog their media into filterable lists, and the app's centerpiece is an interactive spinning wheel that randomly selects a choice, making decisions fun and easy.",
+    technologies: ['FastAPI', 'SQLite', 'Tailwind', 'Python'],
     githubUrl: 'https://github.com/Samat220/Choose-for-me',
     liveUrl: null, // Replace
     screenshots: {
@@ -150,24 +151,28 @@ export const projects: Project[] = [
 export const backendSkills: string[] = [
   'Python',
   'Django',
+  'FastAPI',
   'Flask',
+  'REST APIs',
+  'gRPC',
+  'Protobuf',
+  'WebSockets',
   'SQL (PostgreSQL)',
-  'NoSQL (Redis)',
-  'AWS',
+  'SQLAlchemy',
+  'BigQuery',
   'Docker',
-  'Kubernetes',
-  'Terraform',
   'CI/CD',
-  'RabbitMQ',
+  'NoSQL (Redis)',
 ];
 
 export const mlSkills: string[] = [
-  'scikit-learn',
+  'PyTorch',
+  'TensorFlow',
+  'Scikit-learn',
   'Pandas',
   'NumPy',
-  'TensorFlow',
-  'PyTorch',
   'Jupyter Notebooks',
+  'LLM',
 ];
 
 // Site metadata
@@ -185,5 +190,5 @@ export const siteMetadata = {
     'Machine Learning',
     'Full Stack',
   ],
-  image: '/og-image.jpg', // Add your OG image
+  image: '/og-image.jpg',
 };

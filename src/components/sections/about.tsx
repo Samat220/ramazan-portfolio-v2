@@ -1,6 +1,6 @@
 'use client';
 
-import { ScrollReveal } from '@/components/common/scroll-reveal';
+import { ScrollReveal } from '@/components/shared/scroll-reveal';
 import { backendSkills, mlSkills, personalInfo } from '@/data/config';
 
 export function About() {
@@ -18,21 +18,18 @@ export function About() {
         >
           {/* ✅ UPDATED PARAGRAPH 1 */}
           <p className="text-secondary">
-            My journey into software began with an Economics degree from the
-            University of Warwick, which gave me a strong analytical foundation
-            for modeling complex systems. I then transitioned my focus to
-            technology with a Master's in Software Development from Boston
-            University, building the technical skills to architect and implement
-            the robust systems I design today.
+            I specialize in Python backend development, with a focus on
+            designing resilient, high-performance systems. My experience
+            includes building scalable gRPC services, implementing custom rate
+            limiters, and optimizing backend reliability at Movable Ink.
           </p>
           {/* ✅ UPDATED PARAGRAPH 2 */}
           <p className="text-secondary">
-            As a backend developer at Movable Ink, I specialize in engineering
-            scalable and resilient services within the Python ecosystem. My work
-            focuses on enhancing system reliability through features like custom
-            rate limiters and high-throughput gRPC services. I'm now eager to
-            leverage this experience in robust system design to tackle new
-            challenges in Machine Learning.
+            What drives me now is the chance to bring that same system-design
+            mindset into machine learning and AI—especially in fintech, where
+            technology and data can unlock real-world impact. I’m eager to
+            contribute to teams building intelligent, reliable systems that sit
+            at the intersection of software engineering and applied ML.
           </p>
         </ScrollReveal>
 

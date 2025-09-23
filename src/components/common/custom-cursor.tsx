@@ -11,7 +11,6 @@ export function CustomCursor() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    // Hide default cursor
     document.body.style.cursor = 'none';
 
     window.addEventListener('mousemove', updateMousePosition);

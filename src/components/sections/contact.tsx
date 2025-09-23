@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Loader2, Calendar, ExternalLink } from 'lucide-react';
-import { ScrollReveal } from '@/components/common/scroll-reveal';
+import { ScrollReveal } from '@/components/shared/scroll-reveal';
 import { Button } from '@/components/ui/button';
 import { validateEmail } from '@/lib/utils';
 import { personalInfo } from '@/data/config';

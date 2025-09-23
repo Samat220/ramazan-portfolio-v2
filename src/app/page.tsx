@@ -10,7 +10,7 @@ import { Experience } from '@/components/sections/experience';
 import { Projects } from '@/components/sections/projects';
 import { Contact } from '@/components/sections/contact';
 import { BackgroundHighlight } from '@/components/common/background-highlight';
-import { BackToTop } from '@/components/common/back-to-top';
+import { BackToTop } from '@/components/shared/back-to-top';
 import { Loading, usePageLoader } from '@/components/common/loading';
 import { useScrollAnimation } from '@/hooks';
 import { ConstellationBackground } from '@/components/common/constellation-background';
@@ -34,10 +34,8 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
-                duration: 1,
+                duration: 0.6,
                 ease: [0.4, 0, 0.2, 1],
-                delayChildren: 0.3,
-                staggerChildren: 0.1,
               }}
             >
               {/* Background Geometric Shapes */}
