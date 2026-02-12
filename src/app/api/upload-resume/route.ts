@@ -43,8 +43,7 @@ export async function POST(request: NextRequest) {
         await del(existingFile.url);
       }
     } catch {
-      // Ignore errors when deleting (file might not exist)
-      console.log('No existing files to delete');
+      // File might not exist yet — safe to ignore
     }
 
     // Upload new resume

@@ -22,8 +22,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             document.documentElement.classList.add(loadedTheme);
             return;
           }
-        } catch (error) {
-          console.warn('Failed to parse theme from localStorage:', error);
+        } catch {
+          // localStorage may be empty or malformed — fall through to system preference
         }
       }
 
@@ -52,5 +52,5 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [theme]);
 
-  return <div className="min-h-screen bg-background">{children}</div>;
+  return <>{children}</>;
 }

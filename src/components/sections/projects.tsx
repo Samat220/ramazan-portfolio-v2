@@ -23,7 +23,7 @@ export function Projects() {
 
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {featuredProjects?.map((project, i) => (
-          <FeaturedProject key={i} project={project} index={i} />
+          <FeaturedProject key={project.title} project={project} index={i} />
         ))}
       </ul>
       <div className="text-center mt-24">
@@ -35,7 +35,7 @@ export function Projects() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projectsToShow.map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} />
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
 

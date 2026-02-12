@@ -140,12 +140,7 @@ export function usePageLoader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial page load
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    setIsLoading(false);
   }, []);
 
   return { isLoading };

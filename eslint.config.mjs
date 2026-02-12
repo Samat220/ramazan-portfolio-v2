@@ -15,6 +15,7 @@ const eslintConfig = [
     ignores: [
       'node_modules/**',
       '.next/**',
+      '.worktrees/**',
       'out/**',
       'build/**',
       'next-env.d.ts',
@@ -22,8 +23,9 @@ const eslintConfig = [
   },
   {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': 'warn',
+      'no-console': 'warn',
       'prefer-spread': 'warn',
       'react/no-unescaped-entities': 'warn',
     },

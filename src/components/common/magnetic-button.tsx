@@ -18,7 +18,8 @@ export function MagneticButton({
   onClick,
   strength = 0.3,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
+  const anchorRef = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const x = useMotionValue(0);
@@ -28,17 +29,15 @@ export function MagneticButton({
   const springY = useSpring(y, { stiffness: 150, damping: 15 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
+    const el = href ? anchorRef.current : buttonRef.current;
+    if (!el) return;
 
-    const rect = ref.current.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
 
-    const distanceX = e.clientX - centerX;
-    const distanceY = e.clientY - centerY;
-
-    x.set(distanceX * strength);
-    y.set(distanceY * strength);
+    x.set((e.clientX - centerX) * strength);
+    y.set((e.clientY - centerY) * strength);
   };
 
   const handleMouseLeave = () => {
@@ -51,37 +50,30 @@ export function MagneticButton({
     setIsHovered(true);
   };
 
-  const commonProps = {
-    ref: ref as any,
+  const sharedProps = {
     className: `${className} cursor-pointer relative overflow-hidden`,
     onMouseMove: handleMouseMove,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
     style: { x: springX, y: springY },
+    whileHover: {
+      scale: 1.05,
+      rotate: isHovered ? [0, -1, 1, -1, 0] : 0,
+    },
+    whileTap: { scale: 0.95 },
+    transition: {
+      type: 'spring' as const,
+      stiffness: 400,
+      damping: 25,
+      rotate: {
+        duration: 0.6,
+        ease: 'easeInOut' as const,
+      },
+    },
   };
 
-  const Component = href ? motion.a : motion.button;
-
-  return (
-    <Component
-      {...commonProps}
-      {...(href && { href })}
-      {...(onClick && { onClick })}
-      whileHover={{
-        scale: 1.05,
-        rotate: isHovered ? [0, -1, 1, -1, 0] : 0,
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{
-        type: 'spring',
-        stiffness: 400,
-        damping: 25,
-        rotate: {
-          duration: 0.6,
-          ease: 'easeInOut',
-        },
-      }}
-    >
+  const innerContent = (
+    <>
       <motion.div
         className="relative z-10"
         animate={{
@@ -105,6 +97,20 @@ export function MagneticButton({
         }
         transition={{ duration: 0.3 }}
       />
-    </Component>
+    </>
+  );
+
+  if (href) {
+    return (
+      <motion.a ref={anchorRef} href={href} {...sharedProps}>
+        {innerContent}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button ref={buttonRef} onClick={onClick} {...sharedProps}>
+      {innerContent}
+    </motion.button>
   );
 }
