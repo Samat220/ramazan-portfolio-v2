@@ -37,17 +37,10 @@ export function Experience() {
                     viewport={{ once: true }}
                   />
 
-                  <motion.div
-                    className="timeline-card relative ml-20 max-w-2xl w-full"
-                    role="button"
-                    tabIndex={0}
+                  <motion.button
+                    type="button"
+                    className="timeline-card relative ml-20 max-w-2xl w-full text-left"
                     onClick={() => openExperienceModal(job)}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        openExperienceModal(job);
-                      }
-                    }}
                     whileHover={{ y: -4, scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                     transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
@@ -117,7 +110,7 @@ export function Experience() {
                         </div>
                       )}
                     </div>
-                  </motion.div>
+                  </motion.button>
                 </div>
               </ScrollReveal>
             );

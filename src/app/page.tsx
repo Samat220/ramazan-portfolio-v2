@@ -38,13 +38,6 @@ export default function Home() {
                 ease: [0.4, 0, 0.2, 1],
               }}
             >
-              {/* Background Geometric Shapes */}
-              <div className="fixed left-0 top-0 -z-10 h-full w-full pointer-events-none">
-                <div className="absolute top-0 left-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute top-0 right-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse animation-delay-2s" />
-                <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse animation-delay-4s" />
-              </div>
-
               <BackgroundHighlight />
 
               <Header />

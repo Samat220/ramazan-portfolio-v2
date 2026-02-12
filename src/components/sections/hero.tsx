@@ -1,51 +1,38 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { personalInfo } from '@/data/config';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const shimmerVariants = {
+  initial: { x: '-100%' },
+  animate: { x: '100%' },
+};
+
+const taglines = [
+  'Full-Stack Developer',
+  'Problem Solver',
+  'Tech Enthusiast',
+  'Creative Builder',
+];
+
 export function Hero() {
-  const containerVariants = useMemo(
-    () => ({
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.2,
-          delayChildren: 0.5,
-        },
-      },
-    }),
-    []
-  );
-
-  const itemVariants = useMemo(
-    () => ({
-      hidden: { opacity: 0, y: 60 },
-      visible: { opacity: 1, y: 0 },
-    }),
-    []
-  );
-
-  const shimmerVariants = useMemo(
-    () => ({
-      initial: { x: '-100%' },
-      animate: { x: '100%' },
-    }),
-    []
-  );
-
-  // Rotating taglines for dynamic intro
-  const taglines = useMemo(
-    () => [
-      'Full-Stack Developer',
-      'Problem Solver',
-      'Tech Enthusiast',
-      'Creative Builder',
-    ],
-    []
-  );
-
   const [currentTagline, setCurrentTagline] = useState(0);
 
   useEffect(() => {
@@ -53,15 +40,13 @@ export function Hero() {
       setCurrentTagline(prev => (prev + 1) % taglines.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [taglines.length]);
+  }, []);
 
   return (
     <section
       id="hero"
       className="relative flex min-h-screen flex-col justify-center items-start pt-16"
     >
-      {/* Subtle Background Pattern */}
-
       {/* Floating Elements */}
       <motion.div
         className="absolute top-1/4 right-1/4 w-2 h-2 bg-accent/20 rounded-full"

@@ -91,52 +91,6 @@
   --font-size-fz-heading: var(--font-size-heading);
 }
 
-/* Light class for manual theme switching */
-.light {
-  --background: #f8fafc;
-  --card-background: #ffffff;
-  --text-primary: #0f172a; /* Darker for better contrast */
-  --text-secondary: #475569; /* Darker for better contrast */
-  --accent: #0284c7; /* Slightly darker blue for better contrast */
-  --accent-light: rgba(2, 132, 199, 0.12); /* Adjusted for new accent */
-  --border-color: #e2e8f0;
-
-  /* Light gradients */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-accent: linear-gradient(
-    135deg,
-    #0ea5e9 0%,
-    #3b82f6 50%,
-    #8b5cf6 100%
-  );
-  --gradient-card: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.9) 100%
-  );
-  --gradient-border: linear-gradient(
-    135deg,
-    rgba(14, 165, 233, 0.3) 0%,
-    rgba(59, 130, 246, 0.3) 50%,
-    rgba(139, 92, 246, 0.3) 100%
-  );
-
-  /* Enhanced light glass morphism for a true frosted effect */
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-border: rgba(226, 232, 240, 0.7);
-  --backdrop-blur: 24px;
-
-  /* Light shadows */
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
-  --shadow-colored: 0 10px 30px -5px rgba(14, 165, 233, 0.3);
-  --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.4);
-  --shadow-glass: 0 8px 32px 0 rgba(51, 65, 85, 0.15);
-}
-
 /* Dark class for manual theme switching */
 .dark {
   --background: #0f172a;
@@ -186,15 +140,6 @@
 /* Performance Optimizations */
 * {
   box-sizing: border-box;
-}
-
-/* GPU Acceleration for animations */
-.card-enhanced,
-.timeline-card,
-.project-item,
-.btn-glow {
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
 /* Global styles */
@@ -290,22 +235,6 @@ a:focus-visible,
 /* Numbered heading styles */
 body {
   counter-reset: section;
-}
-
-/* Modal overlay styles to ensure proper centering */
-.modal-overlay {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  z-index: 9999 !important;
-  transform: none !important;
-  margin: 0 !important;
-  padding: 1rem !important;
 }
 
 .numbered-heading {
@@ -557,8 +486,8 @@ body {
 }
 
 .timeline-card .card-enhanced {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -676,11 +605,11 @@ body {
 
 .project-description-even {
   margin-left: 0;
-  margin-right: -20px;
+  margin-right: -10px;
 }
 
 .project-description-odd {
-  margin-left: -20px;
+  margin-left: -10px;
   margin-right: 0;
 }
 
@@ -786,10 +715,6 @@ body {
   opacity: 0.1;
 }
 
-.project-image-link:hover .project-image-overlay {
-  background: rgba(14, 165, 233, 0.2);
-}
-
 .project-image-link:hover .project-image {
   filter: none;
   mix-blend-mode: normal;
@@ -813,21 +738,6 @@ body {
   display: block;
 }
 
-.project-image-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(14, 165, 233, 0.6);
-  mix-blend-mode: multiply;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 3;
-  border-radius: 12px;
-}
-
 /* Clean hover animations - minimal and elegant */
 .card-enhanced {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -835,20 +745,6 @@ body {
 
 .card-enhanced:hover {
   box-shadow: var(--shadow-glow), var(--shadow-glass);
-}
-
-.timeline-card {
-  position: relative;
-  cursor: pointer;
-}
-
-/* Simple section spacing */
-#experience {
-  padding: 32px 0;
-}
-
-#projects {
-  padding: 24px 0;
 }
 
 .other-project-card:hover {
@@ -995,8 +891,8 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
+  background-size: 150% 150%;
+  animation: gradient-shift 6s ease infinite;
 }
 
 .gradient-border {
@@ -1032,7 +928,7 @@ body {
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-colored);
   overflow: hidden;
-  margin: 8px 8px 8px 24px;
+  margin: 0;
 }
 
 .btn-glow:hover {
@@ -1108,38 +1004,6 @@ body {
 .btn-ripple:active::before {
   width: 300px;
   height: 300px;
-}
-
-.hero-grid-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 0; /* 👈 Change from -10 to 0 */
-
-  background-image:
-    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-attachment: fixed;
-
-  animation: move-grid-fixed 45s linear infinite;
-
-  mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
-
-  opacity: 0.15; /* 👈 Increased opacity slightly */
-}
-
-/* You can keep the same keyframes animation */
-@keyframes move-grid-fixed {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 400px 400px;
-  }
 }
 
 /* Interactive Card Animations */

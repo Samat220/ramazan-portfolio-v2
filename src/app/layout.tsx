@@ -3,7 +3,7 @@ import { Inter, Fira_Code } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { ModalProvider } from '@/components/ui/modal-provider';
-import { siteMetadata } from '@/data/config';
+import { siteMetadata, personalInfo } from '@/data/config';
 import './globals.css';
 
 const inter = Inter({
@@ -58,7 +58,6 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     description: siteMetadata.description,
     images: [siteMetadata.image],
-    creator: '@yourusername', // Replace with your Twitter handle
   },
   robots: {
     index: true,
@@ -76,8 +75,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   viewportFit: 'cover',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
@@ -92,6 +89,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: siteMetadata.author,
+              url: siteMetadata.url,
+              jobTitle: 'Software Engineer',
+              sameAs: [personalInfo.linkedin, personalInfo.github],
+            }),
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <ModalProvider>

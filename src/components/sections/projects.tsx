@@ -16,7 +16,7 @@ export function Projects() {
   } = useProjectsData();
 
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-32">
       <ScrollReveal animationType="fadeUp">
         <h2 className="numbered-heading">Some Things I&apos;ve Built</h2>
       </ScrollReveal>
