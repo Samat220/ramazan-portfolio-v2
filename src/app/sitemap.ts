@@ -1,39 +1,36 @@
 import { MetadataRoute } from 'next';
+import { siteMetadata } from '@/data/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = siteMetadata.url.replace(/\/$/, '');
+
   return [
     {
-      url: 'https://your-domain.com',
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 1,
     },
     {
-      url: 'https://your-domain.com/#about',
+      url: `${baseUrl}/#about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://your-domain.com/#skills',
+      url: `${baseUrl}/#experience`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://your-domain.com/#experience',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://your-domain.com/#projects',
+      url: `${baseUrl}/#projects`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: 'https://your-domain.com/#contact',
+      url: `${baseUrl}/#contact`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.7,

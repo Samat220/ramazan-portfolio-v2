@@ -1,6 +1,12 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type Variants,
+} from 'framer-motion';
 import { useRef, useState } from 'react';
 
 interface EnhancedCardProps {
@@ -61,7 +67,7 @@ export function EnhancedCard({
     y.set(0);
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     rest: {
       scale: 1,
       y: 0,
@@ -82,7 +88,7 @@ export function EnhancedCard({
     },
   };
 
-  const glowVariants = {
+  const glowVariants: Variants = {
     rest: {
       opacity: 0,
       scale: 0.8,
@@ -106,7 +112,7 @@ export function EnhancedCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      variants={cardVariants as any}
+      variants={cardVariants}
       initial="rest"
       animate={isHovered ? 'hover' : 'rest'}
       style={{
@@ -118,7 +124,7 @@ export function EnhancedCard({
       {/* Glow Effect */}
       <motion.div
         className="absolute -inset-1 rounded-lg bg-gradient-accent opacity-0 blur-xl"
-        variants={glowVariants as any}
+        variants={glowVariants}
         initial="rest"
         animate={isHovered ? 'hover' : 'rest'}
       />

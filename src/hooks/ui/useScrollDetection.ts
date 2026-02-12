@@ -1,16 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { throttle } from '@/lib/utils';
 
 export function useScrollDetection(threshold: number = 10) {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > threshold);
-    };
+  const handleScroll = useMemo(
+    () =>
+      throttle(() => {
+        setIsScrolled(window.scrollY > threshold);
+      }, 100),
+    [threshold]
+  );
 
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [threshold]);
+  }, [handleScroll]);
 
   return isScrolled;
 }

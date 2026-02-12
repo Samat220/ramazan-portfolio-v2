@@ -1,98 +1,21 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Loader2, Calendar, ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '@/components/shared/scroll-reveal';
 import { Button } from '@/components/ui/button';
-import { validateEmail } from '@/lib/utils';
 import { personalInfo } from '@/data/config';
-import type { ContactFormData } from '@/types';
+import { useContactFormLogic } from '@/hooks/useContactForm';
 
 export function Contact() {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [errors, setErrors] = useState<Partial<ContactFormData>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    'idle' | 'success' | 'error'
-  >('idle');
-
-  const validateForm = (): boolean => {
-    const newErrors: Partial<ContactFormData> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append(
-        'access_key',
-        '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f'
-      );
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('message', formData.message);
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formDataToSend,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => {
-          setSubmitStatus('idle');
-        }, 3000);
-      } else {
-        console.error('Web3Forms Error:', data);
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
-    }
-  };
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    submitStatus,
+    handleSubmit,
+    handleInputChange,
+  } = useContactFormLogic();
 
   return (
     <footer id="contact" className="py-32 fade-in-section">
@@ -105,7 +28,7 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal animationType="fadeUp" delay={100}>
-            <h3 className="text-4xl md:text-5xl font-bold text-primary mb-4 transition-colors duration-300">
+            <h3 className="text-fluid-4xl font-bold text-primary mb-4 transition-colors duration-300">
               Get In Touch
             </h3>
           </ScrollReveal>
@@ -150,65 +73,95 @@ export function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
-                    htmlFor="name"
+                    htmlFor="contact-name"
                     className="block text-sm font-medium text-primary mb-2"
                   >
                     Name
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    id="contact-name"
                     value={formData.name}
                     onChange={e => handleInputChange('name', e.target.value)}
                     className="w-full px-4 py-3 bg-card-bg border border-border rounded-lg text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
                     placeholder="Your name"
                     disabled={isSubmitting}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={
+                      errors.name ? 'contact-name-error' : undefined
+                    }
                   />
                   {errors.name && (
-                    <p className="mt-2 text-sm text-red-500">{errors.name}</p>
+                    <p
+                      id="contact-name-error"
+                      role="alert"
+                      className="mt-2 text-sm text-red-500"
+                    >
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="contact-email"
                     className="block text-sm font-medium text-primary mb-2"
                   >
                     Email
                   </label>
                   <input
                     type="email"
-                    id="email"
+                    id="contact-email"
                     value={formData.email}
                     onChange={e => handleInputChange('email', e.target.value)}
                     className="w-full px-4 py-3 bg-card-bg border border-border rounded-lg text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
                     placeholder="your@email.com"
                     disabled={isSubmitting}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={
+                      errors.email ? 'contact-email-error' : undefined
+                    }
                   />
                   {errors.email && (
-                    <p className="mt-2 text-sm text-red-500">{errors.email}</p>
+                    <p
+                      id="contact-email-error"
+                      role="alert"
+                      className="mt-2 text-sm text-red-500"
+                    >
+                      {errors.email}
+                    </p>
                   )}
                 </div>
               </div>
 
               <div>
                 <label
-                  htmlFor="message"
+                  htmlFor="contact-message"
                   className="block text-sm font-medium text-primary mb-2"
                 >
                   Message
                 </label>
                 <textarea
-                  id="message"
+                  id="contact-message"
                   rows={6}
                   value={formData.message}
                   onChange={e => handleInputChange('message', e.target.value)}
                   className="w-full px-4 py-3 bg-card-bg border border-border rounded-lg text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 resize-vertical"
                   placeholder="Your message..."
                   disabled={isSubmitting}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={
+                    errors.message ? 'contact-message-error' : undefined
+                  }
                 />
                 {errors.message && (
-                  <p className="mt-2 text-sm text-red-500">{errors.message}</p>
+                  <p
+                    id="contact-message-error"
+                    role="alert"
+                    className="mt-2 text-sm text-red-500"
+                  >
+                    {errors.message}
+                  </p>
                 )}
               </div>
 
@@ -268,7 +221,9 @@ export function Contact() {
               <p className="text-sm mb-2">
                 Next.js 15 • TypeScript • Tailwind CSS • Framer Motion • Zustand
               </p>
-              <p className="text-xs text-secondary/60">© 2025</p>
+              <p className="text-xs text-secondary/60">
+                © {new Date().getFullYear()}
+              </p>
             </div>
           </ScrollReveal>
         </div>

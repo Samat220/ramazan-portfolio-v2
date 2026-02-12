@@ -72,26 +72,56 @@ export function ConstellationBackground() {
       }
     };
 
+    const CONNECTION_DIST = 120;
+
     const connect = () => {
-      if (!ctx) return;
-      const lineColor = theme === 'dark' ? '148, 163, 184' : '100, 116, 139'; // RGB for secondary text colors
+      if (!ctx || !canvas) return;
+      const lineColor = theme === 'dark' ? '148, 163, 184' : '100, 116, 139';
 
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a; b < particles.length; b++) {
-          const distance = Math.sqrt(
-            (particles[a].x - particles[b].x) ** 2 +
-              (particles[a].y - particles[b].y) ** 2
-          );
+      const cols = Math.ceil(canvas.width / CONNECTION_DIST);
+      const rows = Math.ceil(canvas.height / CONNECTION_DIST);
+      const grid: Particle[][][] = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => [])
+      );
 
-          if (distance < 120) {
-            // Increased connection distance
-            const opacity = 1 - distance / 120;
-            ctx.strokeStyle = `rgba(${lineColor}, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
+      for (const p of particles) {
+        const col = Math.min(
+          Math.max(Math.floor(p.x / CONNECTION_DIST), 0),
+          cols - 1
+        );
+        const row = Math.min(
+          Math.max(Math.floor(p.y / CONNECTION_DIST), 0),
+          rows - 1
+        );
+        grid[row][col].push(p);
+      }
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          for (let dr = 0; dr <= 1; dr++) {
+            for (let dc = dr === 0 ? 0 : -1; dc <= 1; dc++) {
+              const nr = r + dr;
+              const nc = c + dc;
+              if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue;
+              const neighbor = grid[nr][nc];
+              for (const a of cell) {
+                for (const b of neighbor) {
+                  if (a === b) continue;
+                  const dx = a.x - b.x;
+                  const dy = a.y - b.y;
+                  const dist = Math.sqrt(dx * dx + dy * dy);
+                  if (dist < CONNECTION_DIST) {
+                    ctx.strokeStyle = `rgba(${lineColor}, ${1 - dist / CONNECTION_DIST})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.stroke();
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -41,6 +41,7 @@ Feel free to explore the code to see how it's made, or check out the live versio
 - **Linting**: ESLint with Next.js config
 - **Formatting**: Prettier
 - **Git Hooks**: Husky + lint-staged
+- **Node Version**: mise (`.mise.toml`)
 - **CI/CD**: GitHub Actions
 - **Deployment**: Vercel
 - **Analytics**: Vercel Analytics
@@ -68,21 +69,22 @@ src/
 
 ### Prerequisites
 
-- Node.js 20 or higher
-- npm, yarn, or pnpm
+- Node.js 20 or higher (managed via [mise](https://mise.jdx.dev/) — see `.mise.toml`)
+- npm
 
 ### Installation
 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/Samat220/portfolio-nextjs.git
-   cd portfolio-nextjs
+   git clone https://github.com/Samat220/ramazan-portfolio-v2.git
+   cd ramazan-portfolio-v2
    ```
 
 2. **Install dependencies**
 
    ```bash
+   mise install   # installs correct Node version (optional, if using mise)
    npm install
    ```
 
@@ -191,7 +193,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 📧 Email: [samatramazan.dev@gmail.com](mailto:samatramazan.dev@gmail.com)
 - 💼 LinkedIn: [linkedin.com/in/samatr](https://linkedin.com/in/samatr)
 - 🐙 GitHub: [github.com/Samat220](https://github.com/Samat220)
-- 🌐 Portfolio: [Live Demo](https://portfolio-v2-samat220s-projects.vercel.app)
+- 🌐 Portfolio: [ramazansamat.dev](https://www.ramazansamat.dev/)
 
 ## 🙏 Acknowledgments
 

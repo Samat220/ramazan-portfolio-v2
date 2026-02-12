@@ -12,7 +12,10 @@ function ExperienceModalContent({ job }: { job: Experience }) {
       {/* Modal Header */}
       <header className="flex items-start justify-between gap-4 p-6 border-b border-[var(--glass-border)]">
         <div>
-          <h3 className="text-2xl font-semibold text-primary mb-2">
+          <h3
+            id="modal-title"
+            className="text-2xl font-semibold text-primary mb-2"
+          >
             {job.role}
           </h3>
           <a

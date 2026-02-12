@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, ReactNode } from 'react';
+import { useEffect, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,22 +11,20 @@ interface ModalProps {
   className?: string;
 }
 
-// Variants for the backdrop overlay
-const overlayVariants = {
+const overlayVariants: Variants = {
   visible: { opacity: 1, transition: { duration: 0.3, ease: 'easeOut' } },
   hidden: { opacity: 0, transition: { duration: 0.3, ease: 'easeIn' } },
 };
 
-// Variants for the modal content panel
-const modalVariants = {
+const modalVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
       duration: 0.3,
-      ease: [0.4, 0, 0.2, 1], // Deceleration easing
-      delay: 0.1, // Appears slightly after the overlay
+      ease: [0.4, 0, 0.2, 1],
+      delay: 0.1,
     },
   },
   hidden: {
@@ -35,7 +33,7 @@ const modalVariants = {
     scale: 0.95,
     transition: {
       duration: 0.2,
-      ease: [0.4, 0, 1, 1], // Acceleration easing
+      ease: [0.4, 0, 1, 1],
     },
   },
 };
@@ -46,6 +44,8 @@ export function Modal({
   children,
   className = '',
 }: ModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -62,31 +62,76 @@ export function Modal({
     };
   }, [isOpen, onClose]);
 
+  // Focus trap
+  useEffect(() => {
+    if (!isOpen) return;
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusableSelector =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    // Focus first focusable element after animation
+    const timer = setTimeout(() => {
+      const firstEl = modal.querySelector<HTMLElement>(focusableSelector);
+      firstEl?.focus();
+    }, 100);
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusable = modal.querySelectorAll<HTMLElement>(focusableSelector);
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', trapFocus);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('keydown', trapFocus);
+    };
+  }, [isOpen]);
+
   if (typeof document === 'undefined') return null;
 
   return createPortal(
     <AnimatePresence mode="wait">
       {isOpen && (
         <motion.div
+          ref={modalRef}
           className={`fixed inset-0 z-[10000] flex items-center justify-center p-4 ${className}`}
           onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
         >
           <motion.div
             className="absolute inset-0 bg-background/20 backdrop-blur-lg"
-            style={{ willChange: 'opacity' }} // Performance hint
-            variants={overlayVariants as any}
+            style={{ willChange: 'opacity' }}
+            variants={overlayVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
           />
           <motion.div
             onClick={e => e.stopPropagation()}
-            variants={modalVariants as any}
+            variants={modalVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
             className="relative"
-            style={{ willChange: 'transform, opacity' }} // Performance hint
+            style={{ willChange: 'transform, opacity' }}
           >
             {children}
           </motion.div>

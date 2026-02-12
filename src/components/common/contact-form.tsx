@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useModal } from '@/components/ui/modal-provider';
-import { validateEmail } from '@/lib/utils';
-import type { ContactFormData } from '@/types';
+import { useContactFormLogic } from '@/hooks/useContactForm';
 
 interface ContactFormContentProps {
   onSuccess?: () => void;
@@ -14,91 +12,19 @@ interface ContactFormContentProps {
 
 function ContactFormContent({ onSuccess }: ContactFormContentProps) {
   const { closeModal } = useModal();
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    message: '',
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    submitStatus,
+    handleSubmit,
+    handleInputChange,
+  } = useContactFormLogic({
+    onSuccess: () => {
+      closeModal();
+      onSuccess?.();
+    },
   });
-  const [errors, setErrors] = useState<Partial<ContactFormData>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    'idle' | 'success' | 'error'
-  >('idle');
-
-  const validateForm = (): boolean => {
-    const newErrors: Partial<ContactFormData> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append(
-        'access_key',
-        '5b3926b7-6e7c-4a94-afd3-f6b0cf9d4c0f'
-      );
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('message', formData.message);
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formDataToSend,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => {
-          closeModal();
-          setSubmitStatus('idle');
-          onSuccess?.();
-        }, 2000);
-      } else {
-        console.error('Web3Forms Error:', data);
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
-    }
-  };
 
   return (
     <motion.div
@@ -109,7 +35,9 @@ function ContactFormContent({ onSuccess }: ContactFormContentProps) {
       transition={{ duration: 0.3 }}
     >
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-medium text-primary">Get In Touch</h2>
+        <h2 id="modal-title" className="text-2xl font-medium text-primary">
+          Get In Touch
+        </h2>
         <Button
           variant="ghost"
           size="icon"
@@ -124,64 +52,90 @@ function ContactFormContent({ onSuccess }: ContactFormContentProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label
-            htmlFor="name"
+            htmlFor="modal-name"
             className="block text-sm font-medium text-primary mb-2"
           >
             Name
           </label>
           <input
             type="text"
-            id="name"
+            id="modal-name"
             value={formData.name}
             onChange={e => handleInputChange('name', e.target.value)}
             className="w-full px-3 py-2 bg-background border border-border rounded-md text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
             placeholder="Your name"
             disabled={isSubmitting}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? 'modal-name-error' : undefined}
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+            <p
+              id="modal-name-error"
+              role="alert"
+              className="mt-1 text-sm text-red-500"
+            >
+              {errors.name}
+            </p>
           )}
         </div>
 
         <div>
           <label
-            htmlFor="email"
+            htmlFor="modal-email"
             className="block text-sm font-medium text-primary mb-2"
           >
             Email
           </label>
           <input
             type="email"
-            id="email"
+            id="modal-email"
             value={formData.email}
             onChange={e => handleInputChange('email', e.target.value)}
             className="w-full px-3 py-2 bg-background border border-border rounded-md text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
             placeholder="your@email.com"
             disabled={isSubmitting}
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? 'modal-email-error' : undefined}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+            <p
+              id="modal-email-error"
+              role="alert"
+              className="mt-1 text-sm text-red-500"
+            >
+              {errors.email}
+            </p>
           )}
         </div>
 
         <div>
           <label
-            htmlFor="message"
+            htmlFor="modal-message"
             className="block text-sm font-medium text-primary mb-2"
           >
             Message
           </label>
           <textarea
-            id="message"
+            id="modal-message"
             rows={4}
             value={formData.message}
             onChange={e => handleInputChange('message', e.target.value)}
             className="w-full px-3 py-2 bg-background border border-border rounded-md text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 resize-vertical"
             placeholder="Your message..."
             disabled={isSubmitting}
+            aria-invalid={!!errors.message}
+            aria-describedby={
+              errors.message ? 'modal-message-error' : undefined
+            }
           />
           {errors.message && (
-            <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+            <p
+              id="modal-message-error"
+              role="alert"
+              className="mt-1 text-sm text-red-500"
+            >
+              {errors.message}
+            </p>
           )}
         </div>
 
