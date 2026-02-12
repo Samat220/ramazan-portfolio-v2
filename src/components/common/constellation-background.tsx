@@ -13,6 +13,10 @@ export function ConstellationBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
     let particles: Particle[];
     let animationFrameId: number;
 
@@ -127,6 +131,12 @@ export function ConstellationBackground() {
       }
     };
 
+    const drawStatic = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => p.draw());
+      connect();
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
@@ -138,13 +148,21 @@ export function ConstellationBackground() {
     };
 
     const handleResize = () => {
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       init();
-      animate();
+      if (prefersReducedMotion) {
+        drawStatic();
+      } else {
+        animate();
+      }
     };
 
     init();
-    animate();
+    if (prefersReducedMotion) {
+      drawStatic();
+    } else {
+      animate();
+    }
 
     window.addEventListener('resize', handleResize);
 

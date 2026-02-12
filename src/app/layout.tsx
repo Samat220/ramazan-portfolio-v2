@@ -104,7 +104,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased min-h-screen bg-background">
         <ThemeProvider>
           <ModalProvider>
             <div className="relative isolate">

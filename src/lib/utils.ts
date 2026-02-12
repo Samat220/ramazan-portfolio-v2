@@ -33,25 +33,25 @@ export const validateEmail = (email: string) => {
   return EMAIL_REGEX.test(email);
 };
 
-export const debounce = <T extends (...args: any[]) => void>(
-  func: T,
+export const debounce = <A extends unknown[]>(
+  func: (...args: A) => void,
   wait: number
 ) => {
   let timeout: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
+  return (...args: A) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(undefined, args), wait);
+    timeout = setTimeout(() => func(...args), wait);
   };
 };
 
-export const throttle = <T extends (...args: any[]) => void>(
-  func: T,
+export const throttle = <A extends unknown[]>(
+  func: (...args: A) => void,
   limit: number
 ) => {
   let inThrottle: boolean;
-  return (...args: Parameters<T>) => {
+  return (...args: A) => {
     if (!inThrottle) {
-      func.apply(undefined, args);
+      func(...args);
       inThrottle = true;
       setTimeout(() => (inThrottle = false), limit);
     }

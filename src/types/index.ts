@@ -40,19 +40,6 @@ export interface Project {
   screenshots?: ProjectScreenshots;
 }
 
-export interface ThemeContextType {
-  theme: 'light' | 'dark';
-  setTheme: (theme: 'light' | 'dark') => void;
-  toggleTheme: () => void;
-}
-
-export interface AnimationVariant {
-  initial: Record<string, any>;
-  animate: Record<string, any>;
-  exit?: Record<string, any>;
-  transition?: Record<string, any>;
-}
-
 export interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
