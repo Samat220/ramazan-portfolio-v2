@@ -5,133 +5,71 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ```bash
-# Development
-npm run dev              # Start development server with Turbopack
-npm start               # Start production server
-
-# Build & Production
-npm run build           # Build for production with Turbopack
-
-# Code Quality
-npm run lint            # Auto-fix ESLint issues
-npm run lint:check      # Check ESLint issues without fixing
-npm run format          # Auto-format code with Prettier
-npm run format:check    # Check Prettier formatting without fixing
-npm run type-check      # Run TypeScript type checking
-
-# Git Hooks
-npm run prepare         # Setup Husky git hooks
+npm run dev              # Start dev server with Turbopack (localhost:3000)
+npm run build            # Production build with Turbopack
+npm run lint             # Auto-fix ESLint issues
+npm run lint:check       # Check ESLint issues without fixing
+npm run format           # Auto-format with Prettier
+npm run format:check     # Check Prettier formatting without fixing
+npm run type-check       # TypeScript type checking (tsc --noEmit)
 ```
+
+Pre-commit hook runs `lint-staged` which auto-fixes Prettier and ESLint on staged files. CI runs `type-check`, `lint:check`, `format:check`, and `build` — all four must pass.
+
+## Commit Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `test:`, `chore:`.
 
 ## Architecture Overview
 
-This is a **Next.js 15** portfolio website with the App Router, built using modern React patterns and TypeScript.
+Single-page Next.js 15 portfolio site using App Router. The entire page is a client component (`src/app/page.tsx` has `'use client'`) that renders all sections sequentially: Hero, About, Experience, Projects, Contact.
 
-### Core Tech Stack
+### Path Alias
 
-- **Framework**: Next.js 15 with App Router and Turbopack
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
-- **State Management**: Zustand (with persistence)
-- **TypeScript**: Strict mode enabled
-- **Icons**: Lucide React
+`@/*` maps to `./src/*` (configured in `tsconfig.json`).
 
-### Project Structure
+### Content Data Layer
 
-```
-src/
-├── app/                    # Next.js App Router pages
-├── components/
-│   ├── common/            # Reusable components (modals, forms, animations)
-│   ├── layout/            # Layout components (header, navigation)
-│   ├── sections/          # Page sections (hero, about, experience, projects, contact)
-│   ├── icons/             # Custom icon components
-│   └── ui/                # Base UI components (button, etc.)
-├── data/
-│   └── config.ts          # Site configuration and content data
-├── hooks/                 # Custom React hooks
-├── lib/
-│   ├── store.ts           # Zustand state management
-│   ├── constants.ts       # App constants
-│   └── utils.ts           # Utility functions
-├── providers/             # React context providers
-└── types/                 # TypeScript type definitions
-```
+All portfolio content lives in `src/data/config.ts` — personal info, navigation links, work experience, projects, and skills. Types for this data are defined in `src/types/index.ts`. To update portfolio content, edit only this config file.
 
-### Key Architectural Patterns
+### Theming System
 
-1. **Component Organization**: Components are categorized by purpose (common, layout, sections, ui)
+Theme is managed by a Zustand store (`useThemeStore` in `src/lib/store.ts`) persisted to localStorage under key `portfolio-theme`. The `ThemeProvider` (`src/providers/theme-provider.tsx`) applies `.light` or `.dark` class to `<html>`, which swaps CSS custom properties defined in `src/app/globals.css`. Default theme is `dark` with system preference detection on first visit.
 
-2. **Data Management**:
-   - Site content is centralized in `src/data/config.ts` - update personal info, experience, projects, and skills here
-   - Global state uses Zustand with localStorage persistence
-   - Dual modal system: Zustand store for contact/experience modals, ModalProvider for general modals
-   - Theme state persisted to localStorage with system preference detection
+All design tokens (colors, gradients, shadows, glass effects) are CSS custom properties in `:root`, `.light`, and `.dark` selectors in `globals.css`.
 
-3. **Animation System**:
-   - Framer Motion for page transitions and scroll animations
-   - Custom animation hooks:
-     - `useScrollAnimation`: Scroll-based progress animations
-     - `useScrollReveal`: Intersection Observer-based reveal animations with 5 animation types
-     - `useSmoothScroll`: Smooth scrolling navigation
-   - ScrollReveal component wrapper with configurable animation types (fadeUp, fadeIn, slideLeft, slideRight, scaleUp)
-   - Loading states with animated transitions
+### Dual Modal System
 
-4. **Styling Architecture**:
-   - Tailwind CSS v4 with custom CSS variables for theming
-   - Class Variance Authority (CVA) for component variants
-   - Interactive component patterns:
-     - TiltCard: 3D tilt effects on hover
-     - SpotlightCard: Dynamic spotlight following mouse
-     - EnhancedCard: Glassmorphism with backdrop blur
-     - MagneticButton: Magnetic hover effects
-   - Background components: Aurora, Constellation, Hero backgrounds
-   - Custom cursor implementation for enhanced UX
+1. **Zustand store** (`useModalStore` in `src/lib/store.ts`): Manages contact form and experience detail modals with dedicated open/close actions
+2. **Context-based** (`ModalProvider` in `src/components/ui/modal-provider.tsx`): General-purpose modal via `useModal()` hook that accepts arbitrary ReactNode content
 
-5. **Type Safety**:
-   - Comprehensive TypeScript interfaces in `src/types/index.ts`
-   - Strict type checking enabled
+### Animation System
 
-## Code Quality Setup
+- Framer Motion for page transitions and element animations
+- Three custom hooks in `src/hooks/`:
+  - `useScrollAnimation`: Scroll-progress-based animations
+  - `useScrollReveal`: Intersection Observer reveals with 5 types (fadeUp, fadeIn, slideLeft, slideRight, scaleUp)
+  - `useSmoothScroll`: Smooth anchor navigation
+- Additional UI hooks in `src/hooks/ui/`: body scroll lock, navigation handlers, scroll detection
+- Animation constants (variants, durations) defined in `src/lib/constants.ts`
+- `globals.css` contains extensive CSS animations, glass morphism utilities, and interactive effects (tilt cards, spotlight, magnetic buttons)
 
-- **ESLint**: Next.js recommended config with auto-fixing
-- **Prettier**: Code formatting with consistent style
-- **Husky + lint-staged**: Pre-commit hooks for quality checks
-- **TypeScript**: Strict mode for maximum type safety
+### Interactive Component Patterns
 
-## Content Management
+Located in `src/components/common/`:
 
-All portfolio content is centralized in `src/data/config.ts` for easy customization:
+- TiltCard, SpotlightCard, EnhancedCard: Mouse-tracking 3D/lighting effects
+- MagneticButton: Magnetic hover effect
+- ConstellationBackground, BackgroundHighlight: Animated backgrounds
+- Loading: Full-screen animated loader with `usePageLoader`
 
-- **personalInfo**: Name, greeting, intro, contact links, bio
-- **navLinks**: Navigation with numbered sections (01., 02., etc.)
-- **experience**: Array of work experience with company URLs, roles, descriptions, skills
-- **projects**: Featured and non-featured projects with GitHub/live URLs, technologies
-- **backendSkills** & **mlSkills**: Categorized skill arrays
-- **siteMetadata**: SEO configuration
+### API Route
 
-To customize the portfolio, update the placeholder data in this single configuration file.
+`src/app/api/upload-resume/route.ts`: Authenticated endpoint for uploading resume PDFs to Vercel Blob storage. Requires `ADMIN_SECRET_KEY` env var. Admin UI at `src/app/admin/upload-resume/`.
 
-## Performance Considerations
+### Key Libraries
 
-- Next.js 15 with Turbopack for faster builds
-- Image optimization with Next.js Image component
-- Font optimization with next/font
-- Bundle analysis and code splitting
-- Vercel Analytics integration
-
-## Development Notes
-
-- Uses client-side rendering for animation-heavy components
-- Theme switching with system preference detection and localStorage persistence
-- Responsive design with mobile-first approach
-- Accessibility considerations built into components
-- SEO optimized with proper metadata and structured data
-
-## State Management Patterns
-
-- **Theme Store** (`useThemeStore`): Zustand store with persistence for theme switching
-- **Modal Store** (`useModalStore`): Manages contact form and experience modal states
-- **Modal Provider**: Context-based modal system for general purpose modals
-- All stores use TypeScript interfaces for type safety
-- Theme state defaults to 'dark' and persists user preference
+- `cn()` utility (`src/lib/utils.ts`): Combines `clsx` + `tailwind-merge` for conditional class names
+- CVA (class-variance-authority): Component variant definitions
+- Tailwind CSS v4 with `@tailwindcss/postcss`
+- Fonts: Inter (sans) and Fira Code (mono) via `next/font/google`
