@@ -61,7 +61,7 @@ export function ResumeUploadClient() {
   if (!secretKey) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-background text-primary p-4">
-        <div className="w-full max-w-md p-8 space-y-6 bg-card-bg rounded-lg shadow-lg border border-border">
+        <div className="w-full max-w-md p-8 space-y-6 bg-card-bg">
           <h1 className="text-2xl font-bold text-center text-primary">
             Admin Access
           </h1>
@@ -76,17 +76,17 @@ export function ResumeUploadClient() {
               placeholder="Admin key"
               required
               autoFocus
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
+              className="w-full px-4 py-2 bg-background border border-border text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
             />
             <button
               type="submit"
-              className="w-full px-4 py-2 text-background bg-accent rounded-lg hover:bg-accent-hover transition-colors font-medium"
+              className="w-full px-4 py-2 text-accent-ink bg-accent hover:bg-ink transition-colors font-medium"
             >
               Unlock
             </button>
           </form>
           <div className="text-xs text-muted text-center">
-            <p>🔒 Secure admin access</p>
+            <p>Admin access only</p>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@ export function ResumeUploadClient() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-primary p-4">
-      <div className="w-full max-w-md p-8 space-y-6 bg-card-bg rounded-lg shadow-lg border border-border">
+      <div className="w-full max-w-md p-8 space-y-6 bg-card-bg">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary">Update Resume</h1>
           <button
@@ -105,7 +105,7 @@ export function ResumeUploadClient() {
             }}
             className="text-xs text-secondary hover:text-primary transition-colors"
           >
-            🔒 Lock
+            Lock
           </button>
         </div>
         <p className="text-center text-sm text-secondary">
@@ -119,19 +119,19 @@ export function ResumeUploadClient() {
             type="file"
             required
             accept=".pdf"
-            className="block w-full text-sm text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-background hover:file:bg-accent-hover transition-colors"
+            className="block w-full text-sm text-secondary file:mr-4 file:py-2 file:px-4 file:file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-background hover:file:bg-accent-hover transition-colors"
           />
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full px-4 py-2 text-background bg-accent rounded-lg hover:bg-accent-hover disabled:bg-muted disabled:cursor-not-allowed transition-colors font-medium"
+            className="w-full px-4 py-2 text-accent-ink bg-accent hover:bg-ink disabled:bg-muted disabled:cursor-not-allowed transition-colors font-medium"
           >
             {isLoading ? 'Uploading...' : 'Upload New Resume'}
           </button>
         </form>
         {message && (
           <div
-            className={`mt-4 p-4 rounded-lg text-sm break-all ${
+            className={`mt-4 p-4 text-sm break-all ${
               message.includes('Success')
                 ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800'
                 : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'

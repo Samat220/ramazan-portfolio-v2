@@ -22,7 +22,7 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 
 ## Architecture Overview
 
-Single-page Next.js 15 portfolio site using App Router. The entire page is a client component (`src/app/page.tsx` has `'use client'`) that renders all sections sequentially: Hero, About, Experience, Projects, Contact.
+Single-page Next.js 15 portfolio site using App Router. `src/app/page.tsx` composes the client sections in `src/components/site/`.
 
 ### Path Alias
 
@@ -30,38 +30,23 @@ Single-page Next.js 15 portfolio site using App Router. The entire page is a cli
 
 ### Content Data Layer
 
-All portfolio content lives in `src/data/config.ts` — personal info, navigation links, work experience, projects, and skills. Types for this data are defined in `src/types/index.ts`. To update portfolio content, edit only this config file.
+All portfolio content lives in `src/data/config.ts`: personal info, navigation links, experience, projects and skills. Projects carry `kind`, `year`, `shot`/`phone` screenshots, a stage `field` colour, and for screenshot-less projects a `figure` and line `icon`; `studioSite` and `sideProjects` are derived lists. Types are in `src/types/index.ts`. To update content, edit only the config file.
 
-### Theming System
+### Design System
 
-Theme is managed by a Zustand store (`useThemeStore` in `src/lib/store.ts`) persisted to localStorage under key `portfolio-theme`. The `ThemeProvider` (`src/providers/theme-provider.tsx`) applies `.light` or `.dark` class to `<html>`, which swaps CSS custom properties defined in `src/app/globals.css`. Default theme is `dark` with system preference detection on first visit.
+One designed light theme (no toggle): a cream ground, ink type, a soft colour field per project, grain, and real depth from shadows, perspective and layered devices. Shared tokens and base styles are in `src/app/globals.css`; the site's own styles (devices, tactile pills, stages, grain, carousel) are in `src/app/site.css`, inside `@layer components` so Tailwind utilities still win. Fonts: Bricolage Grotesque (display), Inter (text), Geist Mono (small labels). `DESIGN.md` documents the system; `PRODUCT.md` holds product context and content rules (no Kazakh-culture imagery, no stock photos, ScoutMyRivals copy never reveals its methods).
 
-All design tokens (colors, gradients, shadows, glass effects) are CSS custom properties in `:root`, `.light`, and `.dark` selectors in `globals.css`.
+### Modal
 
-### Dual Modal System
+`ModalProvider` (`src/components/ui/modal-provider.tsx`) offers a general-purpose modal through `useModal()`. The contact form (`src/components/common/contact-form.tsx`) opens in it from the Contact section.
 
-1. **Zustand store** (`useModalStore` in `src/lib/store.ts`): Manages contact form and experience detail modals with dedicated open/close actions
-2. **Context-based** (`ModalProvider` in `src/components/ui/modal-provider.tsx`): General-purpose modal via `useModal()` hook that accepts arbitrary ReactNode content
+### Sections and motion
 
-### Animation System
+`src/app/page.tsx` composes the client sections in `src/components/site/`: `Nav`, `Hero` (the name with the projects floating in front as browser windows and mobile screens), `Work` (each featured project staged as desktop + mobile on its own colour field), `Studio` (the server-rack-to-controller line drawing zooms into Oina Studio on desktop), `Experience` (roles, skills, toolkit), `Carousel` (side projects on a ring you can drag to spin; each card opens `ProjectDetail`), `Contact` and `Footer`.
 
-- Framer Motion for page transitions and element animations
-- Three custom hooks in `src/hooks/`:
-  - `useScrollAnimation`: Scroll-progress-based animations
-  - `useScrollReveal`: Intersection Observer reveals with 5 types (fadeUp, fadeIn, slideLeft, slideRight, scaleUp)
-  - `useSmoothScroll`: Smooth anchor navigation
-- Additional UI hooks in `src/hooks/ui/`: body scroll lock, navigation handlers, scroll detection
-- Animation constants (variants, durations) defined in `src/lib/constants.ts`
-- `globals.css` contains extensive CSS animations, glass morphism utilities, and interactive effects (tilt cards, spotlight, magnetic buttons)
-
-### Interactive Component Patterns
-
-Located in `src/components/common/`:
-
-- TiltCard, SpotlightCard, EnhancedCard: Mouse-tracking 3D/lighting effects
-- MagneticButton: Magnetic hover effect
-- ConstellationBackground, BackgroundHighlight: Animated backgrounds
-- Loading: Full-screen animated loader with `usePageLoader`
+- Motion is Framer Motion. `MotionConfig reducedMotion="user"` wraps the page; scroll-linked values that must stay exact inside sticky stages use function transforms (`useTransform(v => ...)`), not the accelerated path.
+- `SmoothScroll` adds Lenis (fine pointers only, off under reduced motion) and smooth in-page links.
+- Screenshots live in `public/shots/` (desktop 2880×1800, mobile 1170×2532); line drawings are in `src/components/site/drawing.tsx`.
 
 ### API Route
 
@@ -72,4 +57,4 @@ Located in `src/components/common/`:
 - `cn()` utility (`src/lib/utils.ts`): Combines `clsx` + `tailwind-merge` for conditional class names
 - CVA (class-variance-authority): Component variant definitions
 - Tailwind CSS v4 with `@tailwindcss/postcss`
-- Fonts: Inter (sans) and Fira Code (mono) via `next/font/google`
+- Fonts: Bricolage Grotesque, Inter and Geist Mono via `next/font/google`

@@ -42,3 +42,7 @@ next-env.d.ts
 
 # git worktrees
 .worktrees/
+
+# design tooling output
+.taste-skill/
+.playwright-mcp/

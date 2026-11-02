@@ -10,14 +10,14 @@ export const personalInfo: PersonalInfo = {
   resume:
     'https://oysrscezxk9outav.public.blob.vercel-storage.com/resume/ramazan_samat.pdf',
   photo: '/my_info/headshot.jpeg',
-  bio: 'Founder & Creative Director of Oina Studio, an independent Canadian studio making story-driven games rooted in Kazakh mythology. Before that, five years as a backend and infrastructure engineer shipping production systems for millions of users — and I still build every day: full-stack web, native iOS, and data-driven tools.',
+  bio: 'Founder & Creative Director of Oina Studio, an independent Canadian video game studio making single-player, story-driven games for PC and console. Before that, five years as a backend and infrastructure engineer shipping production systems for millions of users. I still build every day: full-stack web, native iOS, and data-driven tools.',
 };
 
 export const navLinks: NavLink[] = [
-  { href: '#about', label: 'About', number: '01.' },
-  { href: '#experience', label: 'Experience', number: '02.' },
-  { href: '#projects', label: 'Projects', number: '03.' },
-  { href: '#contact', label: 'Contact', number: '04.' },
+  { href: '#work', label: 'Work' },
+  { href: '#studio', label: 'Studio' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 export const experience: Experience[] = [
@@ -27,7 +27,7 @@ export const experience: Experience[] = [
     role: 'Founder & Creative Director',
     period: '2026 - Present',
     description: [
-      'Founded an independent Canadian game studio making premium, single-player story-driven games for PC and console, and lead creative direction on its debut title: a narrative adventure set in the mythology of the Kazakh steppe, in pre-production on Unreal Engine 5.',
+      'Founded an independent Canadian game studio making premium, single-player story-driven games for PC and console, and lead creative direction on its debut title, a narrative adventure in pre-production on Unreal Engine 5.',
       'Jury member for the GDC Awards 2027, Narrative Game of the Year.',
       'Running studio strategy and building the founding team, hiring for the Lead Developer and Lead Artist roles.',
       "Designed and built the studio's bilingual (English / Quebec French) website end to end: Next.js 16, next-intl, MDX news and careers pages, and contact, job application, and newsletter flows.",
@@ -101,36 +101,27 @@ export const experience: Experience[] = [
 ];
 
 export const projects: Project[] = [
+  // Featured: staged as desktop + mobile on their own colour field
   {
     featured: true,
     title: 'ScoutMyRivals',
+    kind: 'Web + iOS app',
+    year: '2026',
     description:
-      'A Marvel Rivals companion that tells you which heroes to ban based on the players in your lobby, re-ranking instantly as the real bans land. It follows a ranked match from queue to result, with a ban board readable in one glance during the ban phase, and adds season meta, team comp, and matchup reports for between games. Ships as a web app and a native SwiftUI iOS app on one shared, typed API.',
+      'A Marvel Rivals companion that tells you which heroes to ban based on the players in your lobby, re-ranking instantly as the real bans land. It follows a ranked match from queue to result with a ban board readable in one glance, adds season meta, team comp and matchup reports for between games, and ships as a web app and a native SwiftUI iOS app on one shared, typed API.',
     technologies: ['TypeScript', 'Node.js', 'PostgreSQL', 'Preact', 'SwiftUI'],
-    liveUrl: 'https://scoutmyrivals.com/',
-  },
-  {
-    featured: true,
-    title: 'Oina Studio',
-    description:
-      'The website for my game studio. Bilingual English and Quebec French with next-intl, MDX news and careers pages kept in sync with the hiring docs by a drift check, contact and job applications delivered through Resend, and a double opt-in newsletter. A dark, type-led brand with a scroll-driven statement on the home page.',
-    technologies: [
-      'Next.js',
-      'TypeScript',
-      'Tailwind',
-      'next-intl',
-      'MDX',
-      'Resend',
-      'Framer Motion',
-    ],
-    liveUrl: 'https://oinastudio.com/',
-    screenshots: { dark: '/projects/oina_studio.webp' },
+    liveUrl: 'https://app.scoutmyrivals.com/',
+    shot: '/shots/scoutmyrivals.webp',
+    phone: '/shots/scoutmyrivals_phone.webp',
+    field: '#c9c6f2',
   },
   {
     featured: true,
     title: 'ZealPower',
+    kind: 'Marketing site + CMS',
+    year: '2026',
     description:
-      'A production marketing site for ZealPower, an open data layer for grid connectivity, with a built-in admin CMS so the CEO can update copy, images, and stats without code changes. Magic-link login with TOTP 2FA, a schema-driven editor for each section, an audit log of every admin write, and a contact API protected by Cloudflare Turnstile, a honeypot, and Upstash rate limiting.',
+      'A production marketing site for ZealPower, an open data layer for grid connectivity, with a built-in admin CMS so the CEO can update copy, images and stats without code. Magic-link login with TOTP 2FA, a schema-driven editor for each section, an audit log of every admin write, and a contact API protected by Cloudflare Turnstile, a honeypot and Upstash rate limiting.',
     technologies: [
       'Next.js',
       'TypeScript',
@@ -140,11 +131,15 @@ export const projects: Project[] = [
       'Resend',
     ],
     liveUrl: 'https://zealpower-website.vercel.app/',
-    screenshots: { dark: '/projects/zealpower.webp' },
+    shot: '/shots/zealpower.webp',
+    phone: '/shots/zealpower_phone.webp',
+    field: '#cfdcf7',
   },
   {
     featured: true,
     title: 'KESH',
+    kind: 'Brand site + shop',
+    year: '2026',
     description:
       'An editorial site and shop for a premium denim brand. Collections and lookbooks are managed in an embedded Sanity Studio and refreshed on publish through webhook-driven revalidation, while the shop runs on the Shopify Storefront API with hosted checkout. Every page falls back to built-in content, so the CMS can be adopted gradually.',
     technologies: [
@@ -155,87 +150,144 @@ export const projects: Project[] = [
       'Tailwind',
     ],
     liveUrl: 'https://kesh-three.vercel.app/',
-    screenshots: { dark: '/projects/kesh.webp' },
+    shot: '/shots/kesh.webp',
+    phone: '/shots/kesh_phone.webp',
+    field: '#d9d3cb',
   },
+  // The studio's own site is shown in the Oina Studio chapter
   {
     featured: false,
-    title: 'Reading Light - iPhone Duo Lamp',
+    title: 'Oina Studio website',
+    kind: 'Studio website',
+    year: '2026',
     description:
-      'A nightstand lamp for the foldable iPhone: the hinge sensor is the dimmer, and a haptic warmth dial with detents and inertia runs from daylight down to a night-vision red. Includes a wind-down timer with animated countdowns, a sunrise wake-up, and Shortcuts, Siri, and Control Center actions.',
+      'The bilingual site for my game studio: English and Quebec French with next-intl, MDX news and careers pages kept in sync with the hiring docs, contact and job applications through Resend, and a double opt-in newsletter.',
+    technologies: ['Next.js', 'TypeScript', 'next-intl', 'MDX', 'Resend'],
+    liveUrl: 'https://oinastudio.com/',
+    shot: '/shots/oina.webp',
+    phone: '/shots/oina_phone.webp',
+  },
+  // Also built: the carousel
+  {
+    featured: false,
+    title: 'Reading Light',
+    kind: 'iOS lamp app, hinge as dimmer',
+    year: '2026',
+    figure: '1800 K',
+    icon: 'lamp',
+    live: 'warmth-dial',
+    description:
+      'A nightstand lamp for the foldable iPhone. Set it down half-open and the inner display becomes a soft reading light. The hinge is the dimmer: close it a little to dim, open it to brighten. A physical-feeling warmth dial runs from 6500 K daylight to 1800 K candlelight, then past it to Ember, a deep red that spares night vision. Includes a wind-down timer, a sunrise wake-up, and Shortcuts, Siri and Control Center actions.',
     technologies: ['Swift', 'SwiftUI', 'App Intents', 'Core Haptics'],
-    liveUrl: null,
   },
   {
     featured: false,
-    title: 'Marathon Theme for Omarchy',
+    title: 'Marathon Theme',
+    kind: 'Omarchy desktop theme',
+    year: '2026',
+    shot: '/projects/marathon_preview.webp',
     description:
-      "Dark and light desktop themes for the Omarchy Linux distribution, inspired by Bungie's Marathon (2026). Restyles the terminal, editor, btop, Waybar, Hyprland, lock screen, and icons, with original wallpapers and a two-command install.",
+      "Dark and light desktop themes for the Omarchy Linux distribution, inspired by Bungie's Marathon (2026). They restyle the terminal, editor, btop, Waybar, Hyprland, the lock screen and icons, with original wallpapers and a two-command install. My most-starred open-source work.",
     technologies: ['Hyprland', 'Shell', 'Neovim', 'Waybar'],
     githubUrl: 'https://github.com/Samat220/omarchy-marathon-theme',
-    liveUrl: null,
+    extraLinks: [
+      {
+        label: 'Light theme',
+        href: 'https://github.com/Samat220/omarchy-marathon-light-theme',
+      },
+    ],
   },
   {
     featured: false,
-    title: 'Omarchy Link Router',
+    title: 'Job Application Tracker',
+    kind: 'Gemini-powered dashboard',
+    year: '2025',
+    shot: '/shots/jobtracker.webp',
     description:
-      "Makes links clicked inside Omarchy's Chromium web apps open in the system default browser. A Manifest V3 extension catches the new tab and hands the URL to a small native messaging host, while OAuth popups stay inside the web app so logins keep working.",
-    technologies: ['JavaScript', 'Chrome Extensions', 'Python', 'Linux'],
-    githubUrl: 'https://github.com/Samat220/omarchy-link-router',
-    liveUrl: null,
-  },
-  {
-    featured: false,
-    title: 'Shinkansen Passenger Satisfaction Predictor',
-    description:
-      'Achieved 95.78% test accuracy (2nd place at MIT ML Hackathon, 0.07% behind 1st) by building a 3-model stacking ensemble with Optuna-tuned LightGBM, XGBoost, and CatBoost. Engineered 51 features from 24 raw columns including survey aggregates, delay ratios, and categorical interactions.',
-    technologies: ['Python', 'LightGBM', 'XGBoost', 'CatBoost', 'Optuna'],
-    githubUrl: 'https://github.com/Samat220/Shinkansen-Passenger-Satisfaction',
-    liveUrl: null,
-  },
-  {
-    featured: false,
-    title: 'AI Powered Job Application Tracker',
-    description:
-      'A full-stack dashboard that centralizes application tracking and uses the Google Gemini API to tailor resumes and cover letters to each job description, automating the most time-consuming part of a job search.',
-    technologies: ['TypeScript', 'Firebase', 'SQL', 'Gemini', 'LLM'],
+      'A full-stack dashboard that keeps a job search in one place and uses the Gemini API to tailor a resume and cover letter to each job description, automating the slowest part of applying.',
+    technologies: ['TypeScript', 'Firebase', 'SQL', 'Gemini'],
     liveUrl: 'https://job-search-dashboard-2e24c.web.app/',
   },
   {
     featured: false,
-    title: 'Media Picker & Spin Wheel',
+    title: 'Shinkansen Predictor',
+    kind: '2nd place, MIT ML hackathon',
+    year: '2026',
+    figure: '95.78%',
+    icon: 'chart',
     description:
-      "A web app built to solve the endless debate of 'what to watch or play next?' Users catalog their media into filterable lists, and an interactive spinning wheel randomly picks the winner.",
+      'Second place at the MIT machine learning hackathon with 95.78% test accuracy, 0.07% behind first. A three-model stacking ensemble of Optuna-tuned LightGBM, XGBoost and CatBoost, trained on 51 features engineered from 24 raw columns.',
+    technologies: ['Python', 'LightGBM', 'XGBoost', 'CatBoost', 'Optuna'],
+    githubUrl: 'https://github.com/Samat220/Shinkansen-Passenger-Satisfaction',
+  },
+  {
+    featured: false,
+    title: 'Media Picker',
+    kind: 'Spin-the-wheel backlog picker',
+    year: '2025',
+    shot: '/shots/mediapicker.webp',
+    description:
+      'Settles "what should I watch or play next?" Catalogue your backlog into filterable lists, then spin an interactive wheel to pick the winner.',
     technologies: ['FastAPI', 'SQLite', 'Tailwind', 'Python'],
     githubUrl: 'https://github.com/Samat220/Choose-for-me',
-    liveUrl: null,
   },
   {
     featured: false,
-    title: 'Amazon Product Recommendation System',
+    title: 'Omarchy Link Router',
+    kind: 'Chromium extension + native host',
+    year: '2026',
+    figure: 'MV3',
+    icon: 'route',
     description:
-      'Built collaborative filtering system using user-user and item-item KNN with cosine/MSD similarity and SVD matrix factorization on Amazon product ratings dataset. Improved model accuracy by 4.8% through GridSearchCV hyperparameter tuning.',
-    technologies: ['Python', 'Scikit-learn', 'Pandas', 'Surprise'],
+      "Makes links clicked inside Omarchy's Chromium web apps open in your default browser. A Manifest V3 extension catches the new tab and hands the URL to a small native messaging host, while sign-in pop-ups stay in place so logins keep working.",
+    technologies: ['JavaScript', 'Chrome Extensions', 'Python', 'Linux'],
+    githubUrl: 'https://github.com/Samat220/omarchy-link-router',
+  },
+  {
+    featured: false,
+    title: 'Amazon Recommender',
+    kind: 'Collaborative filtering, SVD',
+    year: '2026',
+    figure: '+4.8%',
+    icon: 'graph',
+    description:
+      'Collaborative filtering on Amazon product ratings: user-user and item-item KNN with cosine and MSD similarity, plus SVD matrix factorisation. Grid-search tuning improved accuracy by 4.8%.',
+    technologies: ['Python', 'scikit-learn', 'pandas', 'Surprise'],
     githubUrl: 'https://github.com/Samat220/recommendation_system',
-    liveUrl: null,
   },
   {
     featured: false,
-    title: 'Marketing Event Ingestion API',
+    title: 'Event Ingestion API',
+    kind: 'Marketing events, validated',
+    year: '2025',
+    figure: 'UTC',
+    icon: 'stack',
     description:
-      'A high-performance API designed to receive, validate, and store marketing event data. Built with FastAPI, this service converts timestamps to UTC, and ensures data integrity using Pydantic.',
+      'A high-performance API that receives, validates and stores marketing event data. Built with FastAPI and Pydantic, it normalises every timestamp to UTC and rejects malformed events before they reach storage.',
     technologies: ['Python', 'FastAPI', 'Pydantic', 'Pytest'],
-    liveUrl: null,
   },
   {
     featured: false,
     title: 'GraphQL API with NestJS',
+    kind: 'Products and users, tested',
+    year: '2023',
+    figure: 'GraphQL',
+    icon: 'hex',
     description:
-      'A robust GraphQL server for a product and user management system. The project emphasizes clean architecture, dependency injection, and comprehensive unit testing with Jest.',
+      'A GraphQL server for a product and user management system, built around clean architecture and dependency injection, with comprehensive unit tests in Jest.',
     technologies: ['NestJS', 'TypeScript', 'GraphQL', 'Jest', 'Node.js'],
     githubUrl: 'https://github.com/Samat220/Plotly-assignment',
-    liveUrl: null,
   },
 ];
+
+/** The studio's own website, shown in the Oina Studio chapter. */
+export const studioSite = projects.find(
+  p => p.title === 'Oina Studio website'
+)!;
+/** Side projects for the carousel. */
+export const sideProjects = projects.filter(
+  p => !p.featured && p !== studioSite
+);
 
 export const backendSkills: string[] = [
   'Python',
