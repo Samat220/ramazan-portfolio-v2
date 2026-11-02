@@ -12,8 +12,14 @@ interface ModalProps {
 }
 
 const overlayVariants: Variants = {
-  visible: { opacity: 1, transition: { duration: 0.3, ease: 'easeOut' } },
-  hidden: { opacity: 0, transition: { duration: 0.3, ease: 'easeIn' } },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.24, ease: [0.23, 1, 0.32, 1] },
+  },
+  hidden: {
+    opacity: 0,
+    transition: { duration: 0.16, ease: [0.23, 1, 0.32, 1] },
+  },
 };
 
 const modalVariants: Variants = {
@@ -22,18 +28,17 @@ const modalVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.3,
-      ease: [0.4, 0, 0.2, 1],
-      delay: 0.1,
+      duration: 0.24,
+      ease: [0.23, 1, 0.32, 1],
     },
   },
   hidden: {
     opacity: 0,
-    y: 40,
-    scale: 0.95,
+    y: 16,
+    scale: 0.97,
     transition: {
-      duration: 0.2,
-      ease: [0.4, 0, 1, 1],
+      duration: 0.16,
+      ease: [0.23, 1, 0.32, 1],
     },
   },
 };
@@ -117,7 +122,7 @@ export function Modal({
           aria-labelledby="modal-title"
         >
           <motion.div
-            className="absolute inset-0 bg-background/20 backdrop-blur-lg"
+            className="absolute inset-0 bg-background/90"
             style={{ willChange: 'opacity' }}
             variants={overlayVariants}
             initial="hidden"

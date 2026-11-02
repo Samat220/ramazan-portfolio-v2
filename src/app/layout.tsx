@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Fira_Code } from 'next/font/google';
+import { Bricolage_Grotesque, Inter, Geist_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { ThemeProvider } from '@/providers/theme-provider';
 import { ModalProvider } from '@/components/ui/modal-provider';
 import { siteMetadata, personalInfo } from '@/data/config';
 import './globals.css';
+import './site.css';
+
+const display = Bricolage_Grotesque({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  variable: '--font-display',
+  display: 'swap',
+});
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,9 +19,10 @@ const inter = Inter({
   display: 'swap',
 });
 
-const firaCode = Fira_Code({
+const mono = Geist_Mono({
   subsets: ['latin'],
-  variable: '--font-fira-code',
+  weight: ['400', '500'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -76,10 +84,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
-  ],
+  themeColor: '#f4f1ea',
+  colorScheme: 'light',
 };
 
 export default function RootLayout({
@@ -88,7 +94,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${inter.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           type="application/ld+json"
@@ -98,21 +108,22 @@ export default function RootLayout({
               '@type': 'Person',
               name: siteMetadata.author,
               url: siteMetadata.url,
-              jobTitle: 'Software Engineer',
+              jobTitle: 'Founder & Creative Director',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Oina Studio',
+                url: 'https://oinastudio.com/',
+              },
               sameAs: [personalInfo.linkedin, personalInfo.github],
             }),
           }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-background">
-        <ThemeProvider>
-          <ModalProvider>
-            <div className="relative isolate">
-              {children}
-              <Analytics />
-            </div>
-          </ModalProvider>
-        </ThemeProvider>
+      <body>
+        <ModalProvider>
+          {children}
+          <Analytics />
+        </ModalProvider>
       </body>
     </html>
   );

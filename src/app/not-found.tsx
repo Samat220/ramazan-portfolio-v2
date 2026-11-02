@@ -8,57 +8,16 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <div className="text-center max-w-md mx-auto">
-        <div className="mb-8">
-          <h1 className="text-9xl font-bold text-accent mb-4">404</h1>
-          <h2 className="text-2xl font-semibold text-primary mb-4">
-            Page Not Found
-          </h2>
-          <p className="text-secondary mb-8">
-            The page you are looking for doesn&apos;t exist or has been moved.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          <Link
-            href="/"
-            className="inline-flex items-center px-6 py-3 text-accent border border-accent rounded hover:bg-accent/10 transition-all duration-300 font-mono"
-          >
-            ← Back to Home
-          </Link>
-
-          <div className="text-sm text-secondary">
-            <p>Or navigate to:</p>
-            <div className="flex flex-wrap justify-center gap-4 mt-2">
-              <Link
-                href="/#about"
-                className="hover:text-accent transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/#skills"
-                className="hover:text-accent transition-colors"
-              >
-                Skills
-              </Link>
-              <Link
-                href="/#projects"
-                className="hover:text-accent transition-colors"
-              >
-                Projects
-              </Link>
-              <Link
-                href="/#contact"
-                className="hover:text-accent transition-colors"
-              >
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <main className="me-mesh me-grain relative flex min-h-svh flex-col items-start justify-center gap-6 px-6 md:px-12">
+      <h1 className="me-display text-[clamp(3.5rem,12vw,10rem)] uppercase text-white">
+        Not found
+      </h1>
+      <p className="max-w-[34ch] text-[18px] leading-relaxed text-[#2b2833]">
+        This page doesn&apos;t exist or has moved. The work is on the home page.
+      </p>
+      <Link href="/" className="me-pill me-pill--ink">
+        Back to the home page
+      </Link>
+    </main>
   );
 }

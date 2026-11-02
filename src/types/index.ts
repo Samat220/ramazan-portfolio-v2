@@ -13,7 +13,6 @@ export interface PersonalInfo {
 export interface NavLink {
   href: string;
   label: string;
-  number: string;
 }
 
 export interface Experience {
@@ -25,27 +24,38 @@ export interface Experience {
   skills: string[];
 }
 
-export interface ProjectScreenshots {
-  dark: string;
-  light?: string; // Optional light mode
+export interface ProjectLink {
+  label: string;
+  href: string;
 }
+
+export type LineIconKind =
+  'lamp' | 'chart' | 'route' | 'graph' | 'stack' | 'hex';
 
 export interface Project {
   featured: boolean;
   title: string;
+  /** What it is, in a few words: "Web + iOS app" */
+  kind: string;
   description: string;
   technologies: string[];
-  githubUrl: string;
+  year: string;
+  githubUrl?: string;
   liveUrl?: string | null;
-  screenshots?: ProjectScreenshots;
-}
-
-export interface ScrollRevealProps {
-  children: React.ReactNode;
-  className?: string;
-  animationType?: 'fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'scaleUp';
-  delay?: number;
-  threshold?: number;
+  /** Desktop screenshot (2880×1800) */
+  shot?: string;
+  /** Mobile screenshot (1170×2532) */
+  phone?: string;
+  /** Background colour of the project's stage */
+  field?: string;
+  /** A true figure shown when there is no screenshot */
+  figure?: string;
+  /** Line drawing shown when there is no screenshot */
+  icon?: LineIconKind;
+  /** More links beyond source and live */
+  extraLinks?: ProjectLink[];
+  /** An interactive demo shown in the project's detail view */
+  live?: 'warmth-dial';
 }
 
 export interface ContactFormData {
