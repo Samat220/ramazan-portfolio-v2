@@ -1,211 +1,67 @@
-# 🚀 Ramazan Samat Portfolio Website
+# Ramazan Samat — Portfolio
 
-Hi, I'm Ramazan Samat, and this is the source code for my personal portfolio. This project is a showcase of my skills in modern web development, built from scratch with a focus on clean design, fluid animations, and a great user experience. It's powered by **Next.js**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
+Source for [ramazansamat.dev](https://www.ramazansamat.dev/): the personal site of Ramazan Samat, founder of Oina Studio and software engineer.
 
-Feel free to explore the code to see how it's made, or check out the live version to learn more about my work: **[https://www.ramazansamat.dev/](https://www.ramazansamat.dev/)**
+One light, tactile design: each project is staged on its own colour field as real desktop and mobile screenshots, with depth from shadows, perspective and layered devices. Side projects sit on a ring you can drag to spin, and every card opens into a detail panel.
 
-![Portfolio Preview](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+## Stack
 
-## ✨ Features
+- **Next.js 16** (App Router, Turbopack), **React 19**, **TypeScript** (strict)
+- **Tailwind CSS v4** with CSS custom properties as design tokens
+- **Framer Motion** for scroll-linked and interactive motion, **Lenis** for smooth scroll
+- **Vercel** hosting, Analytics and Blob (resume storage)
+- **Web3Forms** for the contact form
 
-- **⚡ Next.js 15** with App Router and Turbopack for lightning-fast development
-- **🎨 Modern UI/UX** with Tailwind CSS v4 and custom animations
-- **📱 Fully Responsive** design that works on all devices
-- **🌙 Dark/Light Theme** with system preference detection
-- **🎭 Advanced Animations** using Framer Motion
-- **📧 Contact Form** with form validation
-- **🔍 SEO Optimized** with proper metadata and structured data
-- **♿ Accessible** with ARIA labels and keyboard navigation
-- **🚀 Performance Optimized** with Next.js Image optimization
-- **🔒 Type Safe** with strict TypeScript configuration
-- **🧪 CI/CD Pipeline** with GitHub Actions
-- **📦 Automated Deployments** to Vercel
+## Getting started
 
-## 🛠️ Tech Stack
+Requires Node 24 (pinned in `.mise.toml`).
 
-### Frontend
+```bash
+npm install
+cp .env.example .env.local   # add your Web3Forms key
+npm run dev                  # http://localhost:3000
+```
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
-- **State Management**: Zustand with persistence
-- **Icons**: Lucide React
+## Scripts
 
-### Development & Deployment
+```bash
+npm run dev            # Dev server (Turbopack)
+npm run build          # Production build
+npm start              # Serve the production build
+npm run type-check     # TypeScript
+npm run lint:check     # ESLint (npm run lint to fix)
+npm run format:check   # Prettier (npm run format to fix)
+```
 
-- **Build Tool**: Turbopack
-- **Linting**: ESLint with Next.js config
-- **Formatting**: Prettier
-- **Git Hooks**: Husky + lint-staged
-- **Node Version**: mise (`.mise.toml`)
-- **CI/CD**: GitHub Actions
-- **Deployment**: Vercel
-- **Analytics**: Vercel Analytics
+The pre-commit hook runs `lint-staged`. CI runs type-check, lint, format and build, plus an npm audit; all must pass.
 
-## 🏗️ Architecture
+## Project layout
 
 ```
 src/
-├── app/                    # Next.js App Router pages
+├── app/                 # Layout, page, globals.css + site.css, icons, robots, sitemap
+│   ├── admin/           # Resume upload page
+│   └── api/             # Authenticated resume upload to Vercel Blob
 ├── components/
-│   ├── common/            # Reusable components
-│   ├── layout/            # Layout components
-│   ├── sections/          # Page sections
-│   ├── icons/             # Custom icons
-│   └── ui/                # Base UI components
-├── data/
-│   └── config.ts          # Site configuration
-├── hooks/                 # Custom React hooks
-├── lib/                   # Utilities and stores
-├── providers/             # React context providers
-└── types/                 # TypeScript definitions
+│   ├── site/            # Page sections: nav, hero, work, studio, experience, carousel, contact
+│   ├── work/            # Project-specific interactive pieces
+│   ├── common/          # Contact form
+│   └── ui/              # Button, modal
+├── data/config.ts       # All site content
+├── lib/                 # Utilities
+└── types/               # Content types
 ```
 
-## 🚀 Getting Started
+All content lives in `src/data/config.ts`. Design rules are in [`DESIGN.md`](DESIGN.md) and product context in [`PRODUCT.md`](PRODUCT.md).
 
-### Prerequisites
+## Resume
 
-- Node.js 20 or higher (managed via [mise](https://mise.jdx.dev/) — see `.mise.toml`)
-- npm
+The resume PDF is served from Vercel Blob. Replace it at `/admin/upload-resume`; uploads need the `ADMIN_SECRET_KEY` set on the deployment.
 
-### Installation
+## License
 
-1. **Clone the repository**
+MIT, see [LICENSE](LICENSE). You're welcome to learn from the code; if it inspires your own site, please credit [ramazansamat.dev](https://www.ramazansamat.dev/) and don't present the design as your own.
 
-   ```bash
-   git clone https://github.com/Samat220/ramazan-portfolio-v2.git
-   cd ramazan-portfolio-v2
-   ```
+## Contact
 
-2. **Install dependencies**
-
-   ```bash
-   mise install   # installs correct Node version (optional, if using mise)
-   npm install
-   ```
-
-3. **Start the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📝 Available Scripts
-
-### Development
-
-```bash
-npm run dev              # Start development server with Turbopack
-npm start               # Start production server
-```
-
-### Build & Production
-
-```bash
-npm run build           # Build for production
-```
-
-### Code Quality
-
-```bash
-npm run lint            # Auto-fix ESLint issues
-npm run lint:check      # Check ESLint issues without fixing
-npm run format          # Auto-format code with Prettier
-npm run format:check    # Check formatting without fixing
-npm run type-check      # Run TypeScript type checking
-```
-
-### Git Hooks
-
-```bash
-npm run prepare         # Setup Husky git hooks
-```
-
-## 🎨 Customization
-
-All portfolio content is centralized in `src/data/config.ts`. Update the following sections:
-
-- **personalInfo**: Name, bio, contact information, social links
-- **experience**: Work history and achievements
-- **projects**: Featured projects with descriptions and tech stack
-- **skills**: Technical skills categorized by domain
-- **siteMetadata**: SEO configuration
-
-## 🔄 CI/CD Pipeline
-
-The project includes a comprehensive GitHub Actions workflow:
-
-- **Code Quality**: TypeScript, ESLint, and Prettier checks
-- **Build Verification**: Ensures the application builds successfully
-- **Security Audit**: npm audit for vulnerabilities
-- **Automated Deployment**: Deploys to Vercel on main branch
-- **Preview Deployments**: Creates preview URLs for pull requests
-- **Dependency Updates**: Dependabot for automated updates
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables if needed
-3. Deploy automatically on every push to main
-
-### Manual Deployment
-
-```bash
-npm run build
-npm start
-```
-
-## 🤝 Contributing
-
-This portfolio is a project I've poured a significant amount of time and effort into, and I'm proud to share the code with the community. It's intended to serve as both a personal showcase and a source of inspiration for other developers.
-
-I encourage you to explore the code and learn from it. If this project helps you or inspires your own work, I kindly ask that you give proper credit by linking back to [ramazansamat.dev](https://www.ramazansamat.dev/). Please do not claim this work as your own.
-
-### Commit Convention
-
-This project follows [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` new features
-- `fix:` bug fixes
-- `docs:` documentation changes
-- `style:` formatting changes
-- `refactor:` code refactoring
-- `test:` adding tests
-- `chore:` maintenance tasks
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙋‍♂️ Contact
-
-**Ramazan Samat**
-
-- 📧 Email: [samatramazan.dev@gmail.com](mailto:samatramazan.dev@gmail.com)
-- 💼 LinkedIn: [linkedin.com/in/samatr](https://linkedin.com/in/samatr)
-- 🐙 GitHub: [github.com/Samat220](https://github.com/Samat220)
-- 🌐 Portfolio: [ramazansamat.dev](https://www.ramazansamat.dev/)
-
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - The React framework used
-- [Tailwind CSS](https://tailwindcss.com/) - For utility-first styling
-- [Framer Motion](https://www.framer.com/motion/) - For smooth animations
-- [Vercel](https://vercel.com/) - For hosting and deployment
-- [Lucide](https://lucide.dev/) - For beautiful icons
-- Brittany Chiang - For initial inspiration
-
----
-
-<div align="center">
-  <p>Built with ❤️ using Next.js and TypeScript</p>
-</div>
+[samatramazan.dev@gmail.com](mailto:samatramazan.dev@gmail.com) · [LinkedIn](https://linkedin.com/in/samatr) · [GitHub](https://github.com/Samat220)
