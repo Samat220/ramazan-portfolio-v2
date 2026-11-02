@@ -22,7 +22,7 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 
 ## Architecture Overview
 
-Single-page Next.js 15 portfolio site using App Router. `src/app/page.tsx` composes the client sections in `src/components/site/`.
+Single-page Next.js 16 portfolio site using App Router. `src/app/page.tsx` composes the client sections in `src/components/site/`.
 
 ### Path Alias
 

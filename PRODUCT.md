@@ -32,7 +32,7 @@ An engineer turned video game studio founder who still builds his own products e
 
 ## Capabilities and Constraints
 
-- Next.js 15 (App Router), React 19, Tailwind v4, TypeScript strict. CI runs `type-check`, `lint:check`, `format:check` and `build`, and all four must pass.
+- Next.js 16 (App Router), React 19, Tailwind v4, TypeScript strict. CI runs `type-check`, `lint:check`, `format:check` and `build`, and all four must pass.
 - All content lives in `src/data/config.ts`: personal info, experience, projects and skills.
 - Contact form through Web3Forms (`NEXT_PUBLIC_WEB3FORMS_KEY`).
 - Resume upload API at `src/app/api/upload-resume/route.ts`, guarded by `ADMIN_SECRET_KEY`.
