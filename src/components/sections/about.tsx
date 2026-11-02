@@ -16,20 +16,30 @@ export function About() {
           delay={200}
           className="md:col-span-3 space-y-4"
         >
-          {/* ✅ UPDATED PARAGRAPH 1 */}
           <p className="text-secondary">
-            I specialize in Python backend development, with a focus on
-            designing resilient, high-performance systems. My experience
-            includes building scalable gRPC services, implementing custom rate
-            limiters, and optimizing backend reliability at Movable Ink.
+            I&apos;m the founder and creative director of{' '}
+            <a
+              href="https://oinastudio.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              Oina Studio
+            </a>
+            . &quot;Oina&quot; means &quot;play&quot; in Kazakh. I grew up with
+            the epic poetry and mythology of Central Asia and never once saw
+            that world in a game, so we&apos;re making one: a single-player
+            narrative adventure built on Unreal Engine 5. I&apos;m also on the
+            jury for the GDC Awards 2027, Narrative Game of the Year.
           </p>
-          {/* ✅ UPDATED PARAGRAPH 2 */}
           <p className="text-secondary">
-            What drives me now is the chance to bring that same system-design
-            mindset into machine learning and AI—especially in fintech, where
-            technology and data can unlock real-world impact. I’m eager to
-            contribute to teams building intelligent, reliable systems that sit
-            at the intersection of software engineering and applied ML.
+            Before Oina, I spent five years as a backend and infrastructure
+            engineer. At Movable Ink I built gRPC services, Redis-backed rate
+            limiters, and ML personalization pipelines serving millions of email
+            recipients; at Lucky Financial I scaled user data to 10M+ users. I
+            still build every day, from full-stack web apps to native iOS and
+            data tools like ScoutMyRivals, a Marvel Rivals ban recommender for
+            web and iOS.
           </p>
         </ScrollReveal>
 
@@ -51,14 +61,13 @@ export function About() {
         </ScrollReveal>
       </div>
 
-      {/* The skills tree section remains the same */}
       <ScrollReveal animationType="scaleUp" delay={400}>
         <div className="skills-container">
           <div className="skills-tree">
             <div className="skills-header">MY SKILLS</div>
             <div className="skills-branches">
               <div className="skill-branch">
-                <h4>Python Backend</h4>
+                <h4>Engineering</h4>
                 <div className="skill-tags">
                   {backendSkills.map((skill, index) => (
                     <div
@@ -74,7 +83,7 @@ export function About() {
                 </div>
               </div>
               <div className="skill-branch">
-                <h4>Machine Learning</h4>
+                <h4>ML &amp; Data</h4>
                 <div className="skill-tags">
                   {mlSkills.map((skill, index) => (
                     <div

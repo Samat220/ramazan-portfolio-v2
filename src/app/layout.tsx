@@ -98,7 +98,12 @@ export default function RootLayout({
               '@type': 'Person',
               name: siteMetadata.author,
               url: siteMetadata.url,
-              jobTitle: 'Software Engineer',
+              jobTitle: 'Founder & Creative Director',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Oina Studio',
+                url: 'https://oinastudio.com/',
+              },
               sameAs: [personalInfo.linkedin, personalInfo.github],
             }),
           }}
