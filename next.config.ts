@@ -16,19 +16,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  images: {
-    dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-  },
+  // A stray lockfile further up the disk confuses root detection.
+  turbopack: { root: __dirname },
   async headers() {
     return [
       {

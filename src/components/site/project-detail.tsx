@@ -10,7 +10,7 @@ import { desktopSrcSet } from './devices';
 const ease = [0.23, 1, 0.32, 1] as const;
 const PANEL_WIDTH = 880;
 
-export function projectLinks(p: Project): ProjectLink[] {
+function projectLinks(p: Project): ProjectLink[] {
   return [
     ...(p.liveUrl ? [{ label: 'Live', href: p.liveUrl }] : []),
     ...(p.githubUrl ? [{ label: 'Source on GitHub', href: p.githubUrl }] : []),

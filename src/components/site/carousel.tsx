@@ -158,7 +158,10 @@ export function Carousel() {
         onKeyDown={onKeyDown}
         onClickCapture={e => {
           // A drag is not a click: don't open the card under the cursor.
+          // Swallow only the one click that ends a drag, so a later Enter
+          // on a focused card still opens it.
           if (moved.current) {
+            moved.current = false;
             e.preventDefault();
             e.stopPropagation();
           }

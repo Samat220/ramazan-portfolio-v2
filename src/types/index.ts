@@ -24,23 +24,13 @@ export interface Experience {
   skills: string[];
 }
 
-export interface ProjectScreenshots {
-  dark: string;
-  light?: string; // Optional light mode
-}
-
 export interface ProjectLink {
   label: string;
   href: string;
 }
 
 export type LineIconKind =
-  | 'lamp'
-  | 'chart'
-  | 'route'
-  | 'graph'
-  | 'stack'
-  | 'hex';
+  'lamp' | 'chart' | 'route' | 'graph' | 'stack' | 'hex';
 
 export interface Project {
   featured: boolean;
